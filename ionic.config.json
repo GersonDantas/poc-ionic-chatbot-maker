@@ -1,0 +1,8 @@
+{
+  "name": "POCIonicChatbotMaker",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "id": "3e4af93d"
+}
