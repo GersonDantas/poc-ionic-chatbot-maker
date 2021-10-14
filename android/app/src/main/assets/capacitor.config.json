@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "POCIonicChatbotMaker",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}

@@ -1,0 +1,59 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { Storage } from "@capacitor/storage";
+import { moon } from "ionicons/icons";
+import { IonIcon, IonToggle, useIonViewDidEnter } from "@ionic/react";
+import "./styles.css";
+
+const MyIonToggleThem: React.FC = () => {
+  
+  const setToggleRef = useRef<HTMLIonToggleElement>(null);
+
+  const [isDark, setIsDark] = useState<boolean>();
+  const [storageInitTheme] = useState<Promise<string | null>>(async () => {
+    const { value } = await Storage.get({ key: "isDarkTheme" });
+    return value;
+  });
+
+  useMemo(async () => {
+    let t = await storageInitTheme;
+    if (t) setIsDark(t === "dark");
+    document.body.classList.toggle("dark", isDark);
+  }, []);
+
+  useIonViewDidEnter(() => {
+    let check = setToggleRef.current?.checked
+    if ( check !== undefined && isDark ) {
+      setToggleRef.current!.checked = true;
+      setIsDark(false)
+    }
+  }, [isDark]);
+
+
+  return (
+    <>
+      <IonIcon
+        className="component-icon  component-icon-dark"
+        slot="end"
+        icon={moon}
+      />
+      <IonToggle
+        ref={setToggleRef}
+        slot="end"
+        name="darkMode"
+        onIonChange={toggleDarkTheme}
+      />
+    </>
+  );
+};
+
+const toggleDarkTheme = async () => {
+  let toggleDark = document.body.classList.toggle("dark") ? "dark" : "light";
+  Storage.set({ key: "isDarkTheme", value: toggleDark });
+};
+
+export default MyIonToggleThem;
