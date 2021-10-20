@@ -1,4 +1,4 @@
-import { MyIonInput, MyIonLabel } from "./styles";
+import {MyIonInputStyled, MyIonLabel} from '../MyIonComponentsStyled';
 import { IonInputProps } from "@ionic/react";
 
 type MyInputAndLabelComponentProps = {
@@ -9,7 +9,7 @@ function MyInputAndLabelComponent(props: MyInputAndLabelComponentProps) {
   return (
     <>
       {props.label && <MyIonLabel position="stacked">{props.label}</MyIonLabel>}
-      <MyIonInput {...props} />
+      <MyIonInputStyled {...props} />
     </>
   );
 }

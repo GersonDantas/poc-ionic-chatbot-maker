@@ -1,12 +1,13 @@
-import { IonInput, IonLabel } from "@ionic/react";
-import styled from "styled-components";
+import { IonInput, IonLabel } from '@ionic/react';
+import styled from 'styled-components';
 
 export const MyIonLabel = styled(IonLabel)`
   font-size: 0.9rem;
   font-weight: 700;
   color: var(--ion-text-color);
 `;
-export const MyIonInput = styled(IonInput)`
+
+export const MyIonInputStyled = styled(IonInput)`
   background-color: #fff;
   background-image: none;
   border: 1px solid rgba(var(--ion-text-color-rgb), 0.2);

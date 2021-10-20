@@ -1,7 +1,7 @@
 import { IonInputProps } from "@ionic/react";
 import { useCallback, useRef } from "react";
 import { IMask } from "react-imask";
-import { MyIonInput, MyIonLabel } from "../MyInputAndLabelComponent/styles";
+import {MyIonInputStyled, MyIonLabel} from '../MyIonComponentsStyled';
 
 type MyInputWithMaskProps = {
   value: string | undefined;
@@ -9,6 +9,7 @@ type MyInputWithMaskProps = {
   label?: string;
   maskProps: string;
 } & IonInputProps;
+
 
 const MyInputWithMask = (props: MyInputWithMaskProps) => {
   const maskRef = useRef<IMask.InputMask<any> | null>(null);
@@ -20,13 +21,15 @@ const MyInputWithMask = (props: MyInputWithMaskProps) => {
     const nativeInput = await input.getInputElement();
     const mask = IMask(nativeInput, {
       mask: props.maskProps,
+      lazy: false,
+      placeholderChar: '_'
     })
       .on("accept", (e: any) => {
         props.onChange(mask.value);
       })
       .on("complete", (e: any) => {
         props.onChange(mask.value);
-      });
+      })
 
     maskRef.current = mask;
   }, []);
@@ -34,7 +37,7 @@ const MyInputWithMask = (props: MyInputWithMaskProps) => {
   return (
     <>
       {props.label && <MyIonLabel position="stacked">{props.label}</MyIonLabel>}
-      <MyIonInput {...props} value={props.value} ref={inputCallback} />
+      <MyIonInputStyled {...props} value={props.value} ref={inputCallback} />
     </>
   );
 };
