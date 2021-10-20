@@ -99,20 +99,20 @@ function LoginPage({ children }: LoginPageProps) {
                     onIonChange={(e) => setInputValuePassword(e.detail.value!)}
                   />
 
-                  <MyInputAndLabelComponent
+                  {/* <MyInputAndLabelComponent
                     label="Whatsapp"
                     value={inputValueWhatsapp}
                     type="tel"
                     placeholder="Digite seu Whatsapp"
                     onIonChange={(e) => setInputValueWhatsapp(e.detail.value!)}
-                  />
+                  /> */}
 
                   <MyInputWithMask
+                    label="Whatsapp"
+                    maskProps="(00) 00000-0000"
                     placeholder="(__) ____-____"
                     value={inputValueWhatsapp}
-                    onChange={(e: any) =>
-                      setInputValueWhatsapp(e)
-                    }
+                    onChange={(e: any) => setInputValueWhatsapp(e)}
                   />
 
                   <MyIonSigninSigningupButton
