@@ -78,7 +78,7 @@ function LoginPage({ children }: LoginPageProps) {
                   <MyInputAndLabelComponent
                     label="Nome"
                     value={inputValueName}
-                    type={"text"}
+                    type="text"
                     placeholder="Digite sua nome..."
                     onIonChange={(e) => setInputValueName(e.detail.value!)}
                   />
@@ -86,7 +86,7 @@ function LoginPage({ children }: LoginPageProps) {
                   <MyInputAndLabelComponent
                     label="Email"
                     value={inputValueEmail}
-                    type={"email"}
+                    type="email"
                     placeholder="Digite sua email..."
                     onIonChange={(e) => setInputValueEmail(e.detail.value!)}
                   />
@@ -94,7 +94,7 @@ function LoginPage({ children }: LoginPageProps) {
                   <MyInputAndLabelComponent
                     label="Senha"
                     value={inputValuePassword}
-                    type={"password"}
+                    type="password"
                     placeholder="Digite sua senha..."
                     onIonChange={(e) => setInputValuePassword(e.detail.value!)}
                   />
