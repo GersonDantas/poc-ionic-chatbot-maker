@@ -1,3 +1,4 @@
+import { useParams } from "react-router";
 import {
   IonButtons,
   IonContent,
@@ -7,10 +8,11 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { useParams } from "react-router";
-import MyIonToggleThem from "../../components/MyIonToggleTheme";
-import ExploreContainer from "../../components/ExploreContainer";
 import "./styles.css";
+import {
+  MyIonToggleThem,
+  ExploreContainer,
+} from "../../components/componentManager";
 
 const Page: React.FC = () => {
   const { name } = useParams<{ name: string }>();
@@ -22,7 +24,9 @@ const Page: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
+
           <MyIonToggleThem />
+
           <IonTitle>{name}</IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -33,6 +37,7 @@ const Page: React.FC = () => {
             <IonTitle size="large">{name}</IonTitle>
           </IonToolbar>
         </IonHeader>
+
         <ExploreContainer name={name} />
       </IonContent>
     </IonPage>
@@ -40,4 +45,3 @@ const Page: React.FC = () => {
 };
 
 export default Page;
-
