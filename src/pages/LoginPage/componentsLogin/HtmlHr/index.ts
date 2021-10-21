@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const MyHtmlHr = styled.hr`
+export const HtmlHr = styled.hr`
   background: rgba(var(--ion-text-color-rgb), 0.3);
   border-top: medium solid #ccc;
   font-size: 4em;

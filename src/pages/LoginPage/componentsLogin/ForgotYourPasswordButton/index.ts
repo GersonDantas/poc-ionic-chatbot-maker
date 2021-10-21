@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { IonButton } from "@ionic/react";
 
-export const ForgotYourPassword = styled(IonButton)`
+export const ForgotYourPasswordButton = styled(IonButton)`
   font-size: 0.75em;
   font-family: "Inter";
   --background-hover-opacity: 0%;

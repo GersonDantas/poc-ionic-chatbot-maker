@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IonButton } from '@ionic/react';
 
-export const MyIonFacebookButton = styled(IonButton)`
+export const FacebookButton = styled(IonButton)`
   --background-hover: var(--ion-color-primary);
   --background-hover-opacity: 80%;
   --color-hover: var(--ion-color-primary-contrast);

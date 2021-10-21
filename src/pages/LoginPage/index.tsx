@@ -8,7 +8,6 @@ import {
   IonCardHeader,
   IonCol,
   IonContent,
-  IonModal,
   IonPage,
   IonRippleEffect,
   IonRow,
@@ -16,11 +15,11 @@ import {
 
 import {
   MyIonCardForgotPassword,
-  MyHtmlHr,
-  MyIonFacebookButton,
+  HtmlHr,
+  FacebookButton,
   MyIonCard,
   MyIonCheckBox,
-  ForgotYourPassword,
+  ForgotYourPasswordButton,
   MyIonGrid,
   MyIonRow,
   MyIonSigninSigningupButton,
@@ -28,6 +27,9 @@ import {
   MyIonTextTerms,
   MyIonTitle,
   MyIonToggleSigninSigniup,
+  IonColTerms,
+  IonRowTerms,
+  IonModalForgot,
 } from "./componentsLogin/componentManager";
 
 import {
@@ -49,15 +51,15 @@ function LoginPage() {
   return (
     <IonPage>
       <IonContent fullscreen>
-        <IonModal
+        <IonModalForgot
           isOpen={forgotPassword}
           onDidDismiss={() => setForgotPasswor(false)}
         >
-          <MyIonCardForgotPassword />
-        </IonModal>
+          <MyIonCardForgotPassword setTheModal={setForgotPasswor}/>
+        </IonModalForgot>
         <MyIonGrid>
           <MyIonRow>
-            <IonCol sizeSm="12" sizeXl="4.5">
+            <IonCol sizeMd="4.5" size="12">
               <MyIonCard>
                 <IonCardHeader>
                   <SuriLogo />
@@ -73,7 +75,7 @@ function LoginPage() {
                       : "Só vai levar alguns segundos"}
                   </MyIonSubTitle>
 
-                  <MyIonFacebookButton
+                  <FacebookButton
                     expand="block"
                     fill="outline"
                     shape="round"
@@ -83,9 +85,9 @@ function LoginPage() {
                     <FontAwesomeIcon icon={faFacebookF} size="sm" pull="left" />
                     {isSigninForm ? "ENTRE" : "CADASTRE-SE"} COM O FACEBOOK
                     <IonRippleEffect />
-                  </MyIonFacebookButton>
+                  </FacebookButton>
 
-                  <MyHtmlHr
+                  <HtmlHr
                     data-after={`ou ${
                       isSigninForm ? "entre" : "cadastre-se"
                     } com seu email`}
@@ -96,6 +98,7 @@ function LoginPage() {
                       label="Nome"
                       value={inputValueName}
                       type="text"
+                      autocomplete="name"
                       placeholder="Digite sua nome..."
                       onIonChange={(e) => setInputValueName(e.detail.value!)}
                     />
@@ -105,6 +108,7 @@ function LoginPage() {
                     label="Email"
                     value={inputValueEmail}
                     type="email"
+                    autocomplete="email"
                     placeholder="Digite sua email..."
                     onIonChange={(e) => setInputValueEmail(e.detail.value!)}
                   />
@@ -123,12 +127,13 @@ function LoginPage() {
                       maskProps="(00) 00000-0000"
                       placeholder="(__) ____-____"
                       value={inputValueWhatsapp}
+                      autocomplete="cc-number"
                       onChange={(e: any) => setInputValueWhatsapp(e)}
                     />
                   )}
 
                   {isSigninForm ? (
-                    <ForgotYourPassword
+                    <ForgotYourPasswordButton
                       fill="clear"
                       color="primary"
                       size="small"
@@ -136,12 +141,12 @@ function LoginPage() {
                       onClick={() => setForgotPasswor(true)}
                     >
                       Esqueceu sua senha?
-                    </ForgotYourPassword>
+                    </ForgotYourPasswordButton>
                   ) : (
-                    <IonRow>
-                      <IonCol sizeLg="0.6" size="1">
+                    <IonRowTerms>
+                      <IonColTerms sizeLg="0.6" size="1">
                         <MyIonCheckBox />
-                      </IonCol>
+                      </IonColTerms>
                       <IonCol sizeLg="11.4" size="11">
                         <MyIonTextTerms>
                           <a
@@ -155,7 +160,7 @@ function LoginPage() {
                           novidades da plataforma pelo Whatsapp.
                         </MyIonTextTerms>
                       </IonCol>
-                    </IonRow>
+                    </IonRowTerms>
                   )}
 
                   <IonRow style={{ justifyContent: "center" }}>
@@ -165,6 +170,7 @@ function LoginPage() {
                         fill="solid"
                         shape="round"
                         size="default"
+                        onClick={() => {}}
                         strong
                       >
                         {isSigninForm ? "FAZER LOGIN" : "CADASTRE-SE"}
