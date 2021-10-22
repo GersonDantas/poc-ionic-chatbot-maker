@@ -37,7 +37,7 @@ import {
   MyInputAndLabelComponent,
   MyInputWithMask,
 } from "../../components/componentManager";
-
+import { Redirect } from "react-router";
 
 function LoginPage() {
   const [inputValueName, setInputValueName] = useState<string>();
@@ -55,7 +55,7 @@ function LoginPage() {
           isOpen={forgotPassword}
           onDidDismiss={() => setForgotPasswor(false)}
         >
-          <MyIonCardForgotPassword setTheModal={setForgotPasswor}/>
+          <MyIonCardForgotPassword setTheModal={setForgotPasswor} />
         </IonModalForgot>
         <MyIonGrid>
           <MyIonRow>
@@ -118,6 +118,7 @@ function LoginPage() {
                     value={inputValuePassword}
                     type="password"
                     placeholder="Digite sua senha..."
+                    autocomplete="current-password"
                     onIonChange={(e) => setInputValuePassword(e.detail.value!)}
                   />
 
@@ -127,7 +128,7 @@ function LoginPage() {
                       maskProps="(00) 00000-0000"
                       placeholder="(__) ____-____"
                       value={inputValueWhatsapp}
-                      autocomplete="cc-number"
+                      autocomplete="tel"
                       onChange={(e: any) => setInputValueWhatsapp(e)}
                     />
                   )}
@@ -170,7 +171,7 @@ function LoginPage() {
                         fill="solid"
                         shape="round"
                         size="default"
-                        onClick={() => {}}
+                        onClick={() => window.location.replace("/page/InBox")}
                         strong
                       >
                         {isSigninForm ? "FAZER LOGIN" : "CADASTRE-SE"}

@@ -1,5 +1,5 @@
-import { IonInput, IonLabel } from '@ionic/react';
-import styled from 'styled-components';
+import { IonInput, IonLabel } from "@ionic/react";
+import styled from "styled-components";
 
 export const MyIonLabel = styled(IonLabel)`
   font-size: 0.9rem;
@@ -26,5 +26,9 @@ export const MyIonInputStyled = styled(IonInput)`
     border: 1px solid var(--ion-color-primary);
     box-shadow: 0 0 2px #719ece;
     color: var(--ion-color-primary);
+  }
+  .native-input.sc-ion-input-md:-webkit-autofill {
+    background-color: transparent;
+    border-radius: 16px;
   }
 `;
