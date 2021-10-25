@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useMemo, useRef, useState } from "react";
+import { IonIcon, IonToggle, useIonViewDidEnter } from "@ionic/react";
 import { Storage } from "@capacitor/storage";
 import { moon } from "ionicons/icons";
-import { IonIcon, IonToggle, useIonViewDidEnter } from "@ionic/react";
 import "./styles.css";
 
 const MyIonToggleThem: React.FC = () => {

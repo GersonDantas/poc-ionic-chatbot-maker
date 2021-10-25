@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import {MyIonSubTitle} from "../MyIonSubTitle"
+import {IonSubTitleLogin} from "../IonSubTitleLogin"
 
-export const MyIonToggleSigninSigniup = styled(MyIonSubTitle)`
+export const MyIonToggleSigninSigniup = styled(IonSubTitleLogin)`
   padding-left: 10px;
   a {
     text-decoration: none;

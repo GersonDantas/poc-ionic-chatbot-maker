@@ -2,7 +2,7 @@ import { IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import React, { useState } from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import Menu from './components/Menu';
+import MenuNavigation from './components/MenuNavigation';
 import LoginPage from './pages/LoginPage';
 import Page from './pages/PageToPages';
 
@@ -16,7 +16,7 @@ const Router: React.FC = () => {
       contentId="main"
       when="(min-width: 1025px)"
     >
-      <Menu />
+      <MenuNavigation />
 
       <IonRouterOutlet id="main">
         <Route path="/" component={LoginPage} />

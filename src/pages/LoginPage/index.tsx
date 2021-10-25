@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
+import Nprogerss from "nprogress";
 
 import {
   IonCardContent,
@@ -14,18 +15,18 @@ import {
 } from "@ionic/react";
 
 import {
-  MyIonCardForgotPassword,
+  IonCardForgotPassword,
   HtmlHr,
   FacebookButton,
-  MyIonCard,
+  IonCardFormLogin,
   MyIonCheckBox,
   ForgotYourPasswordButton,
-  MyIonGrid,
-  MyIonRow,
+  IonGridLogin,
+  IonRowCardLine,
   MyIonSigninSigningupButton,
-  MyIonSubTitle,
+  IonSubTitleLogin,
   MyIonTextTerms,
-  MyIonTitle,
+  IonTitleLogin,
   MyIonToggleSigninSigniup,
   IonColTerms,
   IonRowTerms,
@@ -34,8 +35,8 @@ import {
 
 import {
   SuriLogo,
-  MyInputAndLabelComponent,
-  MyInputWithMask,
+  InputAndLabelComponent,
+  InputWithMask,
 } from "../../components/componentManager";
 import { Redirect } from "react-router";
 
@@ -48,32 +49,48 @@ function LoginPage() {
   const [isSigninForm, setIsSigninForm] = useState(true);
   const [forgotPassword, setForgotPasswor] = useState(false);
 
+  const loginFack = () => {
+    Nprogerss.start();
+    setTimeout(() => {
+      Nprogerss.inc(0.3);
+      setTimeout(() => {
+        Nprogerss.inc(0.3);
+        setTimeout(() => {
+          Nprogerss.inc(0.3);
+          window.location.replace("/page/Panel")
+        }, 500);
+      }, 500);
+    }, 500);
+  }
+
   return (
     <IonPage>
-      <IonContent fullscreen>
+      <IonContent fullscreen id="content_login_id">
         <IonModalForgot
           isOpen={forgotPassword}
           onDidDismiss={() => setForgotPasswor(false)}
         >
-          <MyIonCardForgotPassword setTheModal={setForgotPasswor} />
+          <IonCardForgotPassword setTheModal={setForgotPasswor} />
         </IonModalForgot>
-        <MyIonGrid>
-          <MyIonRow>
+
+        <IonGridLogin>
+          <IonRowCardLine>
             <IonCol sizeMd="4.5" size="12">
-              <MyIonCard>
+              <IonCardFormLogin>
                 <IonCardHeader>
                   <SuriLogo />
                 </IonCardHeader>
 
                 <IonCardContent>
-                  <MyIonTitle>
+                  <IonTitleLogin>
                     {isSigninForm ? "Entre" : "Cadastre-se"}
-                  </MyIonTitle>
-                  <MyIonSubTitle>
+                  </IonTitleLogin>
+
+                  <IonSubTitleLogin>
                     {isSigninForm
                       ? "E encante seus clientes"
                       : "Só vai levar alguns segundos"}
-                  </MyIonSubTitle>
+                  </IonSubTitleLogin>
 
                   <FacebookButton
                     expand="block"
@@ -94,7 +111,7 @@ function LoginPage() {
                   />
 
                   {!isSigninForm && (
-                    <MyInputAndLabelComponent
+                    <InputAndLabelComponent
                       label="Nome"
                       value={inputValueName}
                       type="text"
@@ -104,7 +121,7 @@ function LoginPage() {
                     />
                   )}
 
-                  <MyInputAndLabelComponent
+                  <InputAndLabelComponent
                     label="Email"
                     value={inputValueEmail}
                     type="email"
@@ -113,7 +130,7 @@ function LoginPage() {
                     onIonChange={(e) => setInputValueEmail(e.detail.value!)}
                   />
 
-                  <MyInputAndLabelComponent
+                  <InputAndLabelComponent
                     label="Senha"
                     value={inputValuePassword}
                     type="password"
@@ -123,7 +140,7 @@ function LoginPage() {
                   />
 
                   {!isSigninForm && (
-                    <MyInputWithMask
+                    <InputWithMask
                       label="Whatsapp"
                       maskProps="(00) 00000-0000"
                       placeholder="(__) ____-____"
@@ -171,7 +188,7 @@ function LoginPage() {
                         fill="solid"
                         shape="round"
                         size="default"
-                        onClick={() => window.location.replace("/page/InBox")}
+                        onClick={loginFack}
                         strong
                       >
                         {isSigninForm ? "FAZER LOGIN" : "CADASTRE-SE"}
@@ -197,22 +214,22 @@ function LoginPage() {
                     </IonCol>
                   </IonRow>
                 </IonCardContent>
-              </MyIonCard>
+              </IonCardFormLogin>
             </IonCol>
-          </MyIonRow>
-        </MyIonGrid>
+          </IonRowCardLine>
+        </IonGridLogin>
       </IonContent>
     </IonPage>
   );
 }
 
-// function getContent() {
-//   return document.querySelector("ion-content");
-// }
+function getContent() {
+  return document.getElementById("ion-content");
+}
 
-// function scrollToBottom() {
-//   console.log(getContent());
-//   if (getContent()) getContent()!.scrollIntoView({block: "center", behavior: "auto"});
-// }
+function scrollToBottom() {
+  console.log(getContent());
+  if (getContent()) getContent()!.scrollIntoView({block: "center", behavior: "auto"});
+}
 
 export default LoginPage;

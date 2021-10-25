@@ -1,29 +1,29 @@
 import { HtmlHr } from "./HtmlHr";
-import MyIonCardForgotPassword, {IonModalForgot} from "./MyIonCardForgotPassword";
+import IonCardForgotPassword, {IonModalForgot} from "./IonCardForgotPassword";
 import { FacebookButton } from "./FacebookButton";
-import { MyIonCard } from "./MyIonCard";
+import { IonCardFormLogin } from "./IonCardFormLogin";
 import { MyIonCheckBox } from "./MyIonCheckBox";
-import {MyIonGrid} from "./MyIonGrid"
-import {MyIonTitle} from "./MyIonTitle"
-import {MyIonSubTitle} from "./MyIonSubTitle"
+import {IonGridLogin} from "./IonGridLogin"
+import {IonTitleLogin} from "./IonTitleLogin"
+import {IonSubTitleLogin} from "./IonSubTitleLogin"
 import {MyIonToggleSigninSigniup} from "./MyIonToggleSigninSigniup"
-import {MyIonRow} from "./MyIonRow"
+import {IonRowCardLine} from "./IonRowCardLine"
 import {ForgotYourPasswordButton} from "./ForgotYourPasswordButton"
 import {MyIonSigninSigningupButton} from "./MyIonSigninSigningupButton";
 import { IonColTerms, IonRowTerms, MyIonTextTerms } from "./ComponentsTerms";
 
 export {
   HtmlHr,
-  MyIonCardForgotPassword,
+  IonCardForgotPassword,
   FacebookButton,
-  MyIonCard,
+  IonCardFormLogin,
   MyIonCheckBox,
-  MyIonGrid,
-  MyIonTitle,
-  MyIonSubTitle,
+  IonGridLogin,
+  IonTitleLogin,
+  IonSubTitleLogin,
   MyIonToggleSigninSigniup,
   MyIonTextTerms,
-  MyIonRow,
+  IonRowCardLine,
   MyIonSigninSigningupButton,
   ForgotYourPasswordButton,
   IonColTerms,
