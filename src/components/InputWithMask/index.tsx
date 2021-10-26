@@ -1,4 +1,4 @@
-import { IonInputProps } from "@ionic/react";
+import { IonInputProps } from "../../types/types";
 import { useCallback, useRef } from "react";
 import { IMask } from "react-imask";
 import {MyIonInputStyled, MyIonLabel} from '../MyIonComonsStyleds';

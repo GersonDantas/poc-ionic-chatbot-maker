@@ -80,11 +80,11 @@ const MenuNavigation: React.FC = () => {
   const location = useLocation();
 
   return (
-    <IonMenu contentId="main" type="overlay">
+    <IonMenu contentId="main" type="overlay" className="left-bar">
       <IonContent>
         <IonList id="inbox-list">
           <IonListHeader>Inbox</IonListHeader>
-          <IonNote>hi@ionicframework.com</IonNote>
+          <IonNote>suri@by.chatbotmaker</IonNote>
           {appPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
