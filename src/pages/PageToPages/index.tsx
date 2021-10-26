@@ -32,7 +32,7 @@ const Page: React.FC<PageProps> = () => {
 
           <MyIonToggleThem />
 
-          <IonTitle>{name}</IonTitle>
+          <IonTitle color="primary">{name}</IonTitle>
         </IonToolbar>
       </IonHeader>
 

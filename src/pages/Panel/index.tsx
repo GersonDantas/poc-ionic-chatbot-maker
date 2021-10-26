@@ -1,5 +1,6 @@
-import { IonCol, IonGrid, IonRow } from "@ionic/react";
+import { IonCard, IonCol, IonGrid, IonRow } from "@ionic/react";
 import { CardWithHeader } from "../../components/componentManager";
+import SelectDatePicker from "../../components/SelectDatePicker";
 
 
 import { IonCardLabel, IonGridPanel, IonTitleDepartament } from "./styles";
@@ -25,7 +26,11 @@ function Panel() {
       </IonRow>
       <IonRow>
         <IonCol size="12">
-          
+          <IonCard>
+            <SelectDatePicker>
+              
+            </SelectDatePicker>
+          </IonCard>
         </IonCol>
       </IonRow>
     </IonGridPanel>

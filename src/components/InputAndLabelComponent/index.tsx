@@ -1,5 +1,5 @@
 import {MyIonInputStyled, MyIonLabel} from '../MyIonComonsStyleds';
-import { IonInputProps } from "@ionic/react";
+import { IonInputProps } from "../../types/types";
 
 type InputAndLabelComponentProps = {
   label?: string;
