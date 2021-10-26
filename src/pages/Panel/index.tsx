@@ -4,6 +4,7 @@ import { CardWithHeader } from "../../components/componentManager";
 
 import { IonCardLabel, IonGridPanel, IonTitleDepartament } from "./styles";
 
+
 function Panel() {
   return (
     <IonGridPanel>
@@ -20,6 +21,11 @@ function Panel() {
           <CardWithHeader cardTitle="EM ANDAMENTO">
             <IonCardLabel>1</IonCardLabel>
           </CardWithHeader>
+        </IonCol>
+      </IonRow>
+      <IonRow>
+        <IonCol size="12">
+          
         </IonCol>
       </IonRow>
     </IonGridPanel>

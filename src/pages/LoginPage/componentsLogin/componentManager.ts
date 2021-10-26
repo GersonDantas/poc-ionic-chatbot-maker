@@ -2,7 +2,7 @@ import { HtmlHr } from "./HtmlHr";
 import IonCardForgotPassword, {IonModalForgot} from "./IonCardForgotPassword";
 import { FacebookButton } from "./FacebookButton";
 import { IonCardFormLogin } from "./IonCardFormLogin";
-import { MyIonCheckBox } from "./MyIonCheckBox";
+import { IonCheckBox } from "./IonCheckBox";
 import {IonGridLogin} from "./IonGridLogin"
 import {IonTitleLogin} from "./IonTitleLogin"
 import {IonSubTitleLogin} from "./IonSubTitleLogin"
@@ -17,7 +17,7 @@ export {
   IonCardForgotPassword,
   FacebookButton,
   IonCardFormLogin,
-  MyIonCheckBox,
+  IonCheckBox,
   IonGridLogin,
   IonTitleLogin,
   IonSubTitleLogin,

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { IonCheckbox } from '@ionic/react';
 
-export const MyIonCheckBox = styled(IonCheckbox)`
+export const IonCheckBox = styled(IonCheckbox)`
   --border-radius: 50%;
   --checkmark-color: transparent;
   --background: rgba(var(--ion-text-color-rgb), 0.15);

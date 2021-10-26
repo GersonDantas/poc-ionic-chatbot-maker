@@ -19,7 +19,7 @@ import {
   HtmlHr,
   FacebookButton,
   IonCardFormLogin,
-  MyIonCheckBox,
+  IonCheckBox,
   ForgotYourPasswordButton,
   IonGridLogin,
   IonRowCardLine,
@@ -57,15 +57,15 @@ function LoginPage() {
         Nprogerss.inc(0.3);
         setTimeout(() => {
           Nprogerss.inc(0.3);
-          window.location.replace("/page/Panel")
+          window.location.replace("/page/Panel");
         }, 500);
       }, 500);
     }, 500);
-  }
+  };
 
   return (
-    <IonPage>
-      <IonContent fullscreen id="content_login_id">
+    <IonPage >
+      <IonContent fullscreen>
         <IonModalForgot
           isOpen={forgotPassword}
           onDidDismiss={() => setForgotPasswor(false)}
@@ -163,7 +163,7 @@ function LoginPage() {
                   ) : (
                     <IonRowTerms>
                       <IonColTerms sizeLg="0.6" size="1">
-                        <MyIonCheckBox />
+                        <IonCheckBox />
                       </IonColTerms>
                       <IonCol sizeLg="11.4" size="11">
                         <MyIonTextTerms>
@@ -181,7 +181,7 @@ function LoginPage() {
                     </IonRowTerms>
                   )}
 
-                  <IonRow style={{ justifyContent: "center" }}>
+                  <IonRow style={{ justifyContent: "center" }} >
                     <IonCol size="11.5">
                       <MyIonSigninSigningupButton
                         expand="full"
@@ -194,13 +194,13 @@ function LoginPage() {
                         {isSigninForm ? "FAZER LOGIN" : "CADASTRE-SE"}
                         <IonRippleEffect />
                       </MyIonSigninSigningupButton>
-                      <MyIonToggleSigninSigniup>
+                      <MyIonToggleSigninSigniup >
                         {isSigninForm
                           ? "Não é cadastrado ainda? "
                           : "Já possui cadastro? "}
                         <a
-                          href="#"
-                          onClick={() => {
+                          href="/#"
+                          onClick={ () => {
                             // scrollToBottom();
                             setIsSigninForm(!isSigninForm);
                           }}
@@ -223,13 +223,13 @@ function LoginPage() {
   );
 }
 
-function getContent() {
-  return document.getElementById("ion-content");
-}
+// function getContent() {
+//   return document.querySelector('ion-content');
+// }
 
-function scrollToBottom() {
-  console.log(getContent());
-  if (getContent()) getContent()!.scrollIntoView({block: "center", behavior: "auto"});
-}
+// function scrollToBottom() {
+//   const container = getContent();
+//   return container && container.scrollToBottom(500);
+// }
 
 export default LoginPage;
