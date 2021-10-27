@@ -12,19 +12,16 @@ import {
 
 import { useLocation } from "react-router-dom";
 import {
-  archiveOutline,
-  archiveSharp,
-  bookmarkOutline,
-  heartOutline,
-  heartSharp,
-  mailOutline,
-  mailSharp,
-  paperPlaneOutline,
-  paperPlaneSharp,
-  trashOutline,
-  trashSharp,
-  warningOutline,
-  warningSharp,
+  statsChart,
+  statsChartOutline,
+  settings,
+  settingsOutline,
+  options,
+  optionsOutline,
+  grid,
+  gridOutline,
+  chatbubbles,
+  chatbubblesOutline
 } from "ionicons/icons";
 import "./styles.css";
 
@@ -35,46 +32,41 @@ interface AppPage {
   title: string;
 }
 
-const appPages: AppPage[] = [
+const listMenuAlto: AppPage[] = [
   {
-    title: "Panel",
-    url: "/page/Panel",
-    iosIcon: mailOutline,
-    mdIcon: mailSharp,
-  },
-  {
-    title: "Outbox",
-    url: "/page/Outbox",
-    iosIcon: paperPlaneOutline,
-    mdIcon: paperPlaneSharp,
-  },
-  {
-    title: "Favorites",
-    url: "/page/Favorites",
-    iosIcon: heartOutline,
-    mdIcon: heartSharp,
-  },
-  {
-    title: "Archived",
-    url: "/page/Archived",
-    iosIcon: archiveOutline,
-    mdIcon: archiveSharp,
-  },
-  {
-    title: "Trash",
-    url: "/page/Trash",
-    iosIcon: trashOutline,
-    mdIcon: trashSharp,
-  },
-  {
-    title: "Spam",
-    url: "/page/Spam",
-    iosIcon: warningOutline,
-    mdIcon: warningSharp,
+    title: "Gestão",
+    url: "/page/gestao",
+    iosIcon: gridOutline,
+    mdIcon: grid,
   },
 ];
 
-const labels = ["Family", "Friends", "Notes", "Work", "Travel", "Reminders"];
+const listMenuMedio: AppPage[] = [
+  {
+    title: "Painel",
+    url: "/page/painel",
+    iosIcon: statsChartOutline,
+    mdIcon: statsChart,
+  },
+  {
+    title: "Conversas",
+    url: "/page/conversas",
+    iosIcon: chatbubblesOutline,
+    mdIcon: chatbubbles,
+  },
+  {
+    title: "Habilidades",
+    url: "/page/habilidades",
+    iosIcon: optionsOutline,
+    mdIcon: options,
+  },
+  {
+    title: "Configurações",
+    url: "/page/configuracoes",
+    iosIcon: settingsOutline,
+    mdIcon: settings,
+  },
+];
 
 const MenuNavigation: React.FC = () => {
   const location = useLocation();
@@ -83,9 +75,9 @@ const MenuNavigation: React.FC = () => {
     <IonMenu contentId="main" type="overlay" className="left-bar">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Inbox</IonListHeader>
+          <IonListHeader>SURI</IonListHeader>
           <IonNote>suri@by.chatbotmaker</IonNote>
-          {appPages.map((appPage, index) => {
+          {listMenuAlto.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
                 <IonItem
@@ -110,14 +102,30 @@ const MenuNavigation: React.FC = () => {
           })}
         </IonList>
 
-        <IonList id="labels-list">
-          <IonListHeader>Labels</IonListHeader>
-          {labels.map((label, index) => (
-            <IonItem lines="none" key={index}>
-              <IonIcon slot="start" icon={bookmarkOutline} />
-              <IonLabel>{label}</IonLabel>
-            </IonItem>
-          ))}
+        <IonList>
+          {listMenuMedio.map((appPage, index) => {
+            return (
+              <IonMenuToggle key={index} autoHide={false}>
+                <IonItem
+                  className={
+                    location.pathname === appPage.url ? "selected" : ""
+                  }
+                  routerLink={appPage.url}
+                  routerDirection="none"
+                  lines="none"
+                  detail={false}
+                >
+                  <IonIcon
+                    slot="start"
+                    ios={appPage.iosIcon}
+                    md={appPage.mdIcon}
+                    color="primary"
+                  />
+                  <IonLabel>{appPage.title}</IonLabel>
+                </IonItem>
+              </IonMenuToggle>
+            );
+          })}
         </IonList>
       </IonContent>
     </IonMenu>
