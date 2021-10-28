@@ -1,9 +1,10 @@
-import { IonCol, IonImg } from "@ionic/react";
 import React from "react";
-import { MyIonRow } from "./styles";
-import logo from '../../assets/img/suri-cbm-logo-blue.png';
+import { IonCol } from "@ionic/react";
+import logo from 'src/assets/img/suri-cbm-logo-blue.png';
 
-const Logo: React.FC = () => {
+import { MyIonRow } from "./styles";
+
+const SuriLogo: React.FC = () => {
   return (
     <MyIonRow >
       <IonCol size="3">
@@ -16,4 +17,4 @@ const Logo: React.FC = () => {
   );
 };
 
-export default Logo;
+export {SuriLogo};

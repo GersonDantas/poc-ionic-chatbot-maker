@@ -1,40 +1,50 @@
-import { IonCard, IonCol, IonGrid, IonRow } from "@ionic/react";
-import { CardWithHeader } from "../../components/componentManager";
-import SelectDatePicker from "../../components/SelectDatePicker";
+import {
+  IonCol,
+  IonRow,
+} from "@ionic/react";
+import { CardWithHeader } from "src/components";
+import DatePickersWithButtons from "./componentsPanel/DatePickersWithButtons";
 
-
-import { IonCardLabel, IonGridPanel, IonTitleDepartament } from "./styles";
-
+import { IonCardLabel, IonGridPanel, IonTitleDepartment } from "./styles";
 
 function Panel() {
   return (
     <IonGridPanel>
       <IonRow>
+
         <IonCol size="12">
-          <IonTitleDepartament color="primary">CLIENTES</IonTitleDepartament>
+          <IonTitleDepartment color="primary">CLIENTES</IonTitleDepartment>
         </IonCol>
+
         <IonCol>
           <CardWithHeader cardTitle="ESPERANDO">
             <IonCardLabel>2</IonCardLabel>
           </CardWithHeader>
         </IonCol>
+
         <IonCol>
           <CardWithHeader cardTitle="EM ANDAMENTO">
             <IonCardLabel>1</IonCardLabel>
           </CardWithHeader>
         </IonCol>
+
       </IonRow>
+
       <IonRow>
+
         <IonCol size="12">
-          <IonCard>
-            <SelectDatePicker>
-              
-            </SelectDatePicker>
-          </IonCard>
+          <IonTitleDepartment color="primary">
+            ATENDIMENTOS
+          </IonTitleDepartment>
         </IonCol>
+
+        <IonCol size="12">
+          <DatePickersWithButtons />
+        </IonCol>
+
       </IonRow>
     </IonGridPanel>
   );
 }
 
-export default Panel;
+export {Panel};

@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
+
 import Nprogerss from "nprogress";
 
 import {
@@ -23,22 +25,21 @@ import {
   ForgotYourPasswordButton,
   IonGridLogin,
   IonRowCardLine,
-  MyIonSigninSigningupButton,
+  MyIonSigninSigningupButton as MyIonSigningSigningupButton,
   IonSubTitleLogin,
   MyIonTextTerms,
   IonTitleLogin,
-  MyIonToggleSigninSigniup,
+  MyIonToggleSigningSigniup,
   IonColTerms,
   IonRowTerms,
   IonModalForgot,
-} from "./componentsLogin/componentManager";
+} from "./componentsLogin";
 
 import {
   SuriLogo,
   InputAndLabelComponent,
   InputWithMask,
-} from "../../components/componentManager";
-import { Redirect } from "react-router";
+} from "src/components";
 
 function LoginPage() {
   const [inputValueName, setInputValueName] = useState<string>();
@@ -46,10 +47,10 @@ function LoginPage() {
   const [inputValuePassword, setInputValuePassword] = useState<string>();
   const [inputValueWhatsapp, setInputValueWhatsapp] = useState<string>();
 
-  const [isSigninForm, setIsSigninForm] = useState(true);
-  const [forgotPassword, setForgotPasswor] = useState(false);
+  const [isSigningForm, setIsSigningForm] = useState(true);
+  const [forgotPassword, setForgotPassword] = useState(false);
 
-  const loginFack = () => {
+  const loginFake = () => {
     Nprogerss.start();
     setTimeout(() => {
       Nprogerss.inc(0.3);
@@ -66,28 +67,32 @@ function LoginPage() {
   return (
     <IonPage >
       <IonContent fullscreen>
+
         <IonModalForgot
           isOpen={forgotPassword}
-          onDidDismiss={() => setForgotPasswor(false)}
+          onDidDismiss={() => setForgotPassword(false)}
         >
-          <IonCardForgotPassword setTheModal={setForgotPasswor} />
+          <IonCardForgotPassword setTheModal={setForgotPassword} />
         </IonModalForgot>
 
         <IonGridLogin>
           <IonRowCardLine>
+
             <IonCol sizeMd="4.5" size="12">
               <IonCardFormLogin>
+
                 <IonCardHeader>
                   <SuriLogo />
                 </IonCardHeader>
 
                 <IonCardContent>
+
                   <IonTitleLogin>
-                    {isSigninForm ? "Entre" : "Cadastre-se"}
+                    {isSigningForm ? "Entre" : "Cadastre-se"}
                   </IonTitleLogin>
 
                   <IonSubTitleLogin>
-                    {isSigninForm
+                    {isSigningForm
                       ? "E encante seus clientes"
                       : "Só vai levar alguns segundos"}
                   </IonSubTitleLogin>
@@ -100,24 +105,24 @@ function LoginPage() {
                     strong
                   >
                     <FontAwesomeIcon icon={faFacebookF} size="sm" pull="left" />
-                    {isSigninForm ? "ENTRE" : "CADASTRE-SE"} COM O FACEBOOK
+                    {isSigningForm ? "ENTRE" : "CADASTRE-SE"} COM O FACEBOOK
                     <IonRippleEffect />
                   </FacebookButton>
 
                   <HtmlHr
                     data-after={`ou ${
-                      isSigninForm ? "entre" : "cadastre-se"
+                      isSigningForm ? "entre" : "cadastre-se"
                     } com seu email`}
                   />
 
-                  {!isSigninForm && (
+                  {!isSigningForm && (
                     <InputAndLabelComponent
                       label="Nome"
                       value={inputValueName}
                       type="text"
                       autocomplete="name"
                       placeholder="Digite sua nome..."
-                      onIonChange={(e) => setInputValueName(e.detail.value!)}
+                      onIonChange={(e: any) => setInputValueName(e.detail.value!)}
                     />
                   )}
 
@@ -127,7 +132,7 @@ function LoginPage() {
                     type="email"
                     autocomplete="email"
                     placeholder="Digite sua email..."
-                    onIonChange={(e) => setInputValueEmail(e.detail.value!)}
+                    onIonChange={(e: any) => setInputValueEmail(e.detail.value!)}
                   />
 
                   <InputAndLabelComponent
@@ -136,10 +141,10 @@ function LoginPage() {
                     type="password"
                     placeholder="Digite sua senha..."
                     autocomplete="current-password"
-                    onIonChange={(e) => setInputValuePassword(e.detail.value!)}
+                    onIonChange={(e: any) => setInputValuePassword(e.detail.value!)}
                   />
 
-                  {!isSigninForm && (
+                  {!isSigningForm && (
                     <InputWithMask
                       label="Whatsapp"
                       maskProps="(00) 00000-0000"
@@ -150,13 +155,13 @@ function LoginPage() {
                     />
                   )}
 
-                  {isSigninForm ? (
+                  {isSigningForm ? (
                     <ForgotYourPasswordButton
                       fill="clear"
                       color="primary"
                       size="small"
                       type="reset"
-                      onClick={() => setForgotPasswor(true)}
+                      onClick={() => setForgotPassword(true)}
                     >
                       Esqueceu sua senha?
                     </ForgotYourPasswordButton>
@@ -183,34 +188,33 @@ function LoginPage() {
 
                   <IonRow style={{ justifyContent: "center" }} >
                     <IonCol size="11.5">
-                      <MyIonSigninSigningupButton
+
+                      <MyIonSigningSigningupButton
                         expand="full"
                         fill="solid"
                         shape="round"
                         size="default"
-                        onClick={loginFack}
+                        onClick={loginFake}
                         strong
                       >
-                        {isSigninForm ? "FAZER LOGIN" : "CADASTRE-SE"}
+                        {isSigningForm ? "FAZER LOGIN" : "CADASTRE-SE"}
                         <IonRippleEffect />
-                      </MyIonSigninSigningupButton>
-                      <MyIonToggleSigninSigniup >
-                        {isSigninForm
+                      </MyIonSigningSigningupButton>
+
+                      <MyIonToggleSigningSigniup >
+
+                        {isSigningForm
                           ? "Não é cadastrado ainda? "
                           : "Já possui cadastro? "}
-                        <a
-                          href="/#"
-                          onClick={ () => {
-                            // scrollToBottom();
-                            setIsSigninForm(!isSigninForm);
-                          }}
-                          className="toggle-signin"
-                        >
-                          {isSigninForm
+
+                        <a onClick={ () => setIsSigningForm(!isSigningForm)} className="toggle-signin" >
+                          {isSigningForm
                             ? "Crie sua conta"
                             : "Entre em sua conta"}
                         </a>
-                      </MyIonToggleSigninSigniup>
+
+                      </MyIonToggleSigningSigniup>
+
                     </IonCol>
                   </IonRow>
                 </IonCardContent>
@@ -223,13 +227,4 @@ function LoginPage() {
   );
 }
 
-// function getContent() {
-//   return document.querySelector('ion-content');
-// }
-
-// function scrollToBottom() {
-//   const container = getContent();
-//   return container && container.scrollToBottom(500);
-// }
-
-export default LoginPage;
+export {LoginPage};

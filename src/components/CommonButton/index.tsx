@@ -1,18 +1,25 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
-import { Container } from './styles';
+import {
+  IonCommonButton,
+  IonCommonButtonIcon,
+  IonCommonButtonLabel,
+} from "./styles";
 
-interface CommonButtonProps {
-  children: ReactNode;
+import { IonButtonProps } from "src/types/types";
+import {CommonButtonProps} from "src/types"
+
+
+function CommonButton(props: CommonButtonProps) {
+  return (
+    <IonCommonButton {...props} shape={props.isRounded ? "round" : undefined}>
+      {props.faIcon && <IonCommonButtonIcon icon={props.faIcon} />}
+      {props.children && (
+        <IonCommonButtonLabel>{props.children}</IonCommonButtonLabel>
+      )}
+    </IonCommonButton>
+  );
 }
 
-function CommonButton({ children }: CommonButtonProps) {
-  return (
-    <Container>
-      <h1>CommonButton</h1>
-      {children}
-    </Container>
-  );
-};
-
-export default CommonButton;
+export { CommonButton };

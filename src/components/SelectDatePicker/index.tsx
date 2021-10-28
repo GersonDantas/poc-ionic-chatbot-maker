@@ -1,18 +1,33 @@
-import { ReactNode } from "react";
-import { isPlatform } from "@ionic/react";
+import { isPlatform, useIonViewDidEnter } from "@ionic/react";
+import { useState } from "react";
 
-import { Container } from "./styles";
+import { IonInputMobile, IonInputWeb } from "./styles";
 
 interface SelectDatePickerProps {
-  children: ReactNode;
+  value?: string;
 }
 
-function SelectDatePicker({ children }: SelectDatePickerProps) {
+function SelectDatePicker(props: SelectDatePickerProps) {
+  const [currentDate, setCurrentDate] = useState<string>();
+
+  useIonViewDidEnter(() => {
+    setCurrentDate(currentDateFormatted());
+  });
+
   return isPlatform("mobile") ? (
-    <Container>é celular</Container>
+    <IonInputMobile>é web</IonInputMobile>
   ) : (
-    <Container>é web</Container>
+    <IonInputWeb type="date" value={props.value ?? currentDate} />
   );
 }
 
-export default SelectDatePicker;
+function currentDateFormatted(): string {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth();
+  const day = date.getDay() < 10 ? `0${date.getDay()}` : date.getDay();
+  const currentDate = `${year}-${month}-${day}`;
+  return currentDate;
+}
+
+export {SelectDatePicker};

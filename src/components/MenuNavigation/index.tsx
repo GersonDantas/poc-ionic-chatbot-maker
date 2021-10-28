@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+
 import {
   IonContent,
   IonIcon,
@@ -10,7 +12,6 @@ import {
   IonNote,
 } from "@ionic/react";
 
-import { useLocation } from "react-router-dom";
 import {
   archiveOutline,
   archiveSharp,
@@ -26,14 +27,10 @@ import {
   warningOutline,
   warningSharp,
 } from "ionicons/icons";
+
 import "./styles.css";
 
-interface AppPage {
-  url: string;
-  iosIcon: string;
-  mdIcon: string;
-  title: string;
-}
+import { AppPage } from "src/types";
 
 const appPages: AppPage[] = [
   {
@@ -124,4 +121,4 @@ const MenuNavigation: React.FC = () => {
   );
 };
 
-export default MenuNavigation;
+export { MenuNavigation };

@@ -1,15 +1,9 @@
-import { IonInputProps } from "@ionic/react";
-import { useCallback, useRef } from "react";
 import { IMask } from "react-imask";
-import {MyIonInputStyled, MyIonLabel} from '../MyIonComonsStyleds';
+import { useCallback, useRef } from "react";
 
-type InputWithMaskProps = {
-  value: string | undefined;
-  onChange: any;
-  label?: string;
-  maskProps: string;
-} & IonInputProps;
+import { MyIonInputStyled, MyIonLabel } from "../MyIonComonsStyleds";
 
+import { InputWithMaskProps } from "src/types";
 
 const InputWithMask = (props: InputWithMaskProps) => {
   const maskRef = useRef<IMask.InputMask<any> | null>(null);
@@ -18,18 +12,20 @@ const InputWithMask = (props: InputWithMaskProps) => {
     if (!input) {
       return;
     }
+
     const nativeInput = await input.getInputElement();
+
     const mask = IMask(nativeInput, {
       mask: props.maskProps,
       lazy: false,
-      placeholderChar: '_'
+      placeholderChar: "_",
     })
       .on("accept", (e: any) => {
         props.onChange(mask.value);
       })
       .on("complete", (e: any) => {
         props.onChange(mask.value);
-      })
+      });
 
     maskRef.current = mask;
   }, []);
@@ -41,4 +37,5 @@ const InputWithMask = (props: InputWithMaskProps) => {
     </>
   );
 };
-export default InputWithMask;
+
+export { InputWithMask };
