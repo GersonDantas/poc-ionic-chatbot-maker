@@ -1,0 +1,16 @@
+import { IonCol, IonRow } from "@ionic/react";
+import {
+  IonCardWithHeader,
+  MyIonLabel,
+} from "../../../../components";
+import styled from "styled-components";
+export const IonCardDateButtons = styled(IonCardWithHeader)``;
+export const IonRowDateButtons = styled(IonRow)`
+  justify-content: flex-end;
+  align-items: center;
+  padding: 15px 10px 10px;
+`;
+export const IonLabelDate = styled(MyIonLabel)``;
+export const IonRowButtons = styled(IonRow)`
+  justify-content: center;
+`;

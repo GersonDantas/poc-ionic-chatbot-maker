@@ -1,3 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
+import Nprogerss from "nprogress";
+
 import {
   IonCardContent,
   IonCardHeader,
@@ -5,59 +11,87 @@ import {
   IonContent,
   IonPage,
   IonRippleEffect,
+  IonRow,
 } from "@ionic/react";
-import { ReactNode, SetStateAction, useState } from "react";
-import { SuriLogo } from "../../components/componentManager";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 
 import {
-  MyIonGrid,
-  MyIonRow,
-  MyIonCard,
-  MyIonTitle,
-  MyIonText,
-  MyIonFacebookButton,
-  MyHtmlHr,
+  IonCardForgotPassword,
+  HtmlHr,
+  FacebookButton,
+  IonCardFormLogin,
+  IonCheckBox,
+  ForgotYourPasswordButton,
+  IonGridLogin,
+  IonRowCardLine,
   MyIonSigninSigningupButton,
-} from "./styles";
-import MyInputAndLabelComponent from "../../components/MyInputAndLabelComponent";
-import MyInputWithMask from "../../components/MyInputWithMask";
+  IonSubTitleLogin,
+  MyIonTextTerms,
+  IonTitleLogin,
+  MyIonToggleSigninSigniup,
+  IonColTerms,
+  IonRowTerms,
+  IonModalForgot,
+} from "./componentsLogin";
 
-interface LoginPageProps {
-  children: ReactNode;
-}
+import {
+  SuriLogo,
+  InputAndLabelComponent,
+  InputWithMask,
+} from "src/components";
 
-function LoginPage({ children }: LoginPageProps) {
+function LoginPage() {
   const [inputValueName, setInputValueName] = useState<string>();
   const [inputValueEmail, setInputValueEmail] = useState<string>();
   const [inputValuePassword, setInputValuePassword] = useState<string>();
   const [inputValueWhatsapp, setInputValueWhatsapp] = useState<string>();
 
   const [isSigninForm, setIsSigninForm] = useState(true);
+  const [forgotPassword, setForgotPasswor] = useState(false);
+
+  const loginFake = () => {
+    Nprogerss.start();
+    setTimeout(() => {
+      Nprogerss.inc(0.3);
+      setTimeout(() => {
+        Nprogerss.inc(0.3);
+        setTimeout(() => {
+          Nprogerss.inc(0.3);
+          window.location.replace("/page/Panel");
+        }, 500);
+      }, 500);
+    }, 500);
+  };
 
   return (
-    <IonPage>
+    <IonPage >
       <IonContent fullscreen>
-        <MyIonGrid>
-          <MyIonRow>
-            <IonCol sizeSm="12" sizeXl="5">
-              <MyIonCard>
+        <IonModalForgot
+          isOpen={forgotPassword}
+          onDidDismiss={() => setForgotPasswor(false)}
+        >
+          <IonCardForgotPassword setTheModal={setForgotPasswor} />
+        </IonModalForgot>
+
+        <IonGridLogin>
+          <IonRowCardLine>
+            <IonCol sizeMd="4.5" size="12">
+              <IonCardFormLogin>
                 <IonCardHeader>
                   <SuriLogo />
                 </IonCardHeader>
 
                 <IonCardContent>
-                  <MyIonTitle>
+                  <IonTitleLogin>
                     {isSigninForm ? "Entre" : "Cadastre-se"}
-                  </MyIonTitle>
-                  <MyIonText>
+                  </IonTitleLogin>
+
+                  <IonSubTitleLogin>
                     {isSigninForm
                       ? "E encante seus clientes"
                       : "Só vai levar alguns segundos"}
-                  </MyIonText>
+                  </IonSubTitleLogin>
 
-                  <MyIonFacebookButton
+                  <FacebookButton
                     expand="block"
                     fill="outline"
                     shape="round"
@@ -67,72 +101,134 @@ function LoginPage({ children }: LoginPageProps) {
                     <FontAwesomeIcon icon={faFacebookF} size="sm" pull="left" />
                     {isSigninForm ? "ENTRE" : "CADASTRE-SE"} COM O FACEBOOK
                     <IonRippleEffect />
-                  </MyIonFacebookButton>
+                  </FacebookButton>
 
-                  <MyHtmlHr
+                  <HtmlHr
                     data-after={`ou ${
                       isSigninForm ? "entre" : "cadastre-se"
                     } com seu email`}
                   />
 
-                  <MyInputAndLabelComponent
-                    label="Nome"
-                    value={inputValueName}
-                    type="text"
-                    placeholder="Digite sua nome..."
-                    onIonChange={(e) => setInputValueName(e.detail.value!)}
-                  />
+                  {!isSigninForm && (
+                    <InputAndLabelComponent
+                      label="Nome"
+                      value={inputValueName}
+                      type="text"
+                      autocomplete="name"
+                      placeholder="Digite sua nome..."
+                      onIonChange={(e: any) => setInputValueName(e.detail.value!)}
+                    />
+                  )}
 
-                  <MyInputAndLabelComponent
+                  <InputAndLabelComponent
                     label="Email"
                     value={inputValueEmail}
                     type="email"
+                    autocomplete="email"
                     placeholder="Digite sua email..."
-                    onIonChange={(e) => setInputValueEmail(e.detail.value!)}
+                    onIonChange={(e: any) => setInputValueEmail(e.detail.value!)}
                   />
 
-                  <MyInputAndLabelComponent
+                  <InputAndLabelComponent
                     label="Senha"
                     value={inputValuePassword}
                     type="password"
                     placeholder="Digite sua senha..."
-                    onIonChange={(e) => setInputValuePassword(e.detail.value!)}
+                    autocomplete="current-password"
+                    onIonChange={(e: any) => setInputValuePassword(e.detail.value!)}
                   />
 
-                  <MyInputAndLabelComponent
-                    label="Whatsapp"
-                    value={inputValueWhatsapp}
-                    type="tel"
-                    placeholder="Digite seu Whatsapp"
-                    onIonChange={(e) => setInputValueWhatsapp(e.detail.value!)}
-                  />
+                  {!isSigninForm && (
+                    <InputWithMask
+                      label="Whatsapp"
+                      maskProps="(00) 00000-0000"
+                      placeholder="(__) ____-____"
+                      value={inputValueWhatsapp}
+                      autocomplete="tel"
+                      onChange={(e: any) => setInputValueWhatsapp(e)}
+                    />
+                  )}
 
-                  <MyInputWithMask
-                    placeholder="(__) ____-____"
-                    value={inputValueWhatsapp}
-                    onChange={(e: any) =>
-                      setInputValueWhatsapp(e)
-                    }
-                  />
+                  {isSigninForm ? (
+                    <ForgotYourPasswordButton
+                      fill="clear"
+                      color="primary"
+                      size="small"
+                      type="reset"
+                      onClick={() => setForgotPasswor(true)}
+                    >
+                      Esqueceu sua senha?
+                    </ForgotYourPasswordButton>
+                  ) : (
+                    <IonRowTerms>
+                      <IonColTerms sizeLg="0.6" size="1">
+                        <IonCheckBox />
+                      </IonColTerms>
+                      <IonCol sizeLg="11.4" size="11">
+                        <MyIonTextTerms>
+                          <a
+                            href="https://drive.google.com/file/d/1F9oyvCEV0MjXNZD2X7DSXqqVElEICPEV/view"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            Termos, Política de Dados e Política de Cookies.
+                          </a>
+                          Aceito receber notificações sobre atualizações e
+                          novidades da plataforma pelo Whatsapp.
+                        </MyIonTextTerms>
+                      </IonCol>
+                    </IonRowTerms>
+                  )}
 
-                  <MyIonSigninSigningupButton
-                    expand="full"
-                    fill="solid"
-                    shape="round"
-                    size="default"
-                    strong
-                  >
-                    {isSigninForm ? "FAZER LOGIN" : "CADASTRE-SE"}
-                    <IonRippleEffect />
-                  </MyIonSigninSigningupButton>
+                  <IonRow style={{ justifyContent: "center" }} >
+                    <IonCol size="11.5">
+                      <MyIonSigninSigningupButton
+                        expand="full"
+                        fill="solid"
+                        shape="round"
+                        size="default"
+                        onClick={loginFake}
+                        strong
+                      >
+                        {isSigninForm ? "FAZER LOGIN" : "CADASTRE-SE"}
+                        <IonRippleEffect />
+                      </MyIonSigninSigningupButton>
+                      <MyIonToggleSigninSigniup >
+                        {isSigninForm
+                          ? "Não é cadastrado ainda? "
+                          : "Já possui cadastro? "}
+                        <a
+                          href="/#"
+                          onClick={ () => {
+                            // scrollToBottom();
+                            setIsSigninForm(!isSigninForm);
+                          }}
+                          className="toggle-signin"
+                        >
+                          {isSigninForm
+                            ? "Crie sua conta"
+                            : "Entre em sua conta"}
+                        </a>
+                      </MyIonToggleSigninSigniup>
+                    </IonCol>
+                  </IonRow>
                 </IonCardContent>
-              </MyIonCard>
+              </IonCardFormLogin>
             </IonCol>
-          </MyIonRow>
-        </MyIonGrid>
+          </IonRowCardLine>
+        </IonGridLogin>
       </IonContent>
     </IonPage>
   );
 }
+
+// function getContent() {
+//   return document.querySelector('ion-content');
+// }
+
+// function scrollToBottom() {
+//   const container = getContent();
+//   return container && container.scrollToBottom(500);
+// }
 
 export default LoginPage;

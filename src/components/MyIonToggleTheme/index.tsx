@@ -1,17 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useMemo, useRef, useState } from "react";
+import { IonIcon, IonToggle, useIonViewDidEnter } from "@ionic/react";
 import { Storage } from "@capacitor/storage";
 import { moon } from "ionicons/icons";
-import { IonIcon, IonToggle, useIonViewDidEnter } from "@ionic/react";
 import "./styles.css";
 
 const MyIonToggleThem: React.FC = () => {
-
   const setToggleRef = useRef<HTMLIonToggleElement>(null);
 
   const [isDark, setIsDark] = useState<boolean>();
-  const [storageInitTheme] = useState<Promise<string | null>>(getStorageInitTheme());
-
+  const [storageInitTheme] = useState<Promise<string | null>>(
+    getStorageInitTheme()
+  );
 
   useMemo(async () => {
     let t = await storageInitTheme;
@@ -56,4 +56,4 @@ const toggleDarkTheme = async () => {
 const toggle = () =>
   document.body.classList.toggle("dark") ? "dark" : "light";
 
-export default MyIonToggleThem;
+export { MyIonToggleThem };
