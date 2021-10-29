@@ -11,12 +11,14 @@ export const IonColPos = styled(IonCol)`
 `;
 
 export const IonRowDateButtons = styled(IonRow)`
-  justify-content: flex-end;
+  width: 100%;
+  justify-content: flex-start;
+  overflow-x: auto;
   align-items: center;
   padding: 20px 30px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 10px;
+  gap: 20px;
 
   @media screen and (max-width: 875px) {
     grid-template-columns: 2fr 2fr;
