@@ -27,12 +27,14 @@ export const MyIonInputStyled = styled(IonInput)`
   border-radius: 18px;
   line-height: 1.42857143;
   margin-bottom: 20px;
+
   &:focus-within {
     outline: none;
     border: 1px solid var(--ion-color-primary);
     box-shadow: 0 0 2px #719ece;
     color: var(--ion-color-primary);
   }
+  
   .native-input.sc-ion-input-md:-webkit-autofill {
     background-color: transparent;
     border-radius: 16px;
