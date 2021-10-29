@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   IonContent,
   IonIcon,
@@ -7,9 +8,11 @@ import {
   IonListHeader,
   IonMenu,
   IonMenuToggle,
-  IonNote,
+  IonImg
 } from "@ionic/react";
-
+import styled from 'styled-components';
+import logoBlue from '../../assets/img/logo-blue.png';
+import logoBranca from '../../assets/img/logo-branca.png';
 import { useLocation } from "react-router-dom";
 import {
   statsChart,
@@ -18,6 +21,8 @@ import {
   settingsOutline,
   options,
   optionsOutline,
+  person,
+  personOutline,
   grid,
   gridOutline,
   chatbubbles,
@@ -68,15 +73,49 @@ const listMenuMedio: AppPage[] = [
   },
 ];
 
+const listMenuBaixo: AppPage[] = [
+  {
+    title: "Meu Perfil",
+    url: "/page/perfil",
+    iosIcon: personOutline,
+    mdIcon: person,
+  },
+];
+
+const ContainerLogo = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+
+  .logo {
+    width: 50%;
+  }
+`;
+
 const MenuNavigation: React.FC = () => {
   const location = useLocation();
+
+  const [darkOn, setDarkOn] = useState(false)
+  
+  useEffect(() => {
+    setDarkOn(document.body.classList.contains("dark"))
+  }, [document.body.classList.contains("dark")])
+
+  console.log(darkOn);
+  
 
   return (
     <IonMenu contentId="main" type="overlay" className="left-bar">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>SURI</IonListHeader>
-          <IonNote>suri@by.chatbotmaker</IonNote>
+          <IonListHeader>
+            <ContainerLogo>
+              <IonImg src={darkOn ? logoBranca : logoBlue} className="logo" />
+            </ContainerLogo>
+          </IonListHeader>
+
           {listMenuAlto.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
@@ -102,8 +141,34 @@ const MenuNavigation: React.FC = () => {
           })}
         </IonList>
 
-        <IonList>
+        <IonList id="inbox-list">
           {listMenuMedio.map((appPage, index) => {
+            return (
+              <IonMenuToggle key={index} autoHide={false}>
+                <IonItem
+                  className={
+                    location.pathname === appPage.url ? "selected" : ""
+                  }
+                  routerLink={appPage.url}
+                  routerDirection="none"
+                  lines="none"
+                  detail={false}
+                >
+                  <IonIcon
+                    slot="start"
+                    ios={appPage.iosIcon}
+                    md={appPage.mdIcon}
+                    color="primary"
+                  />
+                  <IonLabel>{appPage.title}</IonLabel>
+                </IonItem>
+              </IonMenuToggle>
+            );
+          })}
+        </IonList>
+
+        <IonList>
+          {listMenuBaixo.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
                 <IonItem
