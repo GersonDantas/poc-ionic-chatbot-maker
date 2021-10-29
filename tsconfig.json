@@ -19,10 +19,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
-    "paths": {
-      "@components/*":["./src/components/*"]
-    }
+    "baseUrl": "."
   },
   "include": [
     "next-env.d.ts",
@@ -34,5 +31,3 @@
     "node_modules"
   ]
 }
-
-
