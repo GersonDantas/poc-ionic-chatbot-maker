@@ -7,7 +7,7 @@ interface DatePickersWithButtonsProps {}
 
 function DatePickersWithButtons(props: DatePickersWithButtonsProps) {
   return (
-    <IonCardDateButtons>
+    <IonCardDateButtons className="border-radius-5">
       <IonRowDateButtons>
 
         <IonCol size="11" sizeMd="3">

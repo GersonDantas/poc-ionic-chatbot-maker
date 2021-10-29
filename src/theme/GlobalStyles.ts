@@ -138,6 +138,10 @@ export default createGlobalStyle`
     --ion-card-background-rgb: 255 255 255;
   }
 
+  .border-radius-5 {
+    border-radius: 5px;
+  }
+
   @media (prefers-color-scheme: dark) {
   /*
   * Dark Colors
