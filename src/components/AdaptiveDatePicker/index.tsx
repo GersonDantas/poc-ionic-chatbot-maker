@@ -18,7 +18,7 @@ function SelectDatePicker(props: SelectDatePickerProps) {
     <IonInputMobile
     min="2019"
       monthShortNames="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez"
-      cancelText="cancelar"
+      cancelText="Cancelar"
       doneText="ok"
       displayFormat="DD/MM/YYYY"
       pickerFormat="DD MMM YYYY"
