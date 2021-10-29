@@ -24,8 +24,11 @@ function CardWithHeader(props: CardWithHeaderProps) {
 
       <IonCardHeader color="primary">
         <RowCardHeader>
+
           <IonCardHeaderTitle>{props.cardTitle}</IonCardHeaderTitle>
+
           {props.cardIcon && <FontAwesomeIcon icon={faDownload} pull="left" />}
+          
         </RowCardHeader>
       </IonCardHeader>
 

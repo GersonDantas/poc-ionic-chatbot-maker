@@ -6,6 +6,7 @@ import { MyIonInputStyled, MyIonLabel } from "../MyIonComonsStyleds";
 import { InputWithMaskProps } from "src/types";
 
 const InputWithMask = (props: InputWithMaskProps) => {
+  
   const maskRef = useRef<IMask.InputMask<any> | null>(null);
 
   const inputCallback = useCallback(async (input) => {
