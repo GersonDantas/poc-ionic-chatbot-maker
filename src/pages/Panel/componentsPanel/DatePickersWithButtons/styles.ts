@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const IonCardDateButtons = styled(IonCardWithHeader)``;
 
 export const IonColPos = styled(IonCol)`
- --ion-grid-columns: 1fr;
+  --ion-grid-columns: 1fr;
 `;
 
 export const IonRowDateButtons = styled(IonRow)`
@@ -23,7 +23,6 @@ export const IonRowDateButtons = styled(IonRow)`
   @media screen and (max-width: 530px) {
     grid-template-columns: 1fr;
   }
-
 `;
 
 export const IonLabelDate = styled(MyIonLabel)``;
