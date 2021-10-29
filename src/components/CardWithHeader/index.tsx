@@ -21,8 +21,7 @@ function CardWithHeader(props: CardWithHeaderProps) {
   `;
 
   return (
-    <IonCardWithHeader>
-
+    <IonCardWithHeader style={{borderRadius: 5}}>
       <IonCardHeader color="primary">
         <RowCardHeader>
 

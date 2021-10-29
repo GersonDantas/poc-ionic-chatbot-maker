@@ -32,8 +32,7 @@ const PageToPage: React.FC = () => {
 
           <MyIonToggleThem />
 
-          <IonTitle color="primary">{name}</IonTitle>
-
+          <IonTitle color="primary" style={{textTransform: "capitalize"}}>{name}</IonTitle>
         </IonToolbar>
       </IonHeader>
 
