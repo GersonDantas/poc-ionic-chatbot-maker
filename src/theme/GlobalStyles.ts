@@ -134,6 +134,8 @@ export default createGlobalStyle`
     --ion-color-step-900: #76787f;
     --ion-color-step-950: #6e7178;
 
+    --ion-card-background: #fff;
+    --ion-card-background-rgb: 255 255 255;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -242,6 +244,7 @@ export default createGlobalStyle`
     --ion-item-background: #000000;
 
     --ion-card-background: #1c1c1d;
+    --ion-card-background-rgb: 28 28 29;
   }
 
   .ios ion-modal {
@@ -292,6 +295,7 @@ export default createGlobalStyle`
     --ion-tab-bar-background: #1f1f1f;
 
     --ion-card-background: #1e1e1e;
+    --ion-card-background-rgb: 30 30 30;
   }
   }
 
@@ -397,6 +401,7 @@ export default createGlobalStyle`
   --ion-item-background: #000000;
 
   --ion-card-background: #1c1c1d;
+  --ion-card-background-rgb: 28 28 29;
   }
 
   .ios ion-modal.dark {
@@ -447,5 +452,6 @@ export default createGlobalStyle`
   --ion-tab-bar-background: #1f1f1f;
 
   --ion-card-background: #1e1e1e;
+  --ion-card-background-rgb: 30 30 30;
   }
 `;
