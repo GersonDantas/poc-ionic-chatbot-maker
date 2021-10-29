@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const IonRowTerms = styled(IonRow)`
   align-items: center;
 `;
+
 export const IonColTerms = styled(IonCol)`
   display: flex;
   justify-content: center;

@@ -3,20 +3,20 @@ import React, { useMemo, useRef, useState } from "react";
 import { IonIcon, IonToggle, useIonViewDidEnter } from "@ionic/react";
 import { Storage } from "@capacitor/storage";
 import { moon } from "ionicons/icons";
+
 import "./styles.css";
 
 const MyIonToggleThem: React.FC = () => {
-
   const setToggleRef = useRef<HTMLIonToggleElement>(null);
 
   const [isDark, setIsDark] = useState<boolean>();
-  const [storageInitTheme] = useState<Promise<string | null>>(getStorageInitTheme());
-
+  const [storageInitTheme] = useState<Promise<string | null>>(
+    getStorageInitTheme()
+  );
 
   useMemo(async () => {
     let t = await storageInitTheme;
     if (t) setIsDark(t === "dark");
-    document.body.classList.toggle("dark", isDark);
   }, []);
 
   useIonViewDidEnter(() => {
@@ -54,6 +54,8 @@ const toggleDarkTheme = async () => {
 };
 
 const toggle = () =>
-  document.body.classList.toggle("dark") ? "dark" : "light";
+  containsDark() ? "dark" : "light";
 
-export default MyIonToggleThem;
+const containsDark = () => document.body.classList.toggle("dark")
+
+export { MyIonToggleThem };

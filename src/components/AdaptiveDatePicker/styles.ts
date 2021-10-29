@@ -1,29 +1,25 @@
-import { IonCard, IonInput, IonLabel } from "@ionic/react";
 import styled from "styled-components";
+import { IonDatetime } from "@ionic/react";
+import { MyIonInputStyled } from "../MyIonComonsStyleds";
 
-export const IonCardWithHeader = styled(IonCard)`
-    border-radius: 16px;
-    box-shadow: 2px 8px 17px 2px rgba(var(--ion-text-color-rgb),0.3);
-    --background: var(--ion-card-background);
-`
-
-export const MyIonLabel = styled(IonLabel)`
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--ion-text-color);
+export const IonInputWeb = styled(MyIonInputStyled)`
+  position: relative;
+  margin-top: 5px;
 `;
 
-export const MyIonInputStyled = styled(IonInput)`
-  background-color: #fff;
+export const IonInputMobile = styled(IonDatetime)`
+  margin-top: 5px;
+  background-color: rgba(var(--ion-background-color-rgb), 0.5);
   background-image: none;
   border: 1px solid rgba(var(--ion-text-color-rgb), 0.2);
   border-radius: 1px;
-  color: inherit;
+  color: --ion-text-color;
   display: block;
   padding: 6px 20px;
   transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
   width: 100%;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 700;
   border-radius: 18px;
   line-height: 1.42857143;
   margin-bottom: 20px;

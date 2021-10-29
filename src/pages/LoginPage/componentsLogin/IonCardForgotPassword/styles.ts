@@ -6,7 +6,7 @@ import {
   IonModal,
   IonRow,
 } from "@ionic/react";
-import { MyIonInputStyled } from "../../../../components/MyIonComonsStyleds";
+import { MyIonInputStyled } from "src/components/MyIonComonsStyleds";
 
 export const IonModalForgot = styled(IonModal)`
   --border-radius: 10px;

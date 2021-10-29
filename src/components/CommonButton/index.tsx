@@ -1,18 +1,26 @@
-import { ReactNode } from 'react';
+import {
+  IonCommonButton,
+  IonCommonButtonIcon,
+  IonCommonButtonLabel,
+} from "./styles";
 
-import { Container } from './styles';
+import {CommonButtonProps} from "src/types"
 
-interface CommonButtonProps {
-  children: ReactNode;
+
+function CommonButton(props: CommonButtonProps) {
+  return (
+    <IonCommonButton {...props} shape={props.isRounded ? "round" : undefined}>
+
+      {props.faIcon && (
+        <IonCommonButtonIcon  icon={props.faIcon} />
+      )}
+
+      {props.children && (
+        <IonCommonButtonLabel>{props.children}</IonCommonButtonLabel>
+      )}
+
+    </IonCommonButton>
+  );
 }
 
-function CommonButton({ children }: CommonButtonProps) {
-  return (
-    <Container>
-      <h1>CommonButton</h1>
-      {children}
-    </Container>
-  );
-};
-
-export default CommonButton;
+export { CommonButton };
