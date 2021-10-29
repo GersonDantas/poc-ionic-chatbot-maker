@@ -111,3 +111,11 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 } 
+
+
+
+@media (min-width: 1025px) {
+  .left-bar {
+    max-width: 260px;
+  }
+}

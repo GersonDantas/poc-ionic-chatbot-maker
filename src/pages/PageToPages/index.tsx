@@ -1,3 +1,6 @@
+import { ReactNode } from "react";
+import { useParams } from "react-router";
+
 import {
   IonButtons,
   IonContent,
@@ -5,39 +8,56 @@ import {
   IonMenuButton,
   IonPage,
   IonTitle,
-  IonToolbar,
+  IonToolbar
 } from "@ionic/react";
-import { useParams } from "react-router";
-import MyIonToggleThem from "../../components/MyIonToggleTheme";
-import ExploreContainer from "../../components/ExploreContainer";
-import "./styles.css";
 
-const Page: React.FC = () => {
+import {
+  MyIonToggleThem
+} from "src/components";
+
+import {LoginPage, Panel} from "..";
+
+
+const PageToPage: React.FC = () => {
   const { name } = useParams<{ name: string }>();
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
+
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
+
           <MyIonToggleThem />
-          <IonTitle>{name}</IonTitle>
+
+          <IonTitle color="primary" style={{textTransform: "capitalize"}}>{name}</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent fullscreen>
+
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">{name}</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name={name} />
+
+        {selectPageContent('Painel')}
+
       </IonContent>
     </IonPage>
   );
 };
 
-export default Page;
+function selectPageContent(name: string): ReactNode {
+  switch (name) {
+    case 'Painel':
+      return <Panel />  
+    default:
+      return <LoginPage />
+  }
+}
 
+export {PageToPage};
