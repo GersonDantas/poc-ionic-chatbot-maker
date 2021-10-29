@@ -142,6 +142,16 @@ export default createGlobalStyle`
     border-radius: 5px;
   }
 
+  .div-100-porcentagem {
+    width: 100%;
+  }
+
+  .div-teste {
+    width: 100%;
+    min-height: 50px;
+    background: #000000;
+  }
+
   @media (prefers-color-scheme: dark) {
   /*
   * Dark Colors
