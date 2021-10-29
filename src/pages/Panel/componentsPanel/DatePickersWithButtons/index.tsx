@@ -1,39 +1,38 @@
-import {  IonCol } from "@ionic/react";
-import {CommonButton, SelectDatePicker} from "../../../../components";
-import {faSyncAlt, faDownload} from "@fortawesome/free-solid-svg-icons"
+import { IonCol } from "@ionic/react";
+import { CommonButton, SelectDatePicker } from "src/components";
+import { faSyncAlt, faDownload } from "@fortawesome/free-solid-svg-icons"
+import { IonCardDateButtons, IonLabelDate, IonRowButtons, IonRowDateButtons, IonColPos } from "./styles";
 
-import { IonCardDateButtons, IonLabelDate, IonRowButtons, IonRowDateButtons } from "./styles";
-
-interface DatePickersWithButtonsProps {}
+interface DatePickersWithButtonsProps { }
 
 function DatePickersWithButtons(props: DatePickersWithButtonsProps) {
   return (
-    <IonCardDateButtons>
+    <IonCardDateButtons className="border-radius-5">
       <IonRowDateButtons>
 
-        <IonCol size="12" sizeMd="3">
+        <IonColPos size="11">
           <IonLabelDate>Início</IonLabelDate>
           <SelectDatePicker />
-        </IonCol>
+        </IonColPos>
 
-        <IonCol size="12" sizeMd="3">
+        <IonColPos size="11">
           <IonLabelDate>Fim</IonLabelDate>
           <SelectDatePicker />
+        </IonColPos>
+
+        {/* <IonCol size="12" sizeMd="3">
+          <IonRowButtons> */}
+
+        <IonCol size="12">
+          <CommonButton expand="full" color="success" faIcon={faSyncAlt} isRounded>ATUALIZAR</CommonButton>
         </IonCol>
 
-        <IonCol size="12" sizeMd="3">
-          <IonRowButtons>
-
-            <IonCol size="12" sizeSm="4" sizeMd="9" sizeLg="10" sizeXl="8">
-              <CommonButton expand="full" color="success" faIcon={faSyncAlt} isRounded>ATUALIZAR</CommonButton>
-            </IonCol>
-
-            <IonCol size="12" sizeSm="4" sizeMd="9" sizeLg="10" sizeXl="8">
-              <CommonButton expand="full"faIcon={faDownload} isRounded>EXPORTAR</CommonButton>
-            </IonCol>
-
-          </IonRowButtons>
+        <IonCol size="12" >
+          <CommonButton expand="full" color="tertiary" faIcon={faDownload} isRounded>EXPORTAR</CommonButton>
         </IonCol>
+
+        {/* </IonRowButtons>
+        </IonCol> */}
 
       </IonRowDateButtons>
     </IonCardDateButtons>

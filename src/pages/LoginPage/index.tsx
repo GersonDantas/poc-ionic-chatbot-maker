@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from "react";
+import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import Nprogerss from "nprogress";
@@ -39,6 +40,10 @@ import {
   InputWithMask,
 } from "src/components";
 
+const IonContentLogin = styled(IonContent)`
+  --background: radial-gradient(circle at 9.44% -7.92%, #dd88ff 0, #9970ff 25%, #4e55fd 50%, #003bc7 75%, #002496 100%);
+`;
+
 function LoginPage() {
   const [inputValueName, setInputValueName] = useState<string>();
   const [inputValueEmail, setInputValueEmail] = useState<string>();
@@ -64,7 +69,8 @@ function LoginPage() {
 
   return (
     <IonPage >
-      <IonContent fullscreen>
+      <IonContentLogin fullscreen>
+
         <IonModalForgot
           isOpen={forgotPassword}
           onDidDismiss={() => setForgotPasswor(false)}
@@ -217,7 +223,7 @@ function LoginPage() {
             </IonCol>
           </IonRowCardLine>
         </IonGridLogin>
-      </IonContent>
+      </IonContentLogin>
     </IonPage>
   );
 }

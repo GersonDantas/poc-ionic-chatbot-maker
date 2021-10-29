@@ -1,7 +1,7 @@
-import { IonInputProps } from "@ionic/react";
 import { useCallback, useRef } from "react";
 import { IMask } from "react-imask";
 import {MyIonInputStyled, MyIonLabel} from '../MyIonComonsStyleds';
+import {IonInputProps} from "src/types"
 
 type InputWithMaskProps = {
   value: string | undefined;
