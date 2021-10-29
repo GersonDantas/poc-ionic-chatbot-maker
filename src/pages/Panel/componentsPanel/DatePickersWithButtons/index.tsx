@@ -1,7 +1,7 @@
 import { IonCol } from "@ionic/react";
 import { CommonButton, SelectDatePicker } from "src/components";
 import { faSyncAlt, faDownload } from "@fortawesome/free-solid-svg-icons"
-import { IonCardDateButtons, IonLabelDate, IonRowDateButtons, IonColPos } from "./styles";
+import { IonCardDateButtons, IonLabelDate, IonRowButtons, IonRowDateButtons, IonColPos } from "./styles";
 
 interface DatePickersWithButtonsProps { }
 
@@ -33,4 +33,4 @@ function DatePickersWithButtons(props: DatePickersWithButtonsProps) {
   );
 }
 
-export default DatePickersWithButtons;
+export {DatePickersWithButtons};

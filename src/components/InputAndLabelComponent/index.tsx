@@ -1,17 +1,14 @@
-import {MyIonInputStyled, MyIonLabel} from '../MyIonComonsStyleds';
-import { IonInputProps } from "src/types";
-
-type InputAndLabelComponentProps = {
-  label?: string;
-} & IonInputProps;
+import { MyIonInputStyled, MyIonLabel } from "../MyIonComonsStyleds";
+import { InputAndLabelComponentProps } from "src/types";
 
 function InputAndLabelComponent(props: InputAndLabelComponentProps) {
   return (
     <>
       {props.label && <MyIonLabel position="stacked">{props.label}</MyIonLabel>}
+      
       <MyIonInputStyled {...props} />
     </>
   );
 }
 
-export {InputAndLabelComponent};
+export { InputAndLabelComponent };

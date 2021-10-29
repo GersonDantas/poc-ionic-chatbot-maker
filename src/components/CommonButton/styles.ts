@@ -11,5 +11,6 @@ export const IonCommonButtonIcon = styled(FontAwesomeIcon)`
 `;
 
 export const IonCommonButtonLabel = styled(IonLabel)`
-    font-weight: bold;
-`
+  font-weight: bold;
+  margin-left: 5px;
+`;

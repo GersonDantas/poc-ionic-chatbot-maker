@@ -1,7 +1,8 @@
-import { IonCol, IonImg } from "@ionic/react";
 import React from "react";
-import { MyIonRow } from "./styles";
+import { IonCol } from "@ionic/react";
 import logo from 'src/assets/img/suri-cbm-logo-blue.png';
+
+import { MyIonRow } from "./styles";
 
 const SuriLogo: React.FC = () => {
   return (

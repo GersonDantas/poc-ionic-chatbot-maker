@@ -1,7 +1,5 @@
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IonCard, IonCardTitle, IonIcon, IonRow } from "@ionic/react";
-import { CommonButton } from "..";
+import styled from "styled-components";
 
 export const IonCardWithHeader = styled(IonCard)`
   border-radius: 16px;
@@ -11,6 +9,9 @@ export const IonCardWithHeader = styled(IonCard)`
 export const IonCardHeaderContentRow = styled(IonRow)`
   padding: 16px;
   justify-content: center;
+  @media screen and (max-width: 334px) {
+    margin: 5px;
+  }
 `;
 export const IonCardHeaderIcon = styled(IonIcon)``;
 export const IonCardHeaderTitle = styled(IonCardTitle)`
@@ -18,8 +19,3 @@ export const IonCardHeaderTitle = styled(IonCardTitle)`
   font-weight: 500;
   font-size: 14px;
 `;
-export const FaIconCard = styled(FontAwesomeIcon)`
-  background-color: red;
-`;
-export const CommonButtonIcon = styled(CommonButton)`
-`

@@ -29,14 +29,10 @@ import {
   chatbubbles,
   chatbubblesOutline
 } from "ionicons/icons";
+
 import "./styles.css";
 
-interface AppPage {
-  url: string;
-  iosIcon: string;
-  mdIcon: string;
-  title: string;
-}
+import { AppPage } from "src/types";
 
 const listMenuAlto: AppPage[] = [
   {
@@ -198,4 +194,4 @@ const MenuNavigation: React.FC = () => {
   );
 };
 
-export {MenuNavigation};
+export { MenuNavigation };

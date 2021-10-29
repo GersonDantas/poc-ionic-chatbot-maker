@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { IonCheckbox } from '@ionic/react';
+import styled from "styled-components";
+import { IonCheckbox } from "@ionic/react";
 
 export const IonCheckBox = styled(IonCheckbox)`
   --border-radius: 50%;

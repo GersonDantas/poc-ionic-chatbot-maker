@@ -1,9 +1,7 @@
 import { IonCol, IonRow } from "@ionic/react";
-import {
-  IonCardWithHeader,
-  MyIonLabel,
-} from "../../../../components";
+import { IonCardWithHeader, MyIonLabel } from "src/components";
 import styled from "styled-components";
+
 export const IonCardDateButtons = styled(IonCardWithHeader)``;
 
 export const IonColPos = styled(IonCol)`
@@ -11,14 +9,12 @@ export const IonColPos = styled(IonCol)`
 `;
 
 export const IonRowDateButtons = styled(IonRow)`
-  width: 100%;
-  justify-content: flex-start;
-  overflow-x: auto;
+  justify-content: flex-end;
   align-items: center;
   padding: 20px 30px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 20px;
+  gap: 10px;
 
   @media screen and (max-width: 875px) {
     grid-template-columns: 2fr 2fr;
@@ -29,7 +25,9 @@ export const IonRowDateButtons = styled(IonRow)`
   }
 
 `;
+
 export const IonLabelDate = styled(MyIonLabel)``;
+
 export const IonRowButtons = styled(IonRow)`
   justify-content: center;
 `;

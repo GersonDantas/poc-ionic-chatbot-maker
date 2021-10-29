@@ -58,11 +58,11 @@ export default createGlobalStyle`
     --ion-color-secondary-shade: #36abe0;
     --ion-color-secondary-tint: #50c8ff;
 
-    --ion-color-tertiary: #5260ff;
+    --ion-color-tertiary: #26297a;
     --ion-color-tertiary-rgb: 82,96,255;
     --ion-color-tertiary-contrast: #ffffff;
     --ion-color-tertiary-contrast-rgb: 255,255,255;
-    --ion-color-tertiary-shade: #4854e0;
+    --ion-color-tertiary-shade: #3539a7;
     --ion-color-tertiary-tint: #6370ff;
 
     --ion-color-success: #2dd36f;
@@ -134,6 +134,8 @@ export default createGlobalStyle`
     --ion-color-step-900: #76787f;
     --ion-color-step-950: #6e7178;
 
+    --ion-card-background: #fff;
+    --ion-card-background-rgb: 255 255 255;
   }
 
   .border-radius-5 {
@@ -171,11 +173,11 @@ export default createGlobalStyle`
     --ion-color-secondary-shade: #46b0e0;
     --ion-color-secondary-tint: #62ceff;
 
-    --ion-color-tertiary: #6a64ff;
+    --ion-color-tertiary: #26297a;
     --ion-color-tertiary-rgb: 106, 100, 255;
     --ion-color-tertiary-contrast: #ffffff;
     --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-    --ion-color-tertiary-shade: #5d58e0;
+    --ion-color-tertiary-shade: #3539a7;
     --ion-color-tertiary-tint: #7974ff;
 
     --ion-color-success: #2fdf75;
@@ -256,6 +258,7 @@ export default createGlobalStyle`
     --ion-item-background: #000000;
 
     --ion-card-background: #1c1c1d;
+    --ion-card-background-rgb: 28 28 29;
   }
 
   .ios ion-modal {
@@ -306,6 +309,7 @@ export default createGlobalStyle`
     --ion-tab-bar-background: #1f1f1f;
 
     --ion-card-background: #1e1e1e;
+    --ion-card-background-rgb: 30 30 30;
   }
   }
 
@@ -326,11 +330,11 @@ export default createGlobalStyle`
   --ion-color-secondary-shade: #46b0e0;
   --ion-color-secondary-tint: #62ceff;
 
-  --ion-color-tertiary: #6a64ff;
+  --ion-color-tertiary: #3e407b;
   --ion-color-tertiary-rgb: 106, 100, 255;
   --ion-color-tertiary-contrast: #ffffff;
   --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-  --ion-color-tertiary-shade: #5d58e0;
+  --ion-color-tertiary-shade: #5456a7;
   --ion-color-tertiary-tint: #7974ff;
 
   --ion-color-success: #2fdf75;
@@ -411,6 +415,7 @@ export default createGlobalStyle`
   --ion-item-background: #000000;
 
   --ion-card-background: #1c1c1d;
+  --ion-card-background-rgb: 28 28 29;
   }
 
   .ios ion-modal.dark {
@@ -461,5 +466,6 @@ export default createGlobalStyle`
   --ion-tab-bar-background: #1f1f1f;
 
   --ion-card-background: #1e1e1e;
+  --ion-card-background-rgb: 30 30 30;
   }
 `;

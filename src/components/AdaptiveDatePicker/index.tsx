@@ -15,7 +15,18 @@ function SelectDatePicker(props: SelectDatePickerProps) {
   });
 
   return isPlatform("mobile") ? (
-    <IonInputMobile>é web</IonInputMobile>
+
+    <IonInputMobile
+      min="2019"
+      monthShortNames="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez"
+      cancelText="Cancelar"
+      doneText="ok"
+      displayFormat="DD/MM/YYYY"
+      pickerFormat="DD MMM YYYY"
+      value={currentDate}
+      onChange={(e: any) => setCurrentDate(e.detail.value!)}
+    />
+
   ) : (
     <IonInputWeb type="date" value={props.value ?? currentDate} />
   );

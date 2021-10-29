@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { useParams } from "react-router";
+
 import {
   IonButtons,
   IonContent,
@@ -7,25 +8,24 @@ import {
   IonMenuButton,
   IonPage,
   IonTitle,
-  IonToolbar,
+  IonToolbar
 } from "@ionic/react";
+
 import {
-  MyIonToggleThem,
+  MyIonToggleThem
 } from "src/components";
-import Panel from "../Panel";
-import LoginPage from "../LoginPage";
 
-interface PageProps {
-  children?: ReactNode;
-}
+import {LoginPage, Panel} from "..";
 
-const Page: React.FC<PageProps> = () => {
+
+const PageToPage: React.FC = () => {
   const { name } = useParams<{ name: string }>();
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
+
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
@@ -37,6 +37,7 @@ const Page: React.FC<PageProps> = () => {
       </IonHeader>
 
       <IonContent fullscreen>
+
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">{name}</IonTitle>
@@ -44,6 +45,7 @@ const Page: React.FC<PageProps> = () => {
         </IonHeader>
 
         {selectPageContent('Painel')}
+
       </IonContent>
     </IonPage>
   );
@@ -58,4 +60,4 @@ function selectPageContent(name: string): ReactNode {
   }
 }
 
-export default Page;
+export {PageToPage};

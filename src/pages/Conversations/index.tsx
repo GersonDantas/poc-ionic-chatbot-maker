@@ -15,4 +15,4 @@ function Conversations({ children }: ConversationsProps) {
   );
 };
 
-export default Conversations;
+export {Conversations};
