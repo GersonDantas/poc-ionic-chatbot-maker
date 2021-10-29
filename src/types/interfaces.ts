@@ -4,7 +4,7 @@ export interface CardWithHeaderProps {
   children: ReactNode;
   titleInCenter?: boolean | undefined;
   cardTitle: string;
-  cardIcon?: boolean | undefined;
+  hasIcon?: boolean | undefined;
 }
 
 export interface AppPage {

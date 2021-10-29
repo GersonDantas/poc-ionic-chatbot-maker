@@ -10,6 +10,7 @@ import { IonCardHeaderContentRow, IonCardHeaderTitle } from "./styles";
 import { IonCardWithHeader } from "../MyIonComonsStyleds";
 
 import { CardWithHeaderProps } from "src/types";
+import { CommonButton } from "..";
 
 function CardWithHeader(props: CardWithHeaderProps) {
 
@@ -27,7 +28,10 @@ function CardWithHeader(props: CardWithHeaderProps) {
 
           <IonCardHeaderTitle>{props.cardTitle}</IonCardHeaderTitle>
 
-          {props.cardIcon && <FontAwesomeIcon icon={faDownload} pull="left" />}
+          {props.hasIcon && (
+            <CommonButton isRounded color="tertiary">
+              <FontAwesomeIcon icon={faDownload} pull="left" />
+            </CommonButton>)}
           
         </RowCardHeader>
       </IonCardHeader>

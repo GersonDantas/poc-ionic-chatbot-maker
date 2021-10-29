@@ -11,7 +11,9 @@ function CommonButton(props: CommonButtonProps) {
   return (
     <IonCommonButton {...props} shape={props.isRounded ? "round" : undefined}>
 
-      {props.faIcon && <IonCommonButtonIcon icon={props.faIcon} />}
+      {props.faIcon && (
+        <IonCommonButtonIcon  icon={props.faIcon} />
+      )}
 
       {props.children && (
         <IonCommonButtonLabel>{props.children}</IonCommonButtonLabel>

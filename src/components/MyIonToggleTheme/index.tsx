@@ -17,7 +17,6 @@ const MyIonToggleThem: React.FC = () => {
   useMemo(async () => {
     let t = await storageInitTheme;
     if (t) setIsDark(t === "dark");
-    document.body.classList.toggle("dark", isDark);
   }, []);
 
   useIonViewDidEnter(() => {
@@ -55,6 +54,8 @@ const toggleDarkTheme = async () => {
 };
 
 const toggle = () =>
-  document.body.classList.toggle("dark") ? "dark" : "light";
+  containsDark() ? "dark" : "light";
+
+const containsDark = () => document.body.classList.toggle("dark")
 
 export { MyIonToggleThem };

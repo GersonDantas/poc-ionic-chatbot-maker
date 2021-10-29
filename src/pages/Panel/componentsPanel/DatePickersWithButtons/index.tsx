@@ -28,7 +28,7 @@ function DatePickersWithButtons(props: DatePickersWithButtonsProps) {
             </IonCol>
 
             <IonCol size="12" sizeSm="4" sizeMd="10"  sizeXl="8">
-              <CommonButton expand="full"faIcon={faDownload} isRounded>EXPORTAR</CommonButton>
+              <CommonButton expand="full" color="tertiary" faIcon={faDownload} isRounded>EXPORTAR</CommonButton>
             </IonCol>
 
           </IonRowButtons>
