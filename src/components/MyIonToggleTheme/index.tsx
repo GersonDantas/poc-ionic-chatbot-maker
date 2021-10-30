@@ -53,9 +53,8 @@ const toggleDarkTheme = async () => {
   await Storage.set({ key: "isDarkTheme", value: toggle() });
 };
 
-const toggle = () =>
-  containsDark() ? "dark" : "light";
+const toggle = () => (containsDark() ? "dark" : "light");
 
-const containsDark = () => document.body.classList.toggle("dark")
+const containsDark = () => document.body.classList.toggle("dark");
 
 export { MyIonToggleThem };
