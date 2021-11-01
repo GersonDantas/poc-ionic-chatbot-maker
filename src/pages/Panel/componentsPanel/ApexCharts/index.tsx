@@ -1,9 +1,23 @@
 import React, { useState } from "react";
 import { ChartContainer } from "./styles";
-import Chart from 'react-apexcharts'
+import { addDays, format } from "date-fns";
+import { usePanelLocalContextData } from "src/store/localContext";
+import Chart from 'react-apexcharts';
 
 
 const ApexCharts: React.FC = () => {
+  const { initialDate } = usePanelLocalContextData();
+  const [xAxesLabels, setXAxiesLabels] = React.useState<Array<string>>([]);
+
+  const fillInXaxisDateLabel = (): void => {
+    for (let i = 0; i < 7; i++) {
+      setXAxiesLabels([
+        ...xAxesLabels,
+        format(addDays(new Date(initialDate), i), "dd/MM/yyyy"),
+      ]);
+    }
+  };
+
   return (
     <ChartContainer>
       <Chart
@@ -13,7 +27,7 @@ const ApexCharts: React.FC = () => {
         series={[
           {
             name: "tabela de Atendimentos",
-            data: [30, 35, 32, 20, 84, 97, 280, 325, 294],
+            data: [0, 1, 0, 3, 2, 0, 8],
           },
         ]}
         options={{
@@ -21,15 +35,11 @@ const ApexCharts: React.FC = () => {
             id: "basic-bar",
           },
           xaxis: {
-            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+            categories: [...xAxesLabels],
             labels: {
-
             }
           },
           yaxis: {
-            labels: {
-              formatter: (value) => value.toFixed(0)
-            }
           }
         }}
         
