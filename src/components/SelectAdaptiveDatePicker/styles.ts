@@ -7,6 +7,7 @@ export const IonInputWeb = styled(MyIonInputStyled)`
   margin-top: 8px;
   width: 100%;
   border-radius: 5px;
+  background: var(--ion-background-color);
 `;
 
 export const IonInputMobile = styled(IonDatetime)`
@@ -25,7 +26,7 @@ export const IonInputMobile = styled(IonDatetime)`
   border-radius: 18px;
   line-height: 1.42857143;
   margin-bottom: 20px;
-
+  background: var(--ion-background-color);
   &:focus-within {
     outline: none;
     border: 1px solid var(--ion-color-primary);

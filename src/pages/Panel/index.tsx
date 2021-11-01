@@ -2,6 +2,7 @@ import { IonCol, IonRow } from "@ionic/react";
 import { CardWithHeader } from "src/components";
 import { PanelContextProvider } from "src/store/localContext";
 import { ApexCharts, DatePickersWithButtons } from "./componentsPanel";
+import {ChartJs} from "./componentsPanel";
 import { IonCardLabel, IonGridPanel, IonTitleDepartment } from "./styles";
 
 function Panel() {
@@ -72,6 +73,15 @@ function Panel() {
             </CardWithHeader>
           </IonCol>
         </IonRow>
+
+        <IonRow>
+          <IonCol>
+            <CardWithHeader cardTitle="ATENDIMENTOS POR DIA" hasIcon>
+              <ChartJs />
+            </CardWithHeader>
+          </IonCol>
+        </IonRow>
+
       </PanelContextProvider>
     </IonGridPanel>
   );
