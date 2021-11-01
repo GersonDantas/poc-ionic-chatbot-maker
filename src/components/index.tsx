@@ -6,6 +6,6 @@ export * from "./InputWithMask";
 export * from "./InputAndLabelComponent";
 export * from "./CardWithHeader";
 export * from "./CommonButton";
-export * from "./AdaptiveDatePicker";
+export * from "./SelectAdaptiveDatePicker";
 export * from "./MyIonComonsStyleds"
 
