@@ -13,3 +13,7 @@ export interface AppPage {
   mdIcon: string;
   title: string;
 }
+
+export interface DatetimeChangeEventDetail {
+  value: string | undefined | null;
+}

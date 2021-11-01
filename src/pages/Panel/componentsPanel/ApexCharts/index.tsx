@@ -1,24 +1,41 @@
-import ApexCharts from "apexcharts";
+import React, { useState } from "react";
+import { ChartContainer } from "./styles";
+import Chart from 'react-apexcharts'
 
-function ApexChart() {
-  var options = {
-    chart: {
-      type: "line",
-    },
-    series: [
-      {
-        name: "sales",
-        data: [30, 40, 45, 50, 49, 60, 70, 91, 125],
-      },
-    ],
-    xaxis: {
-      categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
-    },
-  };
 
-  var chart = new ApexCharts(document.querySelector("#service-chart"), options);
+const ApexCharts: React.FC = () => {
+  return (
+    <ChartContainer>
+      <Chart
+        width="100%"
+        height="100%"
+        type="line"
+        series={[
+          {
+            name: "tabela de Atendimentos",
+            data: [0, 1, 0, 3],
+          },
+        ]}
+        options={{
+          chart: {
+            id: "basic-bar",
+          },
+          xaxis: {
+            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+            labels: {
 
-  chart.render();
-}
+            }
+          },
+          yaxis: {
+            labels: {
+              formatter: (value) => value.toFixed(0)
+            }
+          }
+        }}
+        
+      ></Chart>
+    </ChartContainer>
+  );
+};
 
-export { ApexChart };
+export { ApexCharts };

@@ -1,6 +1,12 @@
 import { IonCard, IonCardTitle, IonIcon, IonRow } from "@ionic/react";
 import styled from "styled-components";
 
+
+export const RowCardHeader = styled(IonRow)`
+width: 100%;
+align-items: center;
+`;
+
 export const IonCardWithHeader = styled(IonCard)`
   border-radius: 16px;
   box-shadow: 2px 8px 17px 2px rgba(var(--ion-text-color-rgb), 0.3);

@@ -17,6 +17,7 @@
     "@ionic/react": "^5.5.0",
     "@ionic/react-router": "^5.5.0",
     "apexcharts": "^3.29.0",
+    "date-fns": "^2.25.0",
     "ionicons": "^5.4.0",
     "nprogress": "^0.2.0",
     "react": "^17.0.1",

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const IonCardDateButtons = styled(IonCardWithHeader)``;
 
-export const IonColPos = styled(IonCol)`
+export const IonGridColumns = styled(IonCol)`
   --ion-grid-columns: 1fr;
 `;
 

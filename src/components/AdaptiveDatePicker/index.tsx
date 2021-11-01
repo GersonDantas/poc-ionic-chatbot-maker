@@ -1,18 +1,16 @@
+import { InputChangeEventDetail } from "@ionic/core";
 import { isPlatform, useIonViewDidEnter } from "@ionic/react";
-import { useState } from "react";
-
+import { usePanelLocalContextData } from "src/store/localContext";
+import {addDays, format, subDays} from 'date-fns';
 import { IonInputMobile, IonInputWeb } from "./styles";
+import { useEffect } from "react";
 
 interface SelectDatePickerProps {
-  value?: string;
+  isFinalDate?: boolean;
 }
 
-function SelectDatePicker(props: SelectDatePickerProps) {
-  const [currentDate, setCurrentDate] = useState<string>();
-
-  useIonViewDidEnter(() => {
-    setCurrentDate(currentDateFormatted());
-  });
+function SelectDatePicker({isFinalDate = false}: SelectDatePickerProps) {
+  const {initialDate, finalDate, setFinalDate, setInitialDate} = usePanelLocalContextData();
 
   return isPlatform("mobile") ? (
 
@@ -23,22 +21,26 @@ function SelectDatePicker(props: SelectDatePickerProps) {
       doneText="ok"
       displayFormat="DD/MM/YYYY"
       pickerFormat="DD MMM YYYY"
-      value={currentDate}
-      onChange={(e: any) => setCurrentDate(e.detail.value!)}
+      value={initialDate}
+      onChange={(e: any) => setInitialDate(e.detail.value!)}
     />
 
   ) : (
-    <IonInputWeb type="date" value={props.value ?? currentDate} />
-  );
-}
+    <IonInputWeb type="date" value={isFinalDate ? finalDate :  initialDate} 
+    onIonChange={(e: CustomEvent<InputChangeEventDetail>) => {
+      
+      let startDecreased = subDays(new Date(e.detail.value!), 6);
+      let increasedEnd = addDays(new Date(e.detail.value!), 8);
 
-function currentDateFormatted(): string {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth();
-  const day = date.getDay() < 10 ? `0${date.getDay()}` : date.getDay();
-  const currentDate = `${year}-${month}-${day}`;
-  return currentDate;
+      if(isFinalDate) {
+        setFinalDate(e.detail.value!);
+        setInitialDate(format(startDecreased, "yyyy-MM-dd"))
+      }else {
+        setInitialDate(e.detail.value!);
+        setFinalDate(format(increasedEnd, "yyyy-MM-dd"))
+      }
+    }}/>
+  );
 }
 
 export {SelectDatePicker};
