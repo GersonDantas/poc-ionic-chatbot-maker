@@ -44,18 +44,17 @@ const MyIonToggleThem: React.FC = () => {
   );
 };
 
-const getStorageInitTheme = async () => {
+const getStorageInitTheme = async (): Promise<string | null> => {
   const { value } = await Storage.get({ key: "isDarkTheme" });
   return value;
 };
 
-const toggleDarkTheme = async () => {
+const toggleDarkTheme = async (): Promise<void> => {
   await Storage.set({ key: "isDarkTheme", value: toggle() });
 };
 
-const toggle = () =>
-  containsDark() ? "dark" : "light";
+const toggle = (): string => containsDark() ? "dark" : "light";
 
-const containsDark = () => document.body.classList.toggle("dark")
+const containsDark = (): boolean => document.body.classList.toggle("dark");
 
 export { MyIonToggleThem };

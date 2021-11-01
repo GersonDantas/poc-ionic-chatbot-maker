@@ -1,6 +1,11 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IonCard, IonCardTitle, IonIcon, IonRow } from "@ionic/react";
 import styled from "styled-components";
+
+
+export const RowCardHeader = styled(IonRow)`
+width: 100%;
+align-items: center;
+`;
 
 export const IonCardWithHeader = styled(IonCard)`
   border-radius: 16px;
@@ -10,13 +15,13 @@ export const IonCardWithHeader = styled(IonCard)`
 export const IonCardHeaderContentRow = styled(IonRow)`
   padding: 16px;
   justify-content: center;
+  @media screen and (max-width: 334px) {
+    margin: 5px;
+  }
 `;
 export const IonCardHeaderIcon = styled(IonIcon)``;
 export const IonCardHeaderTitle = styled(IonCardTitle)`
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 14px;
-`;
-export const FaIconCard = styled(FontAwesomeIcon)`
-  background-color: red;
 `;

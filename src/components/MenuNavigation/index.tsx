@@ -100,8 +100,6 @@ const MenuNavigation: React.FC = () => {
     setDarkOn(document.body.classList.contains("dark"))
   }, [document.body.classList.contains("dark")])
 
-  console.log(darkOn);
-  
 
   return (
     <IonMenu contentId="main" type="overlay" className="left-bar">

@@ -4,7 +4,7 @@ export interface CardWithHeaderProps {
   children: ReactNode;
   titleInCenter?: boolean | undefined;
   cardTitle: string;
-  hasIcon?: boolean | undefined;
+  hasIcon?: boolean;
 }
 
 export interface AppPage {
@@ -12,4 +12,8 @@ export interface AppPage {
   iosIcon: string;
   mdIcon: string;
   title: string;
+}
+
+export interface DatetimeChangeEventDetail {
+  value: string | undefined | null;
 }
