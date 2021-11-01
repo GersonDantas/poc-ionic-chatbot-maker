@@ -1,5 +1,4 @@
 import { IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton } from "@ionic/react";
-import { MyIonToggleThem } from "../";
 import { ReactNode } from 'react';
 
 interface SelectAdaptiveDatePickerProps {
@@ -19,8 +18,6 @@ function IonHeaderContainer(props: SelectAdaptiveDatePickerProps) {
                         <IonButtons slot="start">
                             <IonMenuButton />
                         </IonButtons>
-
-                        <MyIonToggleThem />
                     </>
                 }
             </IonToolbar>

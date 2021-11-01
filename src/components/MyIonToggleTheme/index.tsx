@@ -29,7 +29,7 @@ const MyIonToggleThem: React.FC = () => {
   }, [isDark]);
 
   return (
-    <>
+    <div style={{width: "100%", display: 'flex', justifyContent: 'space-between' }}>
       <IonIconToggleTheme
         className="component-icon  component-icon-dark"
         slot="end"
@@ -41,7 +41,7 @@ const MyIonToggleThem: React.FC = () => {
         name="darkMode"
         onIonChange={toggleDarkTheme}
       />
-    </>
+    </div>
   );
 };
 
