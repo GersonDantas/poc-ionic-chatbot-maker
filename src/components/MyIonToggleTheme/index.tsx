@@ -4,7 +4,8 @@ import { IonIcon, IonToggle, useIonViewDidEnter } from "@ionic/react";
 import { Storage } from "@capacitor/storage";
 import { moon } from "ionicons/icons";
 
-import "./styles.css";
+import "./styles.ts";
+import { IonIconToggleTheme } from "./styles";
 
 const MyIonToggleThem: React.FC = () => {
   const setToggleRef = useRef<HTMLIonToggleElement>(null);
@@ -29,7 +30,7 @@ const MyIonToggleThem: React.FC = () => {
 
   return (
     <>
-      <IonIcon
+      <IonIconToggleTheme
         className="component-icon  component-icon-dark"
         slot="end"
         icon={moon}
