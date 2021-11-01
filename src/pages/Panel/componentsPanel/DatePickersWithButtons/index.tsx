@@ -1,12 +1,14 @@
-import { CommonButton, SelectDatePicker } from "src/components";
+import { CommonButton, SelectAdaptiveDatePicker } from "src/components";
 import { faSyncAlt, faDownload } from "@fortawesome/free-solid-svg-icons"
 import { IonCardDateButtons, IonLabelDate,  IonRowDateButtons, IonGridColumns } from "./styles";
 import { usePanelLocalContextData } from "src/store/localContext";
 
 
+
 interface DatePickersWithButtonsProps { }
 
 function DatePickersWithButtons(props: DatePickersWithButtonsProps) {
+  const {initialDate, finalDate, setFinalDate, setInitialDate} = usePanelLocalContextData();
 
   return (
     <IonCardDateButtons className="border-radius-5">
@@ -14,12 +16,23 @@ function DatePickersWithButtons(props: DatePickersWithButtonsProps) {
 
         <IonGridColumns >
           <IonLabelDate>Início</IonLabelDate>
-          <SelectDatePicker />
+          <SelectAdaptiveDatePicker 
+            initialDate={initialDate}
+            finalDate={finalDate}
+            setFinalDate={setFinalDate}
+            setInitialDate={setInitialDate}
+          />
         </IonGridColumns>
 
         <IonGridColumns >
           <IonLabelDate>Fim</IonLabelDate>
-          <SelectDatePicker isFinalDate/>
+          <SelectAdaptiveDatePicker 
+            isFinalDate
+            initialDate={initialDate}
+            finalDate={finalDate}
+            setFinalDate={setFinalDate}
+            setInitialDate={setInitialDate}
+          />
         </IonGridColumns>
 
         <IonGridColumns >

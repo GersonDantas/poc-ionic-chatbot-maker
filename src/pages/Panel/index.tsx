@@ -1,20 +1,14 @@
-import {
-  IonCol,
-  IonRow,
-} from "@ionic/react";
+import { IonCol, IonRow } from "@ionic/react";
 import { CardWithHeader } from "src/components";
 import { PanelContextProvider } from "src/store/localContext";
-import {ApexCharts, DatePickersWithButtons} from "./componentsPanel";
-
-
+import { ApexCharts, DatePickersWithButtons } from "./componentsPanel";
 import { IonCardLabel, IonGridPanel, IonTitleDepartment } from "./styles";
 
 function Panel() {
 
   return (
     <IonGridPanel>
-
-      <IonRow style={{marginBottom: '30px'}}>
+      <IonRow style={{ marginBottom: "30px" }}>
         <IonCol size="12">
           <IonTitleDepartment color="primary">CLIENTES</IonTitleDepartment>
         </IonCol>
@@ -33,8 +27,7 @@ function Panel() {
       </IonRow>
 
       <PanelContextProvider>
-
-        <IonRow style={{marginBottom: '10px'}}>
+        <IonRow style={{ marginBottom: "10px" }}>
           <IonCol size="12">
             <IonTitleDepartment color="primary">
               ATENDIMENTOS
@@ -46,7 +39,7 @@ function Panel() {
           </IonCol>
         </IonRow>
 
-        <IonRow style={{alignItems: 'center'}}>
+        <IonRow style={{ alignItems: "center" }}>
           <IonCol sizeXl="3" sizeLg="6" sizeMd="6" sizeSm="12" size="12">
             <CardWithHeader cardTitle="FINALIZADOS">
               <IonCardLabel>2</IonCardLabel>
@@ -74,17 +67,14 @@ function Panel() {
 
         <IonRow>
           <IonCol>
-            <CardWithHeader cardTitle="ATENDIMENTOS POR DIA" hasIcon >
+            <CardWithHeader cardTitle="ATENDIMENTOS POR DIA" hasIcon>
               <ApexCharts />
             </CardWithHeader>
           </IonCol>
         </IonRow>
-
       </PanelContextProvider>
-
-
     </IonGridPanel>
   );
 }
 
-export {Panel};
+export { Panel };
