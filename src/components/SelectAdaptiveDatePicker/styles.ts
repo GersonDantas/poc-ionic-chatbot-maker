@@ -7,6 +7,8 @@ export const IonInputWeb = styled(MyIonInputStyled)`
   margin-top: 8px;
   width: 100%;
   border-radius: 5px;
+  --padding-end: 10px;
+  --padding-start: 10px;
   background: var(--ion-background-color);
 `;
 

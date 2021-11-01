@@ -9,7 +9,7 @@ function Panel() {
 
   return (
     <IonGridPanel>
-      <IonRow style={{ marginBottom: "30px" }}>
+      <IonRow style={{ marginBottom: "20px" }}>
         <IonCol size="12">
           <IonTitleDepartment color="primary">CLIENTES</IonTitleDepartment>
         </IonCol>
@@ -28,7 +28,7 @@ function Panel() {
       </IonRow>
 
       <PanelContextProvider>
-        <IonRow style={{ marginBottom: "10px" }}>
+        <IonRow >
           <IonCol size="12">
             <IonTitleDepartment color="primary">
               ATENDIMENTOS

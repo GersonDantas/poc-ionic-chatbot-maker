@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ChartContainer } from "./styles";
 import { addDays, format } from "date-fns";
 import { usePanelLocalContextData } from "src/store/localContext";
-import Chart from 'react-apexcharts'
+import Chart from 'react-apexcharts';
 
 
 const ApexCharts: React.FC = () => {
