@@ -13,7 +13,7 @@ const ApexCharts: React.FC = () => {
         series={[
           {
             name: "tabela de Atendimentos",
-            data: [0, 1, 0, 3],
+            data: [30, 35, 32, 20, 84, 97, 280, 325, 294],
           },
         ]}
         options={{
@@ -21,7 +21,7 @@ const ApexCharts: React.FC = () => {
             id: "basic-bar",
           },
           xaxis: {
-            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
             labels: {
 
             }
