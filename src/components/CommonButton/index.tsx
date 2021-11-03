@@ -9,7 +9,7 @@ import {CommonButtonProps} from "src/types"
 
 function CommonButton(props: CommonButtonProps) {
   return (
-    <IonCommonButton {...props} shape={props.isRounded ? "round" : undefined}>
+    <IonCommonButton {...props} >
 
       {props.faIcon && (
         <IonCommonButtonIcon  icon={props.faIcon} />

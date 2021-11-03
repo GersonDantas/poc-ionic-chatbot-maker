@@ -26,10 +26,8 @@
     "**/*.ts",
     "**/*.tsx",
     "next.config.js"
-  ],
+, "src/pages/Panel/componentsPanel/ApexCharts/atendimentosMock.js"  ],
   "exclude": [
     "node_modules"
   ]
 }
-
-

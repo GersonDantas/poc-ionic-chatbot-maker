@@ -12,8 +12,7 @@ import {
   IonImg
 } from "@ionic/react";
 import styled from 'styled-components';
-import logoBlue from '../../assets/img/logo-blue.png';
-import logoBranca from '../../assets/img/logo-branca.png';
+import logoBlue from '../../assets/img/suri-cbm-logo-blue.png';
 import { useLocation } from "react-router-dom";
 import {
   statsChart,
@@ -100,8 +99,6 @@ const MenuNavigation: React.FC = () => {
     setDarkOn(document.body.classList.contains("dark"))
   }, [document.body.classList.contains("dark")])
 
-  console.log(darkOn);
-  
 
   return (
     <IonMenu contentId="main" type="overlay" className="left-bar">
@@ -109,7 +106,7 @@ const MenuNavigation: React.FC = () => {
         <IonList id="inbox-list">
           <IonListHeader>
             <ContainerLogo>
-              <IonImg src={darkOn ? logoBranca : logoBlue} className="logo" />
+              <IonImg src={logoBlue} className="logo" />
             </ContainerLogo>
           </IonListHeader>
 

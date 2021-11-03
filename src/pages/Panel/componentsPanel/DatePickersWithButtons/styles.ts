@@ -4,19 +4,17 @@ import styled from "styled-components";
 
 export const IonCardDateButtons = styled(IonCardWithHeader)``;
 
-export const IonColPos = styled(IonCol)`
- --ion-grid-columns: 1fr;
+export const IonGridColumns = styled(IonCol)`
+  --ion-grid-columns: 1fr;
 `;
 
 export const IonRowDateButtons = styled(IonRow)`
-  width: 100%;
-  justify-content: flex-start;
-  overflow-x: auto;
+  justify-content: flex-end;
   align-items: center;
   padding: 20px 30px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 20px;
+  gap: 10px;
 
   @media screen and (max-width: 875px) {
     grid-template-columns: 2fr 2fr;
@@ -25,7 +23,6 @@ export const IonRowDateButtons = styled(IonRow)`
   @media screen and (max-width: 530px) {
     grid-template-columns: 1fr;
   }
-
 `;
 
 export const IonLabelDate = styled(MyIonLabel)``;
