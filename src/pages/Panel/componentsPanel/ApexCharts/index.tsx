@@ -1,23 +1,21 @@
-import React, { useState } from "react";
-import { ChartContainer } from "./styles";
+import React from "react";
+import Chart from "react-apexcharts";
 import { addDays, format } from "date-fns";
 import { usePanelLocalContextData } from "src/store/localContext";
-import Chart from 'react-apexcharts';
-
+import { ChartContainer } from "./styles";
+import {atendimentos} from "./atendimentosMock"
 
 const ApexCharts: React.FC = () => {
   const { initialDate } = usePanelLocalContextData();
-  const [xAxesLabels, setXAxiesLabels] = React.useState<Array<string>>([]);
+  const [xAxesLabels, setXAxiesLabels] = React.useState<Array<string>>(
+    fillInXaxisDateLabel(initialDate)
+  );
 
-  const fillInXaxisDateLabel = (): void => {
-    for (let i = 0; i < 7; i++) {
-      setXAxiesLabels([
-        ...xAxesLabels,
-        format(addDays(new Date(initialDate), i), "dd/MM/yyyy"),
-      ]);
-    }
-  };
-
+  React.useEffect(
+    () => setXAxiesLabels(fillInXaxisDateLabel(initialDate)),
+    [initialDate]
+  );
+  
   return (
     <ChartContainer>
       <Chart
@@ -27,7 +25,15 @@ const ApexCharts: React.FC = () => {
         series={[
           {
             name: "tabela de Atendimentos",
-            data: [0, 1, 0, 3, 2, 0, 8],
+            data: xAxesLabels.map(date => {
+              let value =  getValueByKey(atendimentos, date)
+              if(value) {
+                return value;
+              } else {
+                return 0
+              }
+            }),
+            toolbar: {}
           },
         ]}
         options={{
@@ -35,17 +41,33 @@ const ApexCharts: React.FC = () => {
             id: "basic-bar",
           },
           xaxis: {
-            categories: [...xAxesLabels],
-            labels: {
-            }
+            categories: xAxesLabels,
+            labels: {},
           },
-          yaxis: {
-          }
+          yaxis: {},
         }}
-        
       ></Chart>
     </ChartContainer>
   );
 };
+
+const fillInXaxisDateLabel = (initialDate: string): Array<string> => {
+  let tempArray = [];
+
+  for (let i = 1; i <= 7; i++) {
+    tempArray[i - 1] = format(addDays(new Date(initialDate), i), "dd/MM/yyyy");
+  }
+
+  return tempArray;
+};
+
+function getValueByKey (collection: any, key: string) {
+	var value;
+  collection.map((item: { [x: string]: any; }) => {
+  	if (key in item) value = item[key];
+	})
+  
+  return value;
+}
 
 export { ApexCharts };

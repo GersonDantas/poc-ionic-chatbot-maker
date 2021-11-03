@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export interface CardWithHeaderProps {
   children: ReactNode;
@@ -16,4 +16,12 @@ export interface AppPage {
 
 export interface DatetimeChangeEventDetail {
   value: string | undefined | null;
+}
+
+export interface SelectAdaptiveDatePickerProps {
+  isFinalDate?: boolean;
+  initialDate: string;
+  finalDate: string;
+  setFinalDate: Dispatch<SetStateAction<string>>;
+  setInitialDate: Dispatch<SetStateAction<string>>;
 }

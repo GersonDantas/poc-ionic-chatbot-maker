@@ -2,21 +2,13 @@ import { InputChangeEventDetail } from "@ionic/core";
 import { isPlatform } from "@ionic/react";
 import { addDays, format, subDays } from "date-fns";
 import { IonInputMobile, IonInputWeb } from "./styles";
-import { Dispatch, SetStateAction } from "react";
-
-interface SelectAdaptiveDatePickerProps {
-  isFinalDate?: boolean;
-  initialDate: string;
-  finalDate: string;
-  setFinalDate: Dispatch<SetStateAction<string>>;
-  setInitialDate: Dispatch<SetStateAction<string>>;
-}
+import {SelectAdaptiveDatePickerProps} from "src/types"
 
 function SelectAdaptiveDatePicker(props: SelectAdaptiveDatePickerProps) {
 
   const handleIonChange = (e: CustomEvent<InputChangeEventDetail>): void => {
-    let startDecreased = subDays(new Date(e.detail.value!), 6);
-    let increasedEnd = addDays(new Date(e.detail.value!), 8);
+    let startDecreased = subDays(new Date(e.detail.value!), 5);
+    let increasedEnd = addDays(new Date(e.detail.value!), 7);
 
     if (props.isFinalDate) {
       props.setFinalDate(e.detail.value!);
@@ -30,17 +22,19 @@ function SelectAdaptiveDatePicker(props: SelectAdaptiveDatePickerProps) {
   return isPlatform("mobile") ? (
     <IonInputMobile
       min="2019"
+      max={format(new Date(), "yyyy-MM-dd")}
       monthShortNames="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez"
       cancelText="Cancelar"
       doneText="ok"
       displayFormat="DD/MM/YYYY"
       pickerFormat="DD MMM YYYY"
-      value={props.initialDate}
+      value={props.isFinalDate ? props.finalDate : props.initialDate}
       onIonChange={handleIonChange}
     />
   ) : (
     <IonInputWeb
       type="date"
+      max={format(new Date(), "yyyy-MM-dd")}
       value={props.isFinalDate ? props.finalDate : props.initialDate}
       onIonChange={handleIonChange}
     />

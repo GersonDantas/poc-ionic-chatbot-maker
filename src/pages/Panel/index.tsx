@@ -74,14 +74,6 @@ function Panel() {
           </IonCol>
         </IonRow>
 
-        <IonRow>
-          <IonCol>
-            <CardWithHeader cardTitle="ATENDIMENTOS POR DIA" hasIcon>
-              <ChartJs />
-            </CardWithHeader>
-          </IonCol>
-        </IonRow>
-
       </PanelContextProvider>
     </IonGridPanel>
   );

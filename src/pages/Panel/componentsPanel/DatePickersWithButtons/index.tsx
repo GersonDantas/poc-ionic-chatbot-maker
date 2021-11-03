@@ -36,7 +36,7 @@ function DatePickersWithButtons(props: DatePickersWithButtonsProps) {
         </IonGridColumns>
 
         <IonGridColumns >
-          <CommonButton expand="full" color="success" faIcon={faSyncAlt} isRounded>ATUALIZAR</CommonButton>
+          <CommonButton expand="full" color="success" faIcon={faSyncAlt} >ATUALIZAR</CommonButton>
         </IonGridColumns>
 
         <IonGridColumns>

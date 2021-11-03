@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
-  :root {
     @font-face {
       font-family: 'Inter-Black';
       font-style: normal;
@@ -38,6 +37,7 @@ export default createGlobalStyle`
       font-weight: 100;
       src: url('../assets/fonts/Inter-Thin.ttf');
     }
+  :root {
 
     --ion-font-family: sans-serif;
     --ion-margin: 0;

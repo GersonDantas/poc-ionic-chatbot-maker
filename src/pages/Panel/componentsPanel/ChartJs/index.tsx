@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useIonViewDidEnter } from "@ionic/react";
 import { addDays, format } from "date-fns";
 import { Line } from "react-chartjs-2";
@@ -11,14 +11,14 @@ const ChartJs: React.FC = () => {
 
   const fillInXaxisDateLabel = (): void => {
     for (let i = 0; i < 7; i++) {
-      setXAxiesLabels(() => [
-        ...xAxesLabels,
-        format(addDays(new Date(initialDate), i), "dd/MM/yyyy"),
-      ]);
+        setXAxiesLabels([
+            ...xAxesLabels,
+            format(addDays(new Date(initialDate), 1), "dd/MM/yyyy"),
+        ]);
     }
   };
 
-  useEffect(fillInXaxisDateLabel, [initialDate, initialDate])
+//   useMemo(fillInXaxisDateLabel, [initialDate])
   useIonViewDidEnter(fillInXaxisDateLabel);
 
   return (
@@ -26,7 +26,7 @@ const ChartJs: React.FC = () => {
       width="100%"
       height="100%"
       data={{
-        labels: [...xAxesLabels],
+        labels: [xAxesLabels[0]],
         datasets: [{
             label: '# of Votes',
             data: [12, 19, 3, 5, 2, 3],
