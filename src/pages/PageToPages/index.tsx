@@ -2,37 +2,21 @@ import { ReactNode } from "react";
 import { useParams } from "react-router";
 
 import {
-  IonButtons,
   IonContent,
   IonHeader,
-  IonMenuButton,
   IonPage,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
 
-import { MyIonToggleThem } from "src/components";
 
-import { LoginPage, Panel } from "..";
+import { LoginPage, Panel, Conversations } from "..";
 
 const PageToPage: React.FC = () => {
   const { name } = useParams<{ name: string }>();
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonMenuButton />
-          </IonButtons>
-
-          <MyIonToggleThem />
-
-          <IonTitle color="primary" style={{ textTransform: "capitalize" }}>
-            {name}
-          </IonTitle>
-        </IonToolbar>
-      </IonHeader>
 
       <IonContent fullscreen>
         <IonHeader collapse="condense">
@@ -41,7 +25,8 @@ const PageToPage: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        {selectPageContent("Painel")}
+        {selectPageContent(name)}
+
       </IonContent>
     </IonPage>
   );
@@ -49,8 +34,11 @@ const PageToPage: React.FC = () => {
 
 function selectPageContent(name: string): ReactNode {
   switch (name) {
-    case "Painel":
-      return <Panel />;
+
+    case 'painel':
+      return <Panel />
+    case 'conversas':
+      return <Conversations />
     default:
       return <LoginPage />;
   }
