@@ -11,7 +11,7 @@ const ApexCharts: React.FC = () => {
     fillInXaxisDateLabel(initialDate, finalDate)
   );
 
-  const [state] = React.useState({
+  const chatProps = {
     series: [
       {
         name: "tabela de Atendimentos",
@@ -58,7 +58,7 @@ const ApexCharts: React.FC = () => {
         width: [2, 0, 0],
       },
     },
-  });
+  };
 
   React.useEffect(
     () => setXAxiesLabels(fillInXaxisDateLabel(initialDate, finalDate)),
@@ -70,9 +70,9 @@ const ApexCharts: React.FC = () => {
       <Chart
         width="100%"
         height="100%"
-        series={state.series}
-        options={state.options}
-      ></Chart>
+        series={chatProps.series}
+        options={chatProps.options}
+      />
     </ChartContainer>
   );
 };
@@ -88,7 +88,7 @@ const fillInXaxisDateLabel = (
     turnIntoDate(finalDate)
   );
 
-  for (let i = 0; i <= -differenceOfDays; i++) {
+  for (let i = 0; i <= - differenceOfDays + 1; i++) {
     tempArray[i - 1] = format(
       addDays(turnIntoDate(initialDate), i),
       "dd/MM/yyyy"
