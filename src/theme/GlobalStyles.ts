@@ -136,6 +136,10 @@ export default createGlobalStyle`
 
     --ion-card-background: #fff;
     --ion-card-background-rgb: 255 255 255;
+
+
+    --ion-card-background-contrast: #f9f9f9;
+    --ion-card-background-contrast-rgb: 249 249 249;
   }
 
   .border-radius-5 {
@@ -221,6 +225,9 @@ export default createGlobalStyle`
     --ion-color-light-contrast-rgb: 255, 255, 255;
     --ion-color-light-shade: #1e2023;
     --ion-color-light-tint: #383a3e;
+
+    --ion-card-background-contrast: #242424;
+    --ion-card-background-contrast-rgb: 36 36 36;
   }
 
   /*
@@ -378,6 +385,9 @@ export default createGlobalStyle`
   --ion-color-light-contrast-rgb: 255, 255, 255;
   --ion-color-light-shade: #1e2023;
   --ion-color-light-tint: #383a3e;
+  
+  --ion-card-background-contrast: #242424;
+  --ion-card-background-contrast-rgb: 36 36 36;
   }
 
   /*

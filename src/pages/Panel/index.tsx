@@ -1,12 +1,15 @@
 import { IonCol, IonRow } from "@ionic/react";
 import { CardWithHeader } from "src/components";
 import { PanelContextProvider } from "src/store/localContext";
-import { ApexCharts, DatePickersWithButtons } from "./componentsPanel";
-import {ChartJs} from "./componentsPanel";
+import {
+  ApexCharts,
+  DatePickersWithButtons,
+  TablesPanel,
+} from "./componentsPanel";
+import {rowsAgent, rowsDepartment } from "./componentsPanel/TablesPanel/mocData"
 import { IonCardLabel, IonGridPanel, IonTitleDepartment } from "./styles";
 
 function Panel() {
-
   return (
     <IonGridPanel>
       <IonRow style={{ marginBottom: "20px" }}>
@@ -28,7 +31,7 @@ function Panel() {
       </IonRow>
 
       <PanelContextProvider>
-        <IonRow >
+        <IonRow>
           <IonCol size="12">
             <IonTitleDepartment color="primary">
               ATENDIMENTOS
@@ -74,6 +77,43 @@ function Panel() {
           </IonCol>
         </IonRow>
 
+        <IonRow>
+          <IonCol>
+            <CardWithHeader cardTitle="ATENDIMENTOS POR DEPARTAMENTO" hasIcon>
+              <TablesPanel
+                headers={[
+                  "DEPARTAMENTO",
+                  "ESPERANDO",
+                  "EM ATENDIMENTO",
+                  "FINALIZADOS",
+                  "TEMPO DE ESPERA",
+                  "TEMPO DE ATENDIMENTO",
+                ]}
+
+                rows={rowsDepartment}
+              />
+            </CardWithHeader>
+          </IonCol>
+        </IonRow>
+
+        <IonRow>
+          <IonCol>
+            <CardWithHeader cardTitle="ATENDIMENTOS POR DEPARTAMENTO" hasIcon>
+              <TablesPanel 
+                headers={[
+                  "AGENTE",
+                  "ESPERANDO",
+                  "EM ANDAMENTO",
+                  "FINALIZADOS",
+                  "TEMPO DE ESPERA",
+                  "TEMPO DE ATENDIMENTO",
+                ]}
+
+                rows={rowsAgent}
+              />
+            </CardWithHeader>
+          </IonCol>
+        </IonRow>
       </PanelContextProvider>
     </IonGridPanel>
   );

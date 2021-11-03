@@ -1,72 +1,111 @@
 import React from "react";
 import Chart from "react-apexcharts";
-import { addDays, format } from "date-fns";
+import { addDays, differenceInDays, format } from "date-fns";
 import { usePanelLocalContextData } from "src/store/localContext";
 import { ChartContainer } from "./styles";
-import {atendimentos} from "./atendimentosMock"
+import { atendimentos } from "./atendimentosMock";
 
 const ApexCharts: React.FC = () => {
-  const { initialDate } = usePanelLocalContextData();
+  const { initialDate, finalDate } = usePanelLocalContextData();
   const [xAxesLabels, setXAxiesLabels] = React.useState<Array<string>>(
-    fillInXaxisDateLabel(initialDate)
+    fillInXaxisDateLabel(initialDate, finalDate)
   );
 
+  const [state] = React.useState({
+    series: [
+      {
+        name: "tabela de Atendimentos",
+        data: xAxesLabels.map((date) => {
+          let value = getValueByKey(atendimentos, date);
+          if (value) {
+            return value;
+          } else {
+            return 0;
+          }
+        }),
+      },
+    ],
+    options: {
+      chart: {
+        id: "basic-bar",
+        toolbar: {
+          tools: {
+            download: true,
+            selection: true,
+            zoom: true,
+            zoomin: false,
+            zoomout: false,
+            pan: false,
+          },
+        },
+      },
+      xaxis: {
+        categories: xAxesLabels,
+      },
+      yaxis: {
+        tickAmount: 5,
+      },
+      markers: {
+        size: 6,
+        strokeWidth: 3,
+        fillOpacity: 0,
+        strokeOpacity: 0,
+        hover: {
+          size: 8,
+        },
+      },
+      stroke: {
+        width: [2, 0, 0],
+      },
+    },
+  });
+
   React.useEffect(
-    () => setXAxiesLabels(fillInXaxisDateLabel(initialDate)),
-    [initialDate]
+    () => setXAxiesLabels(fillInXaxisDateLabel(initialDate, finalDate)),
+    [initialDate, finalDate]
   );
-  
+
   return (
     <ChartContainer>
       <Chart
         width="100%"
         height="100%"
-        type="line"
-        series={[
-          {
-            name: "tabela de Atendimentos",
-            data: xAxesLabels.map(date => {
-              let value =  getValueByKey(atendimentos, date)
-              if(value) {
-                return value;
-              } else {
-                return 0
-              }
-            }),
-            toolbar: {}
-          },
-        ]}
-        options={{
-          chart: {
-            id: "basic-bar",
-          },
-          xaxis: {
-            categories: xAxesLabels,
-            labels: {},
-          },
-          yaxis: {},
-        }}
+        series={state.series}
+        options={state.options}
       ></Chart>
     </ChartContainer>
   );
 };
 
-const fillInXaxisDateLabel = (initialDate: string): Array<string> => {
+const fillInXaxisDateLabel = (
+  initialDate: string,
+  finalDate: string
+): Array<string> => {
   let tempArray = [];
 
-  for (let i = 1; i <= 7; i++) {
-    tempArray[i - 1] = format(addDays(new Date(initialDate), i), "dd/MM/yyyy");
+  let differenceOfDays = differenceInDays(
+    turnIntoDate(initialDate),
+    turnIntoDate(finalDate)
+  );
+
+  for (let i = 0; i <= -differenceOfDays; i++) {
+    tempArray[i - 1] = format(
+      addDays(turnIntoDate(initialDate), i),
+      "dd/MM/yyyy"
+    );
   }
 
   return tempArray;
 };
 
-function getValueByKey (collection: any, key: string) {
-	var value;
-  collection.map((item: { [x: string]: any; }) => {
-  	if (key in item) value = item[key];
-	})
-  
+const turnIntoDate = (value: string | number): Date => new Date(value);
+
+function getValueByKey(collection: any, key: string) {
+  var value;
+  collection.map((item: { [x: string]: number }) => {
+    if (key in item) value = item[key];
+  });
+
   return value;
 }
 

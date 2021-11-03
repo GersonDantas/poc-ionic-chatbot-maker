@@ -7,15 +7,15 @@ import {SelectAdaptiveDatePickerProps} from "src/types"
 function SelectAdaptiveDatePicker(props: SelectAdaptiveDatePickerProps) {
 
   const handleIonChange = (e: CustomEvent<InputChangeEventDetail>): void => {
-    let startDecreased = subDays(new Date(e.detail.value!), 5);
-    let increasedEnd = addDays(new Date(e.detail.value!), 7);
+    // let startDecreased = subDays(new Date(e.detail.value!), 5);
+    // let increasedEnd = addDays(new Date(e.detail.value!), 7);
 
     if (props.isFinalDate) {
       props.setFinalDate(e.detail.value!);
-      props.setInitialDate(format(startDecreased, "yyyy-MM-dd"));
+      // props.setInitialDate(format(startDecreased, "yyyy-MM-dd"));
     } else {
       props.setInitialDate(e.detail.value!);
-      props.setFinalDate(format(increasedEnd, "yyyy-MM-dd"));
+      // props.setFinalDate(format(increasedEnd, "yyyy-MM-dd"));
     }
   };
 
