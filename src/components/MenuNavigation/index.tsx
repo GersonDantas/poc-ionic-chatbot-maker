@@ -31,6 +31,8 @@ import {
 
 import "./styles.css";
 
+import { MyIonToggleThem } from "../";
+
 import { AppPage } from "src/types";
 
 const listMenuAlto: AppPage[] = [
@@ -93,13 +95,6 @@ const ContainerLogo = styled.div`
 const MenuNavigation: React.FC = () => {
   const location = useLocation();
 
-  const [darkOn, setDarkOn] = useState(false)
-  
-  useEffect(() => {
-    setDarkOn(document.body.classList.contains("dark"))
-  }, [document.body.classList.contains("dark")])
-
-
   return (
     <IonMenu contentId="main" type="overlay" className="left-bar">
       <IonContent>
@@ -161,7 +156,7 @@ const MenuNavigation: React.FC = () => {
           })}
         </IonList>
 
-        <IonList>
+        <IonList id="inbox-list">
           {listMenuBaixo.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
@@ -185,6 +180,18 @@ const MenuNavigation: React.FC = () => {
               </IonMenuToggle>
             );
           })}
+        </IonList>
+
+        <IonList>
+          <IonMenuToggle  autoHide={false}>
+            <IonItem
+              routerDirection="none"
+              lines="none"
+              detail={false}
+            >
+              <MyIonToggleThem />
+            </IonItem>
+          </IonMenuToggle>
         </IonList>
       </IonContent>
     </IonMenu>

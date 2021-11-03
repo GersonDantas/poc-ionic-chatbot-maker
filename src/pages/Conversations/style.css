@@ -1,0 +1,17 @@
+.button-mais-conversas {
+    bottom: 20px;
+    right: 20px;
+}
+
+.button-new-mens {
+    --background: #4E55FD;
+    --background-hover: #0b1156;
+    --color: #ffffff;
+}
+
+@media (min-width: 1025px) {
+    .button-mais-conversas {
+        bottom: 30px;
+        right: 40px;
+    }  
+}
