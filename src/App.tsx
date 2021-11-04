@@ -13,12 +13,15 @@ import "@ionic/react/css/display.css";
 
 import GlobalStyles from "./theme/GlobalStyles";
 import Router from "./Router";
+import { GlobalContextProvider } from "./store";
 
 const App: React.FC = () => {
   return (
     <IonApp>
-      <GlobalStyles />
-      <Router />
+      <GlobalContextProvider>
+        <GlobalStyles />
+        <Router />
+      </GlobalContextProvider>
     </IonApp>
   );
 };
