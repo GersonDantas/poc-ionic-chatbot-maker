@@ -1,17 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import Chart from "react-apexcharts";
 import { addDays, differenceInDays, format } from "date-fns";
 import { usePanelLocalContextData } from "src/store/localContext";
 import { ChartContainer } from "./styles";
 import { atendimentos } from "./atendimentosMock";
+import { useGlobalContextData } from "src/store";
 
 const ApexCharts: React.FC = () => {
+  const { isDark } = useGlobalContextData();
   const { initialDate, finalDate } = usePanelLocalContextData();
   const [xAxesLabels, setXAxiesLabels] = React.useState<Array<string>>(
     fillInXaxisDateLabel(initialDate, finalDate)
   );
 
-  const chatProps = {
+  const [chatProps, setChatProps] = React.useState({
     series: [
       {
         name: "tabela de Atendimentos",
@@ -41,9 +44,19 @@ const ApexCharts: React.FC = () => {
       },
       xaxis: {
         categories: xAxesLabels,
+        labels: {
+          style: {
+            colors: isDark ? "#fff" : "#000",
+          },
+        },
       },
       yaxis: {
         tickAmount: 5,
+        labels: {
+          style: {
+            colors: isDark ? "#fff" : "#000",
+          },
+        },
       },
       markers: {
         size: 6,
@@ -57,12 +70,48 @@ const ApexCharts: React.FC = () => {
       stroke: {
         width: [2, 0, 0],
       },
+      dataLabels: {
+        style: {
+          fontSize: "12px",
+          fontFamily: "Inter, sans-serif",
+          fontWeight: "bold",
+        },
+      },
     },
-  };
+  });
 
   React.useEffect(
     () => setXAxiesLabels(fillInXaxisDateLabel(initialDate, finalDate)),
     [initialDate, finalDate]
+  );
+
+  React.useEffect(
+    () =>
+      setChatProps({
+        ...chatProps,
+        options: {
+          ...chatProps.options,
+          xaxis: {
+            ...chatProps.options.xaxis,
+            labels: {
+              ...chatProps.options.xaxis.labels,
+              style: {
+                colors: isDark ? "#fff" : "#000",
+              },
+            },
+          },
+          yaxis: {
+            ...chatProps.options.yaxis,
+            labels: {
+              ...chatProps.options.yaxis.labels,
+              style: {
+                colors: isDark ? "#fff" : "#000",
+              },
+            },
+          },
+        },
+      }),
+    [isDark]
   );
 
   return (
@@ -88,11 +137,8 @@ const fillInXaxisDateLabel = (
     turnIntoDate(finalDate)
   );
 
-  for (let i = 0; i <= - differenceOfDays + 1; i++) {
-    tempArray[i - 1] = format(
-      addDays(turnIntoDate(initialDate), i),
-      "dd/MM/yyyy"
-    );
+  for (let i = 0; i <= -differenceOfDays + 1; i++) {
+    tempArray[i] = format(addDays(turnIntoDate(initialDate), i), "dd/MM/yyyy");
   }
 
   return tempArray;
@@ -102,6 +148,7 @@ const turnIntoDate = (value: string | number): Date => new Date(value);
 
 function getValueByKey(collection: any, key: string) {
   var value;
+
   collection.map((item: { [x: string]: number }) => {
     if (key in item) value = item[key];
   });

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-
+/* eslint-disable react-hooks/exhaustive-deps */
+import React from "react";
 import {
   IonContent,
   IonIcon,
@@ -12,7 +12,8 @@ import {
   IonImg
 } from "@ionic/react";
 import styled from 'styled-components';
-import logoBlue from '../../assets/img/suri-cbm-logo-blue.png';
+import logoBlue from 'src/assets/img/logo-blue.png';
+import logoWhite from 'src/assets/img/logo-white.png';
 import { useLocation } from "react-router-dom";
 import {
   statsChart,
@@ -31,9 +32,8 @@ import {
 
 import "./styles.css";
 
-import { MyIonToggleThem } from "../";
-
 import { AppPage } from "src/types";
+import { useGlobalContextData } from "src/store";
 
 const listMenuAlto: AppPage[] = [
   {
@@ -93,7 +93,21 @@ const ContainerLogo = styled.div`
 `;
 
 const MenuNavigation: React.FC = () => {
+  const {isDark} = useGlobalContextData()
+  const [logo, setLog] = React.useState<string>()
   const location = useLocation();
+
+  React.useEffect(() => {
+    toggleLogo()
+  }, [isDark])
+
+  const toggleLogo = () => {
+    if(isDark) {
+      setLog(logoWhite)
+    }else {
+      setLog(logoBlue)
+    }
+  }
 
   return (
     <IonMenu contentId="main" type="overlay" className="left-bar">
@@ -101,7 +115,7 @@ const MenuNavigation: React.FC = () => {
         <IonList id="inbox-list">
           <IonListHeader>
             <ContainerLogo>
-              <IonImg src={logoBlue} className="logo" />
+              <IonImg src={logo} className="logo" />
             </ContainerLogo>
           </IonListHeader>
 
@@ -182,7 +196,7 @@ const MenuNavigation: React.FC = () => {
           })}
         </IonList>
 
-        <IonList>
+        {/* <IonList>
           <IonMenuToggle  autoHide={false}>
             <IonItem
               routerDirection="none"
@@ -192,7 +206,7 @@ const MenuNavigation: React.FC = () => {
               <MyIonToggleThem />
             </IonItem>
           </IonMenuToggle>
-        </IonList>
+        </IonList> */}
       </IonContent>
     </IonMenu>
   );

@@ -7,7 +7,7 @@ import "./style.css";
 function Conversations() {
   return (
     <>
-      <IonHeaderContainer name="Conversas" />
+      {/* <IonHeaderContainer name="Conversas" /> */}
 
       <IonFab vertical="bottom" horizontal="end" edge slot="fixed" className="button-mais-conversas">
           <IonFabButton>
