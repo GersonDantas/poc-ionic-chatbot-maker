@@ -34,6 +34,7 @@ import "./styles.css";
 
 import { AppPage } from "src/types";
 import { useGlobalContextData } from "src/store";
+import { SuriLogo } from "..";
 
 const listMenuAlto: AppPage[] = [
   {
@@ -115,7 +116,7 @@ const MenuNavigation: React.FC = () => {
         <IonList id="inbox-list">
           <IonListHeader>
             <ContainerLogo>
-              <IonImg src={logo} className="logo" />
+              <SuriLogo className="logo" columnSize="12" />
             </ContainerLogo>
           </IonListHeader>
 
@@ -162,6 +163,7 @@ const MenuNavigation: React.FC = () => {
                     ios={appPage.iosIcon}
                     md={appPage.mdIcon}
                     color="primary"
+                    // style={{color: "var(--ion-text-color)"}}
                   />
                   <IonLabel>{appPage.title}</IonLabel>
                 </IonItem>
