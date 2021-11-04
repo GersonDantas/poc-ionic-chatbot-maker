@@ -32,7 +32,7 @@ ion-menu.md ion-list#inbox-list ion-list-header {
 }
 
 ion-menu.md ion-list#inbox-list .logo {
-  width: 70%;
+  width: 100%;
 }
 
 ion-menu.md ion-list#labels-list ion-list-header {

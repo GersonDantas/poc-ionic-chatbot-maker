@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useParams } from "react-router";
+import { RouteComponentProps, useParams } from "react-router";
 
 import {
   IonButtons,
@@ -11,40 +11,41 @@ import {
   IonToolbar,
 } from "@ionic/react";
 
-import {
-  MyIonToggleThem
-} from "src/components";
+import { MyIonToggleThem } from "src/components";
 
 import { Panel, Conversations } from "..";
 
-const PageToPage: React.FC = () => {
-  const { name } = useParams<{ name: string }>();
-  
+const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match })=> {
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
 
           <MyIonToggleThem />
 
-          <IonTitle color="primary" style={{textTransform: "capitalize"}}>{name}</IonTitle>
+          <IonTitle
+            style={{
+              textTransform: "capitalize",
+              color: "var(ion-text-color)",
+            }}
+          >
+            {match.params.name}
+          </IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent fullscreen>
-
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">{name}</IonTitle>
+            <IonTitle size="large">{match.params.name}</IonTitle>
           </IonToolbar>
         </IonHeader>
 
-        {selectPageContent(name)}
-
+        {selectPageContent(match.params.name)}
       </IonContent>
     </IonPage>
   );
@@ -52,11 +53,10 @@ const PageToPage: React.FC = () => {
 
 function selectPageContent(name: string): ReactNode {
   switch (name) {
-
-    case 'painel':
-      return <Panel />
-    case 'conversas':
-      return <Conversations />
+    case "painel":
+      return <Panel />;
+    case "conversas":
+      return <Conversations />;
     default:
       return <Panel />;
   }

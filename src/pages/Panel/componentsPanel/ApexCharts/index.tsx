@@ -12,9 +12,12 @@ const ApexCharts: React.FC = () => {
   const { initialDate, finalDate } = usePanelLocalContextData();
   const [xAxesLabels, setXAxiesLabels] = React.useState<Array<string>>(
     fillInXaxisDateLabel(initialDate, finalDate)
-  );
+    );
+  const [labelsStyle, setLabelsStyle] = React.useState({
+    colors: isDark ? "#fff" : "#676a6c",
+  });
 
-  const [chatProps, setChatProps] = React.useState({
+  const chatProps = {
     series: [
       {
         name: "tabela de Atendimentos",
@@ -46,7 +49,7 @@ const ApexCharts: React.FC = () => {
         categories: xAxesLabels,
         labels: {
           style: {
-            colors: isDark ? "#fff" : "#000",
+            ...labelsStyle,
           },
         },
       },
@@ -54,7 +57,7 @@ const ApexCharts: React.FC = () => {
         tickAmount: 5,
         labels: {
           style: {
-            colors: isDark ? "#fff" : "#000",
+            ...labelsStyle,
           },
         },
       },
@@ -78,7 +81,8 @@ const ApexCharts: React.FC = () => {
         },
       },
     },
-  });
+  }
+
 
   React.useEffect(
     () => setXAxiesLabels(fillInXaxisDateLabel(initialDate, finalDate)),
@@ -87,29 +91,9 @@ const ApexCharts: React.FC = () => {
 
   React.useEffect(
     () =>
-      setChatProps({
-        ...chatProps,
-        options: {
-          ...chatProps.options,
-          xaxis: {
-            ...chatProps.options.xaxis,
-            labels: {
-              ...chatProps.options.xaxis.labels,
-              style: {
-                colors: isDark ? "#fff" : "#000",
-              },
-            },
-          },
-          yaxis: {
-            ...chatProps.options.yaxis,
-            labels: {
-              ...chatProps.options.yaxis.labels,
-              style: {
-                colors: isDark ? "#fff" : "#000",
-              },
-            },
-          },
-        },
+    setLabelsStyle({
+      ...labelsStyle,
+      colors: isDark ? "#fff" : "#676a6c",
       }),
     [isDark]
   );
