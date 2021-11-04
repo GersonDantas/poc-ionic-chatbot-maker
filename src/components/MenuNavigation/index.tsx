@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-
+/* eslint-disable react-hooks/exhaustive-deps */
+import React from "react";
 import {
   IonContent,
   IonIcon,
@@ -12,7 +12,8 @@ import {
   IonImg
 } from "@ionic/react";
 import styled from 'styled-components';
-import logoBlue from '../../assets/img/suri-cbm-logo-blue.png';
+import logoBlue from 'src/assets/img/logo-blue.png';
+import logoWhite from 'src/assets/img/logo-white.png';
 import { useLocation } from "react-router-dom";
 import {
   statsChart,
@@ -32,6 +33,8 @@ import {
 import "./styles.css";
 
 import { AppPage } from "src/types";
+import { useGlobalContextData } from "src/store";
+import { SuriLogo } from "..";
 
 const listMenuAlto: AppPage[] = [
   {
@@ -91,14 +94,21 @@ const ContainerLogo = styled.div`
 `;
 
 const MenuNavigation: React.FC = () => {
+  const {isDark} = useGlobalContextData()
+  const [logo, setLog] = React.useState<string>()
   const location = useLocation();
 
-  const [darkOn, setDarkOn] = useState(false)
-  
-  useEffect(() => {
-    setDarkOn(document.body.classList.contains("dark"))
-  }, [document.body.classList.contains("dark")])
+  React.useEffect(() => {
+    toggleLogo()
+  }, [isDark])
 
+  const toggleLogo = () => {
+    if(isDark) {
+      setLog(logoWhite)
+    }else {
+      setLog(logoBlue)
+    }
+  }
 
   return (
     <IonMenu contentId="main" type="overlay" className="left-bar">
@@ -106,7 +116,7 @@ const MenuNavigation: React.FC = () => {
         <IonList id="inbox-list">
           <IonListHeader>
             <ContainerLogo>
-              <IonImg src={logoBlue} className="logo" />
+              <SuriLogo className="logo" columnSize="12" />
             </ContainerLogo>
           </IonListHeader>
 
@@ -153,6 +163,7 @@ const MenuNavigation: React.FC = () => {
                     ios={appPage.iosIcon}
                     md={appPage.mdIcon}
                     color="primary"
+                    // style={{color: "var(--ion-text-color)"}}
                   />
                   <IonLabel>{appPage.title}</IonLabel>
                 </IonItem>
@@ -161,7 +172,7 @@ const MenuNavigation: React.FC = () => {
           })}
         </IonList>
 
-        <IonList>
+        <IonList id="inbox-list">
           {listMenuBaixo.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
@@ -186,6 +197,18 @@ const MenuNavigation: React.FC = () => {
             );
           })}
         </IonList>
+
+        {/* <IonList>
+          <IonMenuToggle  autoHide={false}>
+            <IonItem
+              routerDirection="none"
+              lines="none"
+              detail={false}
+            >
+              <MyIonToggleThem />
+            </IonItem>
+          </IonMenuToggle>
+        </IonList> */}
       </IonContent>
     </IonMenu>
   );

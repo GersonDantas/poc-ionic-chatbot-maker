@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from "react";
-import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 
@@ -25,7 +24,7 @@ import {
   ForgotYourPasswordButton,
   IonGridLogin,
   IonRowCardLine,
-  MyIonSigninSigningupButton as MyIonSigningSigningupButton,
+  MyIonSigningSigningupButton,
   IonSubTitleLogin,
   MyIonTextTerms,
   IonTitleLogin,
@@ -33,6 +32,7 @@ import {
   IonColTerms,
   IonRowTerms,
   IonModalForgot,
+  IonContentLogin
 } from "./componentsLogin";
 
 import {
@@ -41,9 +41,7 @@ import {
   InputWithMask,
 } from "src/components";
 
-const IonContentLogin = styled(IonContent)`
-  --background: radial-gradient(circle at 9.44% -7.92%, #dd88ff 0, #9970ff 25%, #4e55fd 50%, #003bc7 75%, #002496 100%);
-`;
+
 
 function LoginPage() {
   const [inputValueName, setInputValueName] = useState<string>();
@@ -62,7 +60,7 @@ function LoginPage() {
         Nprogerss.inc(0.3);
         setTimeout(() => {
           Nprogerss.inc(0.3);
-          window.location.replace("/page/Panel");
+          window.location.replace("/page/painel");
         }, 500);
       }, 500);
     }, 500);

@@ -1,6 +1,6 @@
 import React, { SetStateAction, Dispatch } from "react";
-import {format, addDays} from 'date-fns';
-import pt from 'date-fns/locale/pt-BR';
+import { format, addDays } from "date-fns";
+import pt from "date-fns/locale/pt-BR";
 
 interface PanelLocalContextState {
   initialDate: string;
@@ -9,7 +9,9 @@ interface PanelLocalContextState {
   setFinalDate: Dispatch<SetStateAction<string>>;
 }
 
-export const PanelLocalContext = React.createContext({} as PanelLocalContextState);
+export const PanelLocalContext = React.createContext(
+  {} as PanelLocalContextState
+);
 
 type PanelContextProviderProps = {
   children: React.ReactNode;
@@ -17,9 +19,14 @@ type PanelContextProviderProps = {
 
 export function PanelContextProvider({ children }: PanelContextProviderProps) {
   const decreasedDays = addDays(new Date(), -7);
+
+  const [initialDate, setInitialDate] = React.useState<string>(
+    format(decreasedDays, "yyyy-MM-dd", { locale: pt })
+  );
+  const [finalDate, setFinalDate] = React.useState<string>(
+    format(new Date(), "yyyy-MM-dd", { locale: pt })
+  );
   
-  const [initialDate, setInitialDate] = React.useState<string>(format(decreasedDays, "yyyy-MM-dd", {locale: pt}));
-  const [finalDate, setFinalDate] = React.useState<string>(format(new Date(), "yyyy-MM-dd", {locale: pt}));
   return (
     <PanelLocalContext.Provider
       value={{
@@ -28,10 +35,11 @@ export function PanelContextProvider({ children }: PanelContextProviderProps) {
         finalDate,
         setFinalDate,
       }}
-    >{children}</PanelLocalContext.Provider>
+    >
+      {children}
+    </PanelLocalContext.Provider>
   );
 }
 
 export const usePanelLocalContextData = () =>
   React.useContext(PanelLocalContext);
-
