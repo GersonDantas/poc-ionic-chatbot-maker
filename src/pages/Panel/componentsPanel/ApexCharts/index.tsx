@@ -3,7 +3,7 @@ import React from "react";
 import Chart from "react-apexcharts";
 import { addDays, differenceInDays, format } from "date-fns";
 import { usePanelLocalContextData } from "src/store/localContext";
-import { ChartContainer } from "./styles";
+import { ChartContainer, ChartStyled } from "./styles";
 import { atendimentos } from "./atendimentosMock";
 import { useGlobalContextData } from "src/store";
 
@@ -12,7 +12,7 @@ const ApexCharts: React.FC = () => {
   const { initialDate, finalDate } = usePanelLocalContextData();
   const [xAxesLabels, setXAxiesLabels] = React.useState<Array<string>>(
     fillInXaxisDateLabel(initialDate, finalDate)
-    );
+  );
   const [labelsStyle, setLabelsStyle] = React.useState({
     colors: isDark ? "#fff" : "#676a6c",
   });
@@ -45,11 +45,22 @@ const ApexCharts: React.FC = () => {
           },
         },
       },
+      tooltip: {
+        style: {
+          fontFamily: "Inter, sans-serif",
+        },
+        onDatasetHover: {
+          highlightDataSeries: true,
+        },
+        x: {
+          show: false,
+        },
+      },
       xaxis: {
         categories: xAxesLabels,
         labels: {
           style: {
-            ...labelsStyle,
+            colors: "var(--ion-text-color)",
           },
         },
       },
@@ -57,7 +68,7 @@ const ApexCharts: React.FC = () => {
         tickAmount: 5,
         labels: {
           style: {
-            ...labelsStyle,
+            colors: ["var(--ion-text-color)"],
           },
         },
       },
@@ -66,41 +77,26 @@ const ApexCharts: React.FC = () => {
         strokeWidth: 3,
         fillOpacity: 0,
         strokeOpacity: 0,
+        colors: ["var(--ion-color-primary)"],
         hover: {
           size: 8,
         },
       },
       stroke: {
-        width: [2, 0, 0],
-      },
-      dataLabels: {
-        style: {
-          fontSize: "12px",
-          fontFamily: "Inter, sans-serif",
-          fontWeight: "bold",
-        },
+        width: [1, 0, 0],
+        colors: ["var(--ion-color-primary)"],
       },
     },
-  }
-
+  };
 
   React.useEffect(
     () => setXAxiesLabels(fillInXaxisDateLabel(initialDate, finalDate)),
     [initialDate, finalDate]
   );
 
-  React.useEffect(
-    () =>
-    setLabelsStyle({
-      ...labelsStyle,
-      colors: isDark ? "#fff" : "#676a6c",
-      }),
-    [isDark]
-  );
-
   return (
     <ChartContainer>
-      <Chart
+      <ChartStyled
         width="100%"
         height="100%"
         series={chatProps.series}
