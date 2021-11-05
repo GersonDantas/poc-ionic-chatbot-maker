@@ -38,7 +38,6 @@ export default createGlobalStyle`
       src: url('../assets/fonts/Inter-Thin.ttf');
     }
   :root {
-
     --ion-font-family: sans-serif;
     --ion-margin: 0;
     --ion-padding: 0;
@@ -113,6 +112,8 @@ export default createGlobalStyle`
 
     --ion-text-color: #676a6c;
     --ion-text-color-rgb: 103,106,113;
+
+    --ion-shadow-color: #cacaca;
 
     --ion-color-step-50: #f1f3f4;
     --ion-color-step-100: #eaeced;
@@ -242,6 +243,8 @@ export default createGlobalStyle`
     --ion-text-color: #ffffff;
     --ion-text-color-rgb: 255, 255, 255;
 
+    --ion-shadow-color: #262626;
+
     --ion-color-step-50: #0d0d0d;
     --ion-color-step-100: #1a1a1a;
     --ion-color-step-150: #262626;
@@ -272,6 +275,7 @@ export default createGlobalStyle`
     --ion-background-color: var(--ion-color-step-100);
     --ion-toolbar-background: var(--ion-color-step-150);
     --ion-toolbar-border-color: var(--ion-color-step-250);
+    --ion-shadow-color: #262626;
   }
 
 
@@ -286,6 +290,8 @@ export default createGlobalStyle`
 
     --ion-text-color: #ffffff;
     --ion-text-color-rgb: 255, 255, 255;
+
+    --ion-shadow-color: #262626;
 
     --ion-border-color: #222222;
 
@@ -388,6 +394,9 @@ export default createGlobalStyle`
   
   --ion-card-background-contrast: #242424;
   --ion-card-background-contrast-rgb: 36 36 36;
+
+  --ion-shadow-color: #262626;
+
   }
 
   /*
@@ -401,6 +410,8 @@ export default createGlobalStyle`
 
   --ion-text-color: #ffffff;
   --ion-text-color-rgb: 255, 255, 255;
+
+  --ion-shadow-color: #262626;
 
   --ion-color-step-50: #0d0d0d;
   --ion-color-step-100: #1a1a1a;
@@ -432,6 +443,8 @@ export default createGlobalStyle`
   --ion-background-color: var(--ion-color-step-100);
   --ion-toolbar-background: var(--ion-color-step-150);
   --ion-toolbar-border-color: var(--ion-color-step-250);
+
+  --ion-shadow-color: #262626;
   }
 
 
@@ -446,6 +459,8 @@ export default createGlobalStyle`
 
   --ion-text-color: #ffffff;
   --ion-text-color-rgb: 255, 255, 255;
+
+  --ion-shadow-color: #262626;
 
   --ion-border-color: #222222;
 

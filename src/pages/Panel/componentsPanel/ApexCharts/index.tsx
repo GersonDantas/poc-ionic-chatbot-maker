@@ -1,28 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-import Chart from "react-apexcharts";
 import { addDays, differenceInDays, format } from "date-fns";
 import { usePanelLocalContextData } from "src/store/localContext";
-import { ChartContainer, ChartStyled } from "./styles";
 import { atendimentos } from "./atendimentosMock";
-import { useGlobalContextData } from "src/store";
+import { ChartContainer, ChartStyled } from "./styles";
 
 const ApexCharts: React.FC = () => {
-  const { isDark } = useGlobalContextData();
   const { initialDate, finalDate } = usePanelLocalContextData();
+
   const [xAxesLabels, setXAxiesLabels] = React.useState<Array<string>>(
     fillInXaxisDateLabel(initialDate, finalDate)
   );
-  const [labelsStyle, setLabelsStyle] = React.useState({
-    colors: isDark ? "#fff" : "#676a6c",
-  });
 
   const chatProps = {
     series: [
       {
-        name: "tabela de Atendimentos",
+        name: "Atendimentos no dia",
         data: xAxesLabels.map((date) => {
           let value = getValueByKey(atendimentos, date);
+
           if (value) {
             return value;
           } else {
@@ -113,12 +109,13 @@ const fillInXaxisDateLabel = (
   let tempArray = [];
 
   let differenceOfDays = differenceInDays(
-    turnIntoDate(initialDate),
-    turnIntoDate(finalDate)
+    turnIntoDate(finalDate),
+    turnIntoDate(initialDate)
   );
 
-  for (let i = 0; i <= -differenceOfDays + 1; i++) {
-    tempArray[i] = format(addDays(turnIntoDate(initialDate), i), "dd/MM/yyyy");
+
+  for (let i = 1; i <= differenceOfDays + 1; i++) {
+    tempArray[i - 1] = format(addDays(turnIntoDate(initialDate), i), "dd/MM/yyyy");
   }
 
   return tempArray;

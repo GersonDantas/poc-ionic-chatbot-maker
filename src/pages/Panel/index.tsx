@@ -1,12 +1,8 @@
 import { IonCol, IonRow } from "@ionic/react";
 import { CardWithHeader } from "src/components";
 import { PanelContextProvider } from "src/store/localContext";
-import {
-  ApexCharts,
-  DatePickersWithButtons,
-  TablesPanel,
-} from "./componentsPanel";
-import {rowsAgent, rowsDepartment } from "./componentsPanel/TablesPanel/mocData"
+import { rowsAgent, rowsDepartment } from "./componentsPanel/TablesPanel/mocData"
+import { ApexCharts, DatePickersWithButtons, TablesPanel } from "./componentsPanel";
 import { IonCardLabel, IonGridPanel, IonTitleDepartment } from "./styles";
 
 function Panel() {
@@ -99,7 +95,7 @@ function Panel() {
         <IonRow>
           <IonCol>
             <CardWithHeader cardTitle="ATENDIMENTOS POR DEPARTAMENTO" hasIcon>
-              <TablesPanel 
+              <TablesPanel
                 headers={[
                   "AGENTE",
                   "ESPERANDO",

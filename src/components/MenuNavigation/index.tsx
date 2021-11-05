@@ -82,33 +82,21 @@ const listMenuBaixo: AppPage[] = [
 ];
 
 const ContainerLogo = styled.div`
-  width: 100%;
+  /* width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; */
   margin-bottom: 30px;
 
-  .logo {
+  /* .logo {
     width: 50%;
-  }
+  } */
 `;
 
 const MenuNavigation: React.FC = () => {
-  const {isDark} = useGlobalContextData()
-  const [logo, setLog] = React.useState<string>()
   const location = useLocation();
 
-  React.useEffect(() => {
-    toggleLogo()
-  }, [isDark])
-
-  const toggleLogo = () => {
-    if(isDark) {
-      setLog(logoWhite)
-    }else {
-      setLog(logoBlue)
-    }
-  }
 
   return (
     <IonMenu contentId="main" type="overlay" className="left-bar">
@@ -197,18 +185,6 @@ const MenuNavigation: React.FC = () => {
             );
           })}
         </IonList>
-
-        {/* <IonList>
-          <IonMenuToggle  autoHide={false}>
-            <IonItem
-              routerDirection="none"
-              lines="none"
-              detail={false}
-            >
-              <MyIonToggleThem />
-            </IonItem>
-          </IonMenuToggle>
-        </IonList> */}
       </IonContent>
     </IonMenu>
   );

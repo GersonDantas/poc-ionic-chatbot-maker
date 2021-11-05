@@ -84,7 +84,7 @@ function LoginPage() {
               <IonCardFormLogin>
 
                 <IonCardHeader>
-                  <SuriLogo />
+                  <SuriLogo columnSize="6" />
                 </IonCardHeader>
 
                 <IonCardContent>
@@ -112,9 +112,8 @@ function LoginPage() {
                   </FacebookButton>
 
                   <HtmlHr
-                    data-after={`ou ${
-                      isSigningForm ? "entre" : "cadastre-se"
-                    } com seu email`}
+                    data-after={`ou ${isSigningForm ? "entre" : "cadastre-se"
+                      } com seu email`}
                   />
 
                   {!isSigningForm && (
@@ -209,7 +208,7 @@ function LoginPage() {
                           ? "Não é cadastrado ainda? "
                           : "Já possui cadastro? "}
 
-                        <a onClick={ () => setIsSigningForm(!isSigningForm)} className="toggle-signin" >
+                        <a onClick={() => setIsSigningForm(!isSigningForm)} className="toggle-signin" >
                           {isSigningForm
                             ? "Crie sua conta"
                             : "Entre em sua conta"}
@@ -229,4 +228,4 @@ function LoginPage() {
   );
 }
 
-export {LoginPage};
+export { LoginPage };

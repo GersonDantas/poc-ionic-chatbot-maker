@@ -1,2 +1,2 @@
-export * from "./localContext"
-export * from "./globalContext/globalContext"
+export * from "./localContext";
+export * from "./globalContext/globalContext";

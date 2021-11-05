@@ -3,7 +3,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableBody from '@material-ui/core/TableBody';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import {IonCol} from "@ionic/react"
+import { IonCol } from "@ionic/react"
 import { StyledTableCell, StyledTableRow } from './styles';
 
 interface TablesPanelProps {
@@ -16,13 +16,15 @@ function TablesPanel(props: TablesPanelProps) {
   return (
     <TableContainer component={IonCol}>
       <Table sx={{ minWidth: 700 }} aria-label="attendance table">
+
         <TableHead>
           <TableRow>
-            {props.headers.map((title: string) => 
+            {props.headers.map((title: string) =>
               <StyledTableCell>{title}</StyledTableCell>
             )}
           </TableRow>
         </TableHead>
+
         <TableBody>
           {props.rows.map((row) => (
             <StyledTableRow key={row.name}>
@@ -37,9 +39,10 @@ function TablesPanel(props: TablesPanelProps) {
             </StyledTableRow>
           ))}
         </TableBody>
+        
       </Table>
     </TableContainer>
   );
 };
 
-export {TablesPanel};
+export { TablesPanel };
