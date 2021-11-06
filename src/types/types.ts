@@ -15,7 +15,7 @@ export type InputWithMaskProps = {
 
 export type CommonButtonProps = {
     children?: ReactNode | undefined;
-    faIcon?: IconProp | undefined;
+    faIcon?: IconProp ;
     isRounded?: boolean | undefined;
 } & IonButtonProps;
 

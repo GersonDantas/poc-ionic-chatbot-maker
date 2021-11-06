@@ -1,5 +1,5 @@
 import React, { SetStateAction, Dispatch } from "react";
-import { format, addDays } from "date-fns";
+import { format, subDays } from "date-fns";
 import pt from "date-fns/locale/pt-BR";
 
 interface PanelLocalContextState {
@@ -18,7 +18,7 @@ type PanelContextProviderProps = {
 };
 
 export function PanelContextProvider({ children }: PanelContextProviderProps) {
-  const decreasedDays = addDays(new Date(), -7);
+  const decreasedDays = subDays(new Date(), 7);
 
   const [initialDate, setInitialDate] = React.useState<string>(
     format(decreasedDays, "yyyy-MM-dd", { locale: pt })
@@ -26,7 +26,7 @@ export function PanelContextProvider({ children }: PanelContextProviderProps) {
   const [finalDate, setFinalDate] = React.useState<string>(
     format(new Date(), "yyyy-MM-dd", { locale: pt })
   );
-  
+
   return (
     <PanelLocalContext.Provider
       value={{

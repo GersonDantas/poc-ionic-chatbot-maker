@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { Redirect, Route } from 'react-router-dom';            
+import { Redirect, Route} from 'react-router-dom';            
 
 import { IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-
-import { PanelContextProvider } from "src/store/localContext";
-
 
 import {PageToPage, LoginPage} from './pages';
 import {MenuNavigation} from './components';
