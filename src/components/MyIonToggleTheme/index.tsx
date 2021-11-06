@@ -2,13 +2,13 @@
 import React, { useMemo, useRef, useState } from "react";
 import { IonToggle, useIonViewDidEnter } from "@ionic/react";
 import { Storage } from "@capacitor/storage";
-import { moon } from "ionicons/icons";
+import { moon, sunny } from "ionicons/icons";
 
 import "./styles.ts";
 import { IonIconToggleTheme } from "./styles";
 import { useGlobalContextData } from "src/store";
 
-const MyIonToggleThem: React.FC = () => {
+const MyIonToggleTheme: React.FC = () => {
   const setToggleRef = useRef<HTMLIonToggleElement>(null);
 
   const {isDark, setIsDark} = useGlobalContextData()
@@ -25,7 +25,6 @@ const MyIonToggleThem: React.FC = () => {
     let check = setToggleRef.current?.checked;
     if (check !== undefined && isDark) {
       setToggleRef.current!.checked = true;
-      // setIsDark(false);
     }
   }, [isDark]);
 
@@ -51,7 +50,7 @@ const MyIonToggleThem: React.FC = () => {
       <IonIconToggleTheme
         className="component-icon  component-icon-dark"
         slot="end"
-        icon={moon}
+        icon={isDark ? sunny : moon}
       />
       <IonToggle
         ref={setToggleRef}
@@ -68,4 +67,4 @@ const getStorageInitTheme = async (): Promise<string | null> => {
   return value;
 };
 
-export { MyIonToggleThem };
+export { MyIonToggleTheme };

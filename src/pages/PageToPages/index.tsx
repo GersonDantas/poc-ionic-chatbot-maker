@@ -11,7 +11,7 @@ import {
   IonToolbar,
 } from "@ionic/react";
 
-import { MyIonToggleThem } from "src/components";
+import { MyIonToggleTheme } from "src/components";
 
 import { Panel, Conversations } from "..";
 
@@ -25,7 +25,7 @@ const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match })
             <IonMenuButton />
           </IonButtons>
 
-          <MyIonToggleThem />
+          <MyIonToggleTheme />
 
           <IonTitle
             style={{

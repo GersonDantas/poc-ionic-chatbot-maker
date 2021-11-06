@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-import { IonCol, IonImg } from "@ionic/react";
+import { IonCol, IonImg, useIonViewDidEnter } from "@ionic/react";
 import logoBlue from "src/assets/img/logo-blue.png";
 import logoWhite from "src/assets/img/logo-white.png";
 import { useGlobalContextData } from "src/store";
@@ -27,6 +27,7 @@ const SuriLogo: React.FC<SuriLogoProps> = (props) => {
       setLog(logoBlue);
     }
   };
+  
   return (
     <MyIonRow>
       <IonCol size={props.columnSize ?? "4"}>

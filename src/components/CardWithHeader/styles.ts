@@ -15,8 +15,9 @@ export const IonCardWithHeader = styled(IonCard)`
 export const IonCardHeaderContentRow = styled(IonRow)`
   padding: 16px;
   justify-content: center;
-  @media screen and (max-width: 334px) {
-    margin: 5px;
+  @media screen and (max-width: 540px) {
+    padding-left: 0;
+    padding-right: 0;
   }
 `;
 
