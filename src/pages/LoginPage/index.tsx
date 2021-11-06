@@ -39,6 +39,7 @@ import {
   SuriLogo,
   InputAndLabelComponent,
   InputWithMask,
+  MyIonToggleTheme
 } from "src/components";
 
 
@@ -82,7 +83,7 @@ function LoginPage() {
 
             <IonCol sizeMd="4.5" size="12">
               <IonCardFormLogin>
-
+                
                 <IonCardHeader>
                   <SuriLogo columnSize="6" />
                 </IonCardHeader>

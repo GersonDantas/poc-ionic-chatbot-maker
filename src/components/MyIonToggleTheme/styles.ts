@@ -11,6 +11,7 @@ export const IonIconToggleTheme = styled(IonIcon)`
 
   margin-top: 5px;
   margin-bottom: 5px;
+  margin: 5px;
 
   &.component-icon-dark {
     background: var(--ion-color-step-850, #27323e);
