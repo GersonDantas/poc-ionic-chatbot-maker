@@ -21,14 +21,12 @@ const MyIonToggleTheme: React.FC = () => {
     if (t) setIsDark(t === "dark");
   }, []);
 
-  useIonViewDidEnter(() => togglerCheck, [isDark]);
-
-  const togglerCheck = (): void => {
+  useIonViewDidEnter(() => {
     let check = setToggleRef.current?.checked;
     if (check !== undefined && isDark) {
       setToggleRef.current!.checked = true;
     }
-  }
+  }, [isDark]);
   
   const toggleDarkTheme = async (): Promise<void> => {
     await Storage.set({ key: "isDarkTheme", value: toggle() });

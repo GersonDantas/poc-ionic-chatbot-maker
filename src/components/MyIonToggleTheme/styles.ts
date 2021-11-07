@@ -23,13 +23,14 @@ export const IonToggleStyled = styled(IonToggle)`
   margin-right: 15px;
   --handle-background: radial-gradient(
     circle,
-    rgba(255, 255, 255, 1) 39%,
-    rgba(245, 245, 246, 1) 60%,
-    rgba(232, 232, 234, 1) 44%
+    rgba(255, 255, 255, 1) 59%,
+    rgba(189, 189, 189, 1) 61%,
+    rgba(232, 232, 234, 1) 63%,
+    rgba(233, 233, 235, 1) 100%
   );
   --handle-background-checked: #fef89f;
-  --background: #5f6db1;
+  --background: #173c66;
   --background-checked: #8ad7ec;
-  --handle-transition: 1s;
+  --handle-transition: 250ms;
   --handle-spacing: 3px;
 `;
