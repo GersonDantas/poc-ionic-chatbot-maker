@@ -18,7 +18,7 @@ function CardWithHeader(props: CardWithHeaderProps) {
       <IonCardHeader color="primary">
         <RowCardHeader style={{ justifyContent: props.titleInCenter ? "center" : "space-between" }}>
 
-          <IonCardHeaderTitle>{props.cardTitle?? "sdf"}</IonCardHeaderTitle>
+          <IonCardHeaderTitle>{props.cardTitle}</IonCardHeaderTitle>
 
           {props.hasIcon && <CommonIconButtonStyled />}
 
