@@ -12,8 +12,6 @@ import {
   IonImg
 } from "@ionic/react";
 import styled from 'styled-components';
-import logoBlue from 'src/assets/img/logo-blue.png';
-import logoWhite from 'src/assets/img/logo-white.png';
 import { useLocation } from "react-router-dom";
 import {
   statsChart,
@@ -33,10 +31,9 @@ import {
 import "./styles.css";
 
 import { AppPage } from "src/types";
-import { useGlobalContextData } from "src/store";
 import { SuriLogo } from "..";
 
-const listMenuAlto: AppPage[] = [
+const topMenuList: AppPage[] = [
   {
     title: "Gestão",
     url: "/page/gestao",
@@ -45,7 +42,7 @@ const listMenuAlto: AppPage[] = [
   },
 ];
 
-const listMenuMedio: AppPage[] = [
+const mediunMenuList: AppPage[] = [
   {
     title: "Painel",
     url: "/page/painel",
@@ -72,7 +69,7 @@ const listMenuMedio: AppPage[] = [
   },
 ];
 
-const listMenuBaixo: AppPage[] = [
+const listDownMenu: AppPage[] = [
   {
     title: "Meu Perfil",
     url: "/page/perfil",
@@ -80,19 +77,6 @@ const listMenuBaixo: AppPage[] = [
     mdIcon: person,
   },
 ];
-
-const ContainerLogo = styled.div`
-  /* width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
-  margin-bottom: 30px;
-
-  /* .logo {
-    width: 50%;
-  } */
-`;
 
 const MenuNavigation: React.FC = () => {
   const location = useLocation();
@@ -102,15 +86,13 @@ const MenuNavigation: React.FC = () => {
     <IonMenu contentId="main" type="overlay" className="left-bar">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>
-            <ContainerLogo>
-              <SuriLogo className="logo" columnSize="12" />
-            </ContainerLogo>
+          <IonListHeader style={{ marginBottom: "30px" }}>
+            <SuriLogo className="logo" columnSize="12" />
           </IonListHeader>
 
-          {listMenuAlto.map((appPage, index) => {
+          {topMenuList.map((appPage, index) => {
             return (
-              <IonMenuToggle key={index} autoHide={false}>
+              <IonMenuToggle key={index} autoHide={false} >
                 <IonItem
                   className={
                     location.pathname === appPage.url ? "selected" : ""
@@ -134,9 +116,9 @@ const MenuNavigation: React.FC = () => {
         </IonList>
 
         <IonList id="inbox-list">
-          {listMenuMedio.map((appPage, index) => {
+          {mediunMenuList.map((appPage, index) => {
             return (
-              <IonMenuToggle key={index} autoHide={false}>
+              <IonMenuToggle key={index} autoHide={false} >
                 <IonItem
                   className={
                     location.pathname === appPage.url ? "selected" : ""
@@ -151,7 +133,6 @@ const MenuNavigation: React.FC = () => {
                     ios={appPage.iosIcon}
                     md={appPage.mdIcon}
                     color="primary"
-                    // style={{color: "var(--ion-text-color)"}}
                   />
                   <IonLabel>{appPage.title}</IonLabel>
                 </IonItem>
@@ -161,7 +142,7 @@ const MenuNavigation: React.FC = () => {
         </IonList>
 
         <IonList id="inbox-list">
-          {listMenuBaixo.map((appPage, index) => {
+          {listDownMenu.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
                 <IonItem
