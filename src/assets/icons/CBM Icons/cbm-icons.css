@@ -1,0 +1,206 @@
+/*
+    Como utilizar:
+    - Com <i class="cb-<nome do icone>"></i>
+
+    Como atualizar:
+    - Acesse https://icomoon.io/app/#/projects e clique em Load
+    - Acesse https://drive.google.com/drive/u/0/folders/1zpP0t_6Q0v1hCxPM6zzr578Sn_NRu7xS e, da pasta de versão mais atual, importe o arquivo selection.json para abrir o projeto
+    - Na aba inferior Selection você pode importar ou remover ícones em svg 
+    - Na aba Generate font você pode ver todos os ícones e renomeá-los (tenta colocar em inglês, please), ao final só clicar em download, que ele irá gerar a nova pasta
+    - Copie o conteúdo novo do arquivo styles.css neste arquivo e atualize os arquivos cbm-icons na pasta fonts (por favor leia os próximos passos com atenção ^^)
+    - Outra alteração importante é sempre remover o atributo color das classes abaixo (SÓ NAO DA CLASSE IMG-BOT PQ ELA TEM CORES ESPECÍFICAS), isso permite que a cor do ícone seja alterada no html da página que for inserida mais facilmente
+    - Se atualizar o font-face abaixo, lembre de corrigir o caminho da pasta fonts para ../fonts
+    - Atualiza lá no drive para não perdermos a mudança, coloque a pasta que você baixou com o número de versão correspondente :)
+*/
+@font-face {
+    font-family: 'cbm-icons';
+    src: url('fonts/cbm-icons.eot?jczz7x');
+    src: url('fonts/cbm-icons.eot?jczz7x#iefix') format('embedded-opentype'), url('../fonts/cbm-icons.ttf?jczz7x') format('truetype'), url('../fonts/cbm-icons.woff?jczz7x') format('woff'), url('../fonts/cbm-icons.svg?jczz7x#cbm-icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="cb-"], [class*=" cb-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'cbm-icons' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.cb-fallback:before {
+    content: "\e920";
+    color: inherit;
+}
+
+.cb-welcome:before {
+    content: "\e921";
+    color: inherit;
+}
+
+.cb-people-plus-o:before {
+    content: "\e91f";
+    color: inherit;
+}
+
+.cb-save:before {
+    content: "\e91d";
+    color: inherit;
+}
+
+.cb-export:before {
+    content: "\e91e";
+    color: inherit;
+}
+
+.cb-ai:before {
+    content: "\e911";
+    color: inherit;
+}
+
+.cb-menu:before {
+    content: "\e919";
+    color: inherit;
+}
+
+.cb-note:before {
+    content: "\e91a";
+    color: inherit;
+}
+
+.cb-bill:before {
+    content: "\e91b";
+    color: inherit;
+}
+
+.cb-invoice:before {
+    content: "\e91c";
+    color: inherit;
+}
+
+.cb-filter:before {
+    content: "\e90c";
+    color: inherit;
+}
+
+.cb-options:before {
+    content: "\e916";
+    color: inherit;
+}
+
+.cb-add-circle-o:before {
+    content: "\e917";
+    color: inherit;
+}
+
+.cb-megaphone:before {
+    content: "\e918";
+    color: inherit;
+}
+
+.cb-waiting:before {
+    content: "\e900";
+    color: inherit;
+}
+
+.cb-help:before {
+    content: "\e901";
+    color: inherit;
+}
+
+.cb-update:before {
+    content: "\e902";
+    color: inherit;
+}
+
+.cb-settings:before {
+    content: "\e903";
+    color: inherit;
+}
+
+.cb-chat-o:before {
+    content: "\e904";
+    color: inherit;
+}
+
+.cb-people:before {
+    content: "\e905";
+    color: inherit;
+}
+
+.cb-loop:before {
+    content: "\e906";
+    color: inherit;
+}
+
+.cb-close-circle-o:before {
+    content: "\e907";
+    color: inherit;
+}
+
+.cb-address:before {
+    content: "\e908";
+    color: inherit;
+}
+
+.cb-microphone:before {
+    content: "\e909";
+    color: inherit;
+}
+
+.cb-trash:before {
+    content: "\e90a";
+    color: inherit;
+}
+
+.cb-files:before {
+    content: "\e90b";
+    color: inherit;
+}
+
+.cb-time-o:before {
+    content: "\e90d";
+    color: inherit;
+}
+
+.cb-power:before {
+    content: "\e90e";
+    color: inherit;
+}
+
+.cb-message:before {
+    content: "\e90f";
+    color: inherit;
+}
+
+.cb-messages:before {
+    content: "\e910";
+    color: inherit;
+}
+
+.cb-person:before {
+    content: "\e912";
+    color: inherit;
+}
+
+.cb-medal:before {
+    content: "\e913";
+    color: inherit;
+}
+
+.cb-graph:before {
+    content: "\e914";
+    color: inherit;
+}
+
+.cb-transfer:before {
+    content: "\e915";
+    color: inherit;
+}

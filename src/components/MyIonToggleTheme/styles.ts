@@ -21,16 +21,10 @@ import { IonIcon, IonToggle } from "@ionic/react";
 
 export const IonToggleStyled = styled(IonToggle)`
   margin-right: 15px;
-  --handle-background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 1) 59%,
-    rgba(189, 189, 189, 1) 61%,
-    rgba(232, 232, 234, 1) 63%,
-    rgba(233, 233, 235, 1) 100%
-  );
+  --handle-background: radial-gradient( circle farthest-corner at 74% 40%,#173c66 42%,#fff 59.2% );
   --handle-background-checked: #fef89f;
   --background: #173c66;
   --background-checked: #8ad7ec;
-  --handle-transition: 250ms;
+  --handle-transition: 350ms ease-in;
   --handle-spacing: 3px;
 `;

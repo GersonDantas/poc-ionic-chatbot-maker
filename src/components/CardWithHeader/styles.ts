@@ -7,7 +7,7 @@ export const RowCardHeader = styled(IonRow)`
 `;
 
 export const IonCardWithHeader = styled(IonCard)`
-  border-radius: 16px;
+  border-radius: 5px;
   box-shadow: 2px 8px 17px 2px var(--ion-shadow-color);
   --background: var(--ion-card-background);
 `;
