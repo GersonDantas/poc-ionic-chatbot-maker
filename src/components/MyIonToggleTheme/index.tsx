@@ -45,13 +45,6 @@ const MyIonToggleTheme: React.FC = () => {
   const containsAndSetDark = (): boolean => document.body.classList.toggle("dark");
   
   return (
-    <>
-      {/* <IonIconToggleTheme
-        className="component-icon  component-icon-dark"
-        slot="end"
-        icon={isDark ? sunny : moon}
-        onClick={toggleDarkTheme}
-      /> */}
       <IonToggleStyled
         ref={setToggleRef}
         slot="end"
@@ -59,7 +52,6 @@ const MyIonToggleTheme: React.FC = () => {
         onIonChange={toggleDarkTheme}
         mode="ios"
       />
-    </>
   );
 };
 

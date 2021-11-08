@@ -4,24 +4,25 @@
 
     Como atualizar:
     - Acesse https://icomoon.io/app/#/projects e clique em Load
-    - Acesse https://drive.google.com/drive/u/0/folders/1zpP0t_6Q0v1hCxPM6zzr578Sn_NRu7xS e, da pasta de versão mais atual, importe o arquivo selection.json para abrir o projeto
-    - Na aba inferior Selection você pode importar ou remover ícones em svg 
-    - Na aba Generate font você pode ver todos os ícones e renomeá-los (tenta colocar em inglês, please), ao final só clicar em download, que ele irá gerar a nova pasta
-    - Copie o conteúdo novo do arquivo styles.css neste arquivo e atualize os arquivos cbm-icons na pasta fonts (por favor leia os próximos passos com atenção ^^)
-    - Outra alteração importante é sempre remover o atributo color das classes abaixo (SÓ NAO DA CLASSE IMG-BOT PQ ELA TEM CORES ESPECÍFICAS), isso permite que a cor do ícone seja alterada no html da página que for inserida mais facilmente
+    - Acesse https://drive.google.com/drive/u/0/folders/1zpP0t_6Q0v1hCxPM6zzr578Sn_NRu7xS e, da pasta de versï¿½o mais atual, importe o arquivo selection.json para abrir o projeto
+    - Na aba inferior Selection vocï¿½ pode importar ou remover ï¿½cones em svg 
+    - Na aba Generate font vocï¿½ pode ver todos os ï¿½cones e renomeï¿½-los (tenta colocar em inglï¿½s, please), ao final sï¿½ clicar em download, que ele irï¿½ gerar a nova pasta
+    - Copie o conteï¿½do novo do arquivo styles.css neste arquivo e atualize os arquivos cbm-icons na pasta fonts (por favor leia os prï¿½ximos passos com atenï¿½ï¿½o ^^)
+    - Outra alteraï¿½ï¿½o importante ï¿½ sempre remover o atributo color das classes abaixo (Sï¿½ NAO DA CLASSE IMG-BOT PQ ELA TEM CORES ESPECï¿½FICAS), isso permite que a cor do ï¿½cone seja alterada no html da pï¿½gina que for inserida mais facilmente
     - Se atualizar o font-face abaixo, lembre de corrigir o caminho da pasta fonts para ../fonts
-    - Atualiza lá no drive para não perdermos a mudança, coloque a pasta que você baixou com o número de versão correspondente :)
+    - Atualiza lï¿½ no drive para nï¿½o perdermos a mudanï¿½a, coloque a pasta que vocï¿½ baixou com o nï¿½mero de versï¿½o correspondente :)
 */
 @font-face {
     font-family: 'cbm-icons';
-    src: url('fonts/cbm-icons.eot?jczz7x');
-    src: url('fonts/cbm-icons.eot?jczz7x#iefix') format('embedded-opentype'), url('../fonts/cbm-icons.ttf?jczz7x') format('truetype'), url('../fonts/cbm-icons.woff?jczz7x') format('woff'), url('../fonts/cbm-icons.svg?jczz7x#cbm-icons') format('svg');
+    src: url('./fonts/cbm-icons.eot?jczz7x');
+    src: url('./fonts/cbm-icons.eot?jczz7x#iefix') format('embedded-opentype'), url('./fonts/cbm-icons.ttf?jczz7x') format('truetype'), url('./fonts/cbm-icons.woff?jczz7x') format('woff'), url('./fonts/cbm-icons.svg?jczz7x#cbm-icons') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
 }
 
-[class^="cb-"], [class*=" cb-"] {
+[class^="cb-"],
+[class*=" cb-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'cbm-icons' !important;
     speak: never;

@@ -28,34 +28,24 @@ export const mediumMenuList: AppPage[] = [
   {
     title: "Painel",
     url: "/page/painel",
-    iosIcon: statsChartOutline,
-    mdIcon: statsChart,
+    iconMoon: "graph"
   },
   {
     title: "Conversas",
     url: "/page/conversas",
-    iosIcon: chatbubblesOutline,
-    mdIcon: chatbubbles,
-  },
-  {
-    title: "Habilidades",
-    url: "/page/habilidades",
-    iosIcon: optionsOutline,
-    mdIcon: options,
-  },
-  {
-    title: "Configurações",
-    url: "/page/configuracoes",
-    iosIcon: settingsOutline,
-    mdIcon: settings,
+    iconMoon: "chat-o"
   },
 ];
 
-export const listDownMenu: AppPage[] = [
+export const settingsMenuList: AppPage[] = [
   {
-    title: "Meu Perfil",
-    url: "/page/perfil",
-    iosIcon: personOutline,
-    mdIcon: person,
+    title: "Geral",
+    url: "/page/configuracoes/geral",
+    iconMoon: "files",
+  },
+  {
+    title: "Modelo de Menssagem",
+    url: "/page/configuracoes/modelo-mensagem",
+    iconMoon: "messages",
   },
 ];

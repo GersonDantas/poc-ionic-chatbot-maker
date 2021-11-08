@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import "../assets/icons/CBM Icons/cbm-icons.css"
 
 export default createGlobalStyle`
     @font-face {
@@ -41,13 +42,6 @@ export default createGlobalStyle`
     --ion-font-family: sans-serif;
     --ion-margin: 0;
     --ion-padding: 0;
-
-    --blue-background: #c2e9f6;
-  --blue-border: #72cce3;
-  --blue-color: #96dcee;
-  --yellow-background: #fffaa8;
-  --yellow-border: #f5eb71;
-
   /** primary **/
     --ion-color-primary: #4E55FD;
     --ion-color-primary-rgb: 78,85,253;
@@ -335,11 +329,6 @@ export default createGlobalStyle`
   /* Dark theme */
 
   body.dark {
-    --indigo-background: #808fc7;
-  --indigo-border: #5d6baa;
-  --indigo-color: #6b7abb;
-  --gray-border: #e8e8ea;
-  --gray-dots: #e8e8ea;
   --ion-color-primary: #428cff;
   --ion-color-primary-rgb: 66, 140, 255;
   --ion-color-primary-contrast: #ffffff;

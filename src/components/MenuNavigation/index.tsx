@@ -12,16 +12,18 @@ import {
 } from "@ionic/react";
 import { useLocation } from "react-router-dom";
 
+import { chevronDownOutline, chevronForwardOutline } from "ionicons/icons"
+
 
 import "./styles.css";
 
-import { listDownMenu, mediumMenuList, topMenuList } from "./navigationRoutesObjects"
+import { settingsMenuList, mediumMenuList, topMenuList } from "./navigationRoutesObjects"
 import { SuriLogo } from "..";
 
 
 const MenuNavigation: React.FC = () => {
   const [state, setState] = React.useState({
-    DropdownMenus: {
+    dropdownMenus: {
       management: false,
       skills: false,
       settings: false
@@ -38,12 +40,35 @@ const MenuNavigation: React.FC = () => {
             <SuriLogo className="logo" columnSize="12" />
           </IonListHeader>
 
-          
-
-          {topMenuList.map((appPage, index) => {
-            return (
-              <IonMenuToggle key={index} autoHide={false} >
+          <IonMenuToggle autoHide={false} >
+            {topMenuList.map((appPage, index) => {
+              return (
                 <IonItem
+                  key={index}
+                  className={
+                    location.pathname === appPage.url ? "selected" : ""
+                  }
+                  routerLink={appPage.url}
+                  routerDirection="none"
+                  lines="none"
+                  detail={true}
+                >
+                  <IonIcon
+                    slot="start"
+                    ios={appPage.iosIcon}
+                    md={appPage.mdIcon}
+                    color="primary"
+                  />
+                  <i className="cb-graph" />
+                  <IonLabel>{appPage.title}</IonLabel>
+                </IonItem>
+              );
+            })}
+
+            {mediumMenuList.map((appPage, index) => {
+              return (
+                <IonItem
+                  key={index}
                   className={
                     location.pathname === appPage.url ? "selected" : ""
                   }
@@ -52,65 +77,62 @@ const MenuNavigation: React.FC = () => {
                   lines="none"
                   detail={false}
                 >
-                  <IonIcon
+                  {/* <IonIcon
                     slot="start"
                     ios={appPage.iosIcon}
                     md={appPage.mdIcon}
                     color="primary"
-                  />
+                  /> */}
+                  <i className={`cb-${appPage.iconMoon}` }/>
                   <IonLabel>{appPage.title}</IonLabel>
                 </IonItem>
-              </IonMenuToggle>
-            );
-          })}
+              );
+            })}
 
-          {mediumMenuList.map((appPage, index) => {
-            return (
-              <IonMenuToggle key={index} autoHide={false} >
+            <IonItem
+              routerDirection="none"
+              lines="none"
+              detail
+              detailIcon={
+                state.dropdownMenus.settings
+                  ? chevronDownOutline
+                  : chevronForwardOutline
+              }
+              onClick={() => setState({
+                dropdownMenus: {
+                  ...state.dropdownMenus,
+                  settings: !state.dropdownMenus.settings
+                }
+              })}
+            >
+              <i className="cb-settings" />
+              <IonLabel>Configurações</IonLabel>
+            </IonItem>
+
+            { 
+             state.dropdownMenus.settings && settingsMenuList.map((appPage, index) => {
+              return (
                 <IonItem
+                  key={index}
                   className={
                     location.pathname === appPage.url ? "selected" : ""
                   }
                   routerLink={appPage.url}
                   routerDirection="none"
                   lines="none"
-                  detail={false}
                 >
-                  <IonIcon
+                  {/* <IonIcon
                     slot="start"
                     ios={appPage.iosIcon}
                     md={appPage.mdIcon}
                     color="primary"
-                  />
+                  /> */}
+                  <i className={`cb-${appPage.iconMoon}`} />
                   <IonLabel>{appPage.title}</IonLabel>
                 </IonItem>
-              </IonMenuToggle>
-            );
-          })}
-
-          {listDownMenu.map((appPage, index) => {
-            return (
-              <IonMenuToggle key={index} autoHide={false}>
-                <IonItem
-                  className={
-                    location.pathname === appPage.url ? "selected" : ""
-                  }
-                  routerLink={appPage.url}
-                  routerDirection="none"
-                  lines="none"
-                  detail={false}
-                >
-                  <IonIcon
-                    slot="start"
-                    ios={appPage.iosIcon}
-                    md={appPage.mdIcon}
-                    color="primary"
-                  />
-                  <IonLabel>{appPage.title}</IonLabel>
-                </IonItem>
-              </IonMenuToggle>
-            );
-          })}
+              );
+            })}
+          </IonMenuToggle>
         </IonList>
       </IonContent>
     </IonMenu>

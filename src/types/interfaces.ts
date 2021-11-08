@@ -9,8 +9,9 @@ export interface CardWithHeaderProps {
 
 export interface AppPage {
   url: string;
-  iosIcon: string;
-  mdIcon: string;
+  iconMoon?: string;
+  iosIcon?: string;
+  mdIcon?: string;
   title: string;
 }
 
