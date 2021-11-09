@@ -1,3 +1,4 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export interface CardWithHeaderProps {
@@ -9,8 +10,10 @@ export interface CardWithHeaderProps {
 
 export interface AppPage {
   url: string;
-  iosIcon: string;
-  mdIcon: string;
+  iconMoon?: string;
+  iosIcon?: string;
+  mdIcon?: string;
+  faIcon?: IconProp;
   title: string;
 }
 

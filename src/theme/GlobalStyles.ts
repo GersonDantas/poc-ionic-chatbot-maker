@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import "../assets/icons/CBM Icons/cbm-icons.css"
 
 export default createGlobalStyle`
     @font-face {
@@ -41,7 +42,6 @@ export default createGlobalStyle`
     --ion-font-family: sans-serif;
     --ion-margin: 0;
     --ion-padding: 0;
-
   /** primary **/
     --ion-color-primary: #4E55FD;
     --ion-color-primary-rgb: 78,85,253;

@@ -4,186 +4,179 @@ import {
   IonContent,
   IonIcon,
   IonItem,
+  IonItemDivider,
   IonLabel,
   IonList,
   IonListHeader,
   IonMenu,
   IonMenuToggle,
-  IonImg
 } from "@ionic/react";
-import styled from 'styled-components';
-import logoBlue from 'src/assets/img/logo-blue.png';
-import logoWhite from 'src/assets/img/logo-white.png';
 import { useLocation } from "react-router-dom";
-import {
-  statsChart,
-  statsChartOutline,
-  settings,
-  settingsOutline,
-  options,
-  optionsOutline,
-  person,
-  personOutline,
-  grid,
-  gridOutline,
-  chatbubbles,
-  chatbubblesOutline
-} from "ionicons/icons";
+
+import { chevronDownOutline, chevronBackOutline, grid } from "ionicons/icons"
+
 
 import "./styles.css";
 
-import { AppPage } from "src/types";
-import { useGlobalContextData } from "src/store";
+import { settingsMenuList, mediumMenuList, skillsMenu, managementMenu } from "./navigationRoutesObjects"
 import { SuriLogo } from "..";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const listMenuAlto: AppPage[] = [
-  {
-    title: "Gestão",
-    url: "/page/gestao",
-    iosIcon: gridOutline,
-    mdIcon: grid,
-  },
-];
-
-const listMenuMedio: AppPage[] = [
-  {
-    title: "Painel",
-    url: "/page/painel",
-    iosIcon: statsChartOutline,
-    mdIcon: statsChart,
-  },
-  {
-    title: "Conversas",
-    url: "/page/conversas",
-    iosIcon: chatbubblesOutline,
-    mdIcon: chatbubbles,
-  },
-  {
-    title: "Habilidades",
-    url: "/page/habilidades",
-    iosIcon: optionsOutline,
-    mdIcon: options,
-  },
-  {
-    title: "Configurações",
-    url: "/page/configuracoes",
-    iosIcon: settingsOutline,
-    mdIcon: settings,
-  },
-];
-
-const listMenuBaixo: AppPage[] = [
-  {
-    title: "Meu Perfil",
-    url: "/page/perfil",
-    iosIcon: personOutline,
-    mdIcon: person,
-  },
-];
-
-const ContainerLogo = styled.div`
-  /* width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
-  margin-bottom: 30px;
-
-  /* .logo {
-    width: 50%;
-  } */
-`;
 
 const MenuNavigation: React.FC = () => {
+  const [state, setState] = React.useState({
+    dropdownMenus: {
+      management: false,
+      skills: false,
+      settings: false
+    }
+  })
   const location = useLocation();
 
 
   return (
     <IonMenu contentId="main" type="overlay" className="left-bar">
-      <IonContent>
+      <IonContent >
         <IonList id="inbox-list">
-          <IonListHeader>
-            <ContainerLogo>
-              <SuriLogo className="logo" columnSize="12" />
-            </ContainerLogo>
+          <IonListHeader style={{ marginBottom: "30px" }}>
+            <SuriLogo className="logo" columnSize="12" />
           </IonListHeader>
 
-          {listMenuAlto.map((appPage, index) => {
-            return (
-              <IonMenuToggle key={index} autoHide={false}>
-                <IonItem
-                  className={
-                    location.pathname === appPage.url ? "selected" : ""
-                  }
-                  routerLink={appPage.url}
-                  routerDirection="none"
-                  lines="none"
-                  detail={false}
-                >
-                  <IonIcon
-                    slot="start"
-                    ios={appPage.iosIcon}
-                    md={appPage.mdIcon}
-                    color="primary"
-                  />
-                  <IonLabel>{appPage.title}</IonLabel>
-                </IonItem>
-              </IonMenuToggle>
-            );
-          })}
-        </IonList>
+          <IonItem
+            lines="none"
+            button
+            detail
+            detailIcon={
+              state.dropdownMenus.management
+                ? chevronDownOutline
+                : chevronBackOutline
+            }
+            onClick={() => setState({
+              dropdownMenus: {
+                ...state.dropdownMenus,
+                management: !state.dropdownMenus.management
+              }
+            })}
+          >
+            <FontAwesomeIcon icon="th-large" className="cb-" />
+            <IonLabel>Gestão</IonLabel>
+          </IonItem>
 
-        <IonList id="inbox-list">
-          {listMenuMedio.map((appPage, index) => {
-            return (
-              <IonMenuToggle key={index} autoHide={false}>
+          {
+            state.dropdownMenus.management && managementMenu.map((appPage, index) => {
+              return (
                 <IonItem
+                  key={index}
                   className={
-                    location.pathname === appPage.url ? "selected" : ""
+                    `(${location.pathname === appPage.url ? "selected" : ""}) sub-menu`
                   }
                   routerLink={appPage.url}
                   routerDirection="none"
                   lines="none"
-                  detail={false}
                 >
-                  <IonIcon
-                    slot="start"
-                    ios={appPage.iosIcon}
-                    md={appPage.mdIcon}
-                    color="primary"
-                    // style={{color: "var(--ion-text-color)"}}
-                  />
+                  <FontAwesomeIcon icon={appPage.faIcon!} className="cb-" />
                   <IonLabel>{appPage.title}</IonLabel>
                 </IonItem>
-              </IonMenuToggle>
-            );
-          })}
-        </IonList>
+              );
+            })
+          }
 
-        <IonList id="inbox-list">
-          {listMenuBaixo.map((appPage, index) => {
+          <hr className="divider-management" />
+
+          {mediumMenuList.map((appPage, index) => {
             return (
-              <IonMenuToggle key={index} autoHide={false}>
+              <IonItem
+                key={index}
+                className={
+                  location.pathname === appPage.url ? "selected" : ""
+                }
+                routerLink={appPage.url}
+                routerDirection="none"
+                lines="none"
+                detail={false}
+              >
+                <i className={`cb-${appPage.iconMoon}`} />
+                <IonLabel>{appPage.title}</IonLabel>
+              </IonItem>
+            );
+          })}
+
+          <IonItem
+            lines="none"
+            button
+            detail
+            detailIcon={
+              state.dropdownMenus.skills
+                ? chevronDownOutline
+                : chevronBackOutline
+            }
+            onClick={() => setState({
+              dropdownMenus: {
+                ...state.dropdownMenus,
+                skills: !state.dropdownMenus.skills
+              }
+            })}
+          >
+            <i className="cb-settings" />
+            <IonLabel>Habilidades</IonLabel>
+          </IonItem>
+
+          {
+            state.dropdownMenus.skills && skillsMenu.map((appPage, index) => {
+              return (
                 <IonItem
+                  key={index}
                   className={
-                    location.pathname === appPage.url ? "selected" : ""
+                    `(${location.pathname === appPage.url ? "selected" : ""}) sub-menu`
                   }
                   routerLink={appPage.url}
                   routerDirection="none"
                   lines="none"
-                  detail={false}
                 >
-                  <IonIcon
-                    slot="start"
-                    ios={appPage.iosIcon}
-                    md={appPage.mdIcon}
-                    color="primary"
-                  />
+                  <i className={`cb-${appPage.iconMoon}`} />
                   <IonLabel>{appPage.title}</IonLabel>
                 </IonItem>
-              </IonMenuToggle>
-            );
-          })}
+              );
+            })}
+
+          <IonItem
+            button
+            lines="none"
+            detail
+            detailIcon={
+              state.dropdownMenus.settings
+                ? chevronDownOutline
+                : chevronBackOutline
+            }
+            onClick={() => setState({
+              dropdownMenus: {
+                ...state.dropdownMenus,
+                settings: !state.dropdownMenus.settings
+              }
+            })}
+          >
+            <i className="cb-options" />
+            <IonLabel>Configurações</IonLabel>
+          </IonItem>
+
+          {
+            state.dropdownMenus.settings && settingsMenuList.map((appPage, index) => {
+              return (
+                <IonItem
+                  key={index}
+                  className={
+                    `(${location.pathname === appPage.url ? "selected" : ""}) sub-menu`
+                  }
+                  routerLink={appPage.url}
+                  routerDirection="none"
+                  lines="none"
+                >
+                  <i className={`cb-${appPage.iconMoon}`} />
+                  <IonLabel>{appPage.title}</IonLabel>
+                </IonItem>
+              );
+            })}
+          {/* </IonMenuToggle> */}
         </IonList>
       </IonContent>
     </IonMenu>

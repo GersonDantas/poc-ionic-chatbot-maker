@@ -5,7 +5,7 @@ import { Storage } from "@capacitor/storage";
 import { moon, sunny } from "ionicons/icons";
 
 import "./styles.ts";
-import { IonIconToggleTheme } from "./styles";
+import { /* IonIconToggleTheme, */ IonToggleStyled } from "./styles";
 import { useGlobalContextData } from "src/store";
 
 const MyIonToggleTheme: React.FC = () => {
@@ -27,7 +27,6 @@ const MyIonToggleTheme: React.FC = () => {
       setToggleRef.current!.checked = true;
     }
   }, [isDark]);
-
   
   const toggleDarkTheme = async (): Promise<void> => {
     await Storage.set({ key: "isDarkTheme", value: toggle() });
@@ -46,19 +45,13 @@ const MyIonToggleTheme: React.FC = () => {
   const containsAndSetDark = (): boolean => document.body.classList.toggle("dark");
   
   return (
-    <>
-      <IonIconToggleTheme
-        className="component-icon  component-icon-dark"
-        slot="end"
-        icon={isDark ? sunny : moon}
-      />
-      <IonToggle
+      <IonToggleStyled
         ref={setToggleRef}
         slot="end"
         name="darkMode"
         onIonChange={toggleDarkTheme}
+        mode="ios"
       />
-    </>
   );
 };
 
