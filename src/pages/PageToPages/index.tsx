@@ -15,24 +15,19 @@ import { MyIonToggleTheme } from "src/components";
 
 import { Panel, Conversations } from "..";
 
-const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match })=> {
+const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match }) => {
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonMenuButton />
+            <IonMenuButton color="primary" />
           </IonButtons>
 
           <MyIonToggleTheme />
 
-          <IonTitle
-            style={{
-              textTransform: "capitalize",
-              color: "var(ion-text-color)",
-            }}
-          >
+          <IonTitle style={{ textTransform: "capitalize" }} color="primary" >
             {match.params.name}
           </IonTitle>
         </IonToolbar>
