@@ -1,4 +1,13 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Dispatch, ReactNode, SetStateAction } from "react";
+import * as History from 'history';
+export interface DropDownItemProps {
+  title: string;
+  dropDownObject: AppPage[];
+  location: History.Location;
+  faIcon?: IconProp;
+  iconMoon?: string;
+}
 
 export interface CardWithHeaderProps {
   children: ReactNode;
@@ -9,8 +18,8 @@ export interface CardWithHeaderProps {
 
 export interface AppPage {
   url: string;
-  iosIcon: string;
-  mdIcon: string;
+  iconMoon?: string;
+  faIcon?: IconProp;
   title: string;
 }
 

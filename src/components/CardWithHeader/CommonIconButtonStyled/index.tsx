@@ -1,10 +1,11 @@
-import { IonRippleEffect } from "@ionic/react";
-import styled from "styled-components";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CommonButton } from "src/components";
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IonRippleEffect } from '@ionic/react';
+import { CommonButton } from 'src/components';
+import styled from 'styled-components';
 
-function CommonIconButton() {
+
+function CommonIconButtonStyled() {
 
   const CommonIconButtonStyled = styled(CommonButton)`
     margin: -5px 0 -5px 0;
@@ -28,6 +29,6 @@ function CommonIconButton() {
       <IonRippleEffect />
     </CommonIconButtonStyled>
   );
-}
+};
 
-export default CommonIconButton;
+export default CommonIconButtonStyled;

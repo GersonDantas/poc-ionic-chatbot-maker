@@ -1,16 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useMemo, useRef, useState } from "react";
-import { IonIcon, IonToggle, useIonViewDidEnter } from "@ionic/react";
+import { IonToggle, useIonViewDidEnter } from "@ionic/react";
 import { Storage } from "@capacitor/storage";
-import { moon } from "ionicons/icons";
+import { moon, sunny } from "ionicons/icons";
 
 import "./styles.ts";
-import { IonIconToggleTheme } from "./styles";
+import { /* IonIconToggleTheme, */ IonToggleStyled } from "./styles";
+import { useGlobalContextData } from "src/store";
 
-const MyIonToggleThem: React.FC = () => {
+const MyIonToggleTheme: React.FC = () => {
   const setToggleRef = useRef<HTMLIonToggleElement>(null);
 
-  const [isDark, setIsDark] = useState<boolean>();
+  const {isDark, setIsDark} = useGlobalContextData()
   const [storageInitTheme] = useState<Promise<string | null>>(
     getStorageInitTheme()
   );
@@ -24,24 +25,33 @@ const MyIonToggleThem: React.FC = () => {
     let check = setToggleRef.current?.checked;
     if (check !== undefined && isDark) {
       setToggleRef.current!.checked = true;
-      setIsDark(false);
     }
   }, [isDark]);
-
+  
+  const toggleDarkTheme = async (): Promise<void> => {
+    await Storage.set({ key: "isDarkTheme", value: toggle() });
+  };
+  
+  const toggle = (): string => {
+    if(containsAndSetDark()) {
+      setIsDark(true)
+      return "dark"
+    } else {
+      setIsDark(false)
+      return "light"
+    }
+  };
+  
+  const containsAndSetDark = (): boolean => document.body.classList.toggle("dark");
+  
   return (
-    <>
-      <IonIconToggleTheme
-        className="component-icon  component-icon-dark"
-        slot="end"
-        icon={moon}
-      />
-      <IonToggle
+      <IonToggleStyled
         ref={setToggleRef}
         slot="end"
         name="darkMode"
         onIonChange={toggleDarkTheme}
+        mode="ios"
       />
-    </>
   );
 };
 
@@ -50,12 +60,4 @@ const getStorageInitTheme = async (): Promise<string | null> => {
   return value;
 };
 
-const toggleDarkTheme = async (): Promise<void> => {
-  await Storage.set({ key: "isDarkTheme", value: toggle() });
-};
-
-const toggle = (): string => containsDark() ? "dark" : "light";
-
-const containsDark = (): boolean => document.body.classList.toggle("dark");
-
-export { MyIonToggleThem };
+export { MyIonToggleTheme };

@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from "react";
-import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 
@@ -25,7 +24,7 @@ import {
   ForgotYourPasswordButton,
   IonGridLogin,
   IonRowCardLine,
-  MyIonSigninSigningupButton as MyIonSigningSigningupButton,
+  MyIonSigningSigningupButton,
   IonSubTitleLogin,
   MyIonTextTerms,
   IonTitleLogin,
@@ -33,17 +32,17 @@ import {
   IonColTerms,
   IonRowTerms,
   IonModalForgot,
+  IonContentLogin
 } from "./componentsLogin";
 
 import {
   SuriLogo,
   InputAndLabelComponent,
   InputWithMask,
+  MyIonToggleTheme
 } from "src/components";
 
-const IonContentLogin = styled(IonContent)`
-  --background: radial-gradient(circle at 9.44% -7.92%, #dd88ff 0, #9970ff 25%, #4e55fd 50%, #003bc7 75%, #002496 100%);
-`;
+
 
 function LoginPage() {
   const [inputValueName, setInputValueName] = useState<string>();
@@ -62,7 +61,7 @@ function LoginPage() {
         Nprogerss.inc(0.3);
         setTimeout(() => {
           Nprogerss.inc(0.3);
-          window.location.replace("/page/Panel");
+          window.location.replace("/page/painel");
         }, 500);
       }, 500);
     }, 500);
@@ -84,9 +83,9 @@ function LoginPage() {
 
             <IonCol sizeMd="4.5" size="12">
               <IonCardFormLogin>
-
+                
                 <IonCardHeader>
-                  <SuriLogo />
+                  <SuriLogo columnSize="6" />
                 </IonCardHeader>
 
                 <IonCardContent>
@@ -114,9 +113,8 @@ function LoginPage() {
                   </FacebookButton>
 
                   <HtmlHr
-                    data-after={`ou ${
-                      isSigningForm ? "entre" : "cadastre-se"
-                    } com seu email`}
+                    data-after={`ou ${isSigningForm ? "entre" : "cadastre-se"
+                      } com seu email`}
                   />
 
                   {!isSigningForm && (
@@ -211,7 +209,7 @@ function LoginPage() {
                           ? "Não é cadastrado ainda? "
                           : "Já possui cadastro? "}
 
-                        <a onClick={ () => setIsSigningForm(!isSigningForm)} className="toggle-signin" >
+                        <a onClick={() => setIsSigningForm(!isSigningForm)} className="toggle-signin" >
                           {isSigningForm
                             ? "Crie sua conta"
                             : "Entre em sua conta"}
@@ -231,4 +229,4 @@ function LoginPage() {
   );
 }
 
-export {LoginPage};
+export { LoginPage };
