@@ -69,6 +69,7 @@
     "tsconfig-paths": "^3.11.0"
   },
   "scripts": {
+    "deploy": "yarn build && firebase deploy",
     "start": "react-scripts start ",
     "build": "react-scripts build",
     "test": "react-scripts test",
