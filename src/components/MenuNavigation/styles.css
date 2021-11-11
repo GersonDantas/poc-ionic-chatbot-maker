@@ -1,4 +1,3 @@
-
 ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
@@ -25,8 +24,6 @@ ion-menu.md ion-note {
 }
 
 ion-menu.md ion-list#inbox-list ion-list-header {
-  font-size: 22px;
-  font-weight: 600;
   min-height: 20px;
 }
 
@@ -35,14 +32,11 @@ ion-menu.md ion-list#inbox-list .logo {
 }
 
 ion-menu.md ion-list#labels-list ion-list-header {
-  font-size: 16px;
-  margin-bottom: 18px;
-  color: #757575;
   min-height: 26px;
 }
 
 ion-menu.md ion-item {
-  --padding-start: 10px;
+  --padding-start: 5px;
   --padding-end: 10px;
   border-radius: 4px;
 }
@@ -84,7 +78,7 @@ ion-menu.ios ion-item {
 }
 
 ion-menu.ios ion-item ion-icon {
-  font-size: 24px;
+  font-size: 25px;
   color: #73849a;
 }
 
@@ -135,13 +129,59 @@ hr.divider-management {
   color: white;
 }
 
+ion-item {
+  --background-focused: var(--ion-color-primary);
+  --background-focused-opacity: 1;
+  --color-focused: white;
+  text-transform: uppercase;
+  height: 50px;
+  --border-radius: 5px;
+}
+
+ion-item .label-item {
+  font-size: 13px;
+  overflow: hidden;
+  padding-top: 3px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+ion-item .noUppercase {
+  text-transform: none;
+}
+
+ion-item:hover {
+  --background: var(--ion-color-primary);
+  --color: white;
+  --detail-icon-color: white;
+  --border-radius: 5px;
+}
+
 ion-item:hover [class^="cb-"],
 ion-item:hover [class*=" cb-"] {
   color: white;
 }
 
+ion-item:focus [class^="cb-"],
+ion-item:focus [class*=" cb-"] {
+  color: white;
+}
+
+
+ion-item:focus {
+  --background: var(--ion-color-primary);
+  --color: white;
+  --detail-icon-color: white;
+  --border-radius: 5px;
+  border: 1px solid var(--ion-color-warning-contrast);
+  outline: max(1px, 0.1em) solid currentColor;
+  outline-offset: 0.25em;
+}
+
 .sub-menu {
   margin-left: 15px;
+  height: 45px;
+  text-transform: none;
 }
 
 .sub-menu [class^="cb-"],
@@ -151,12 +191,6 @@ ion-item:hover [class*=" cb-"] {
 
 ion-item.selected {
   --color: var(--ion-color-primary);
-}
-
-ion-item:hover {
-  --background: var(--ion-color-primary);
-  --color: white;
-  --detail-icon-color: white;
 }
 
 

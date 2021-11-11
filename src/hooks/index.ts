@@ -1,0 +1,1 @@
+export {getStorageKey, setStorageByKey} from "./useLocalStorageCapacitor"
