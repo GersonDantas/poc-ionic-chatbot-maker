@@ -14,6 +14,7 @@ import {
 import { MyIonToggleTheme } from "src/components";
 
 import { Panel, Conversations } from "..";
+import { users } from "../LoginPage/mocUsers";
 
 const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match }) => {
 
@@ -28,7 +29,7 @@ const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match })
           <MyIonToggleTheme />
 
           <IonTitle style={{ textTransform: "capitalize" }} color="primary" >
-            {match.params.name}
+            {`${users[0].name}/${match.params.name}`}
           </IonTitle>
         </IonToolbar>
       </IonHeader>

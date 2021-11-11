@@ -3,22 +3,27 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import {
   IonContent,
+  IonItem,
+  IonLabel,
   IonList,
   IonListHeader,
   IonMenu,
+  IonRouterLink,
 } from "@ionic/react";
 
-import { 
+import {
   settingsMenuList,
-  skillsMenu, 
-  managementMenu 
+  skillsMenu,
+  managementMenu
 } from "./navigationRoutesObjects"
 
 import { SuriLogo } from "..";
-import DropDownItem from "./DropDownItem";
+import { DropDownItem, MenuListItem, MiddleItems, UsersDropDownList } from "./componentsMenu";
 
 import "./styles.css";
-import MiddleItems from "./MiddleItems";
+import { chevronForwardOutline } from "ionicons/icons";
+import { users } from "src/pages/LoginPage/mocUsers";
+import { IonAvatarStyled } from "./componentsMenu/UsersDropDownList/styles";
 
 const MenuNavigation: React.FC = () => {
 
@@ -42,7 +47,9 @@ const MenuNavigation: React.FC = () => {
 
           <hr className="divider-management" />
 
-          <MiddleItems location={location}/>
+          <UsersDropDownList />
+
+          <MiddleItems location={location} />
 
           <DropDownItem
             title="Habilidades"
@@ -58,8 +65,32 @@ const MenuNavigation: React.FC = () => {
             iconMoon="options"
           />
 
+
         </IonList>
       </IonContent>
+      <IonList>
+        <IonItem
+          button
+          lines="none"
+          detail
+          detailIcon={chevronForwardOutline}
+        >
+          <IonAvatarStyled>
+            <img src={users[0].imgUserUrl} alt={users[0].email} />
+          </IonAvatarStyled>
+          <IonLabel >{`${users[0].name} ${users[0].subName}`}</IonLabel>
+        </IonItem>
+        <IonRouterLink 
+          href="https://chatbotmaker.gitbook.io/centraldeajuda/"
+          target="_blank"
+        >
+          <MenuListItem 
+            iconMoon="question-mark"
+            title="CENTRAL DE AJUDA"
+            location={location}
+          />
+        </IonRouterLink>
+      </IonList>
     </IonMenu>
   );
 };

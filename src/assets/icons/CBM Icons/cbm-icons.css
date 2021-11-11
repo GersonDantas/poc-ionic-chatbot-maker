@@ -116,6 +116,11 @@
     color: inherit;
 }
 
+.cb-question-mark:before {
+    content: "\e922";
+    color: inherit;
+}
+
 .cb-update:before {
     content: "\e902";
     color: inherit;
