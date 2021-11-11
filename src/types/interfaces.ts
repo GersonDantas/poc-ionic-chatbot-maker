@@ -1,6 +1,17 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Dispatch, ReactNode, SetStateAction } from "react";
 import * as History from 'history';
+
+export interface UserProps {
+  id: string;
+  password: string;
+  name: string;
+  subName?: string;
+  email: string;
+  phoneNumber: string;
+  imgUserUrl?: string;
+  imgMessageUrl?: string;
+}
 export interface DropDownItemProps {
   title: string;
   dropDownObject: AppPage[];

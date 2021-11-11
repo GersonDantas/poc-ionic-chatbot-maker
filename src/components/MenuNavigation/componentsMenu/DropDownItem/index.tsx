@@ -48,4 +48,4 @@ function DropDownItem(props: DropDownItemProps) {
   );
 };
 
-export default DropDownItem;
+export {DropDownItem};

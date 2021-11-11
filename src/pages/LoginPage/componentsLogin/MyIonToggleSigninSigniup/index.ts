@@ -4,6 +4,7 @@ import { IonSubTitleLogin } from "../IonSubTitleLogin";
 export const MyIonToggleSigningSigniup = styled(IonSubTitleLogin)`
   padding-left: 10px;
   a {
+    cursor: pointer;
     text-decoration: none;
     color: var(--ion-color-primary);
     font-weight: 500;

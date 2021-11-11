@@ -198,6 +198,7 @@ function LoginPage() {
                         size="default"
                         onClick={loginFake}
                         strong
+                        onSubmit={() => {}}
                       >
                         {isSigningForm ? "FAZER LOGIN" : "CADASTRE-SE"}
                         <IonRippleEffect />
@@ -209,7 +210,10 @@ function LoginPage() {
                           ? "Não é cadastrado ainda? "
                           : "Já possui cadastro? "}
 
-                        <a onClick={() => setIsSigningForm(!isSigningForm)} className="toggle-signin" >
+                        <a 
+                          onClick={() => setIsSigningForm(!isSigningForm)} 
+                          className="toggle-signin" 
+                        >
                           {isSigningForm
                             ? "Crie sua conta"
                             : "Entre em sua conta"}
