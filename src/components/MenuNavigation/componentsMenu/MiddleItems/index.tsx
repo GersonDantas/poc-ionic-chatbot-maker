@@ -15,9 +15,10 @@ function MiddleItems({ location }: MiddleItemsProps) {
             key={index}
             location={location}
             url={appPage.url}
-            iconMoon={appPage.iconMoon!}
             title={appPage.title}
-          />
+          >
+            <i className={`cb-${appPage.iconMoon}`} />
+          </MenuListItem>
         );
       })}
     </>

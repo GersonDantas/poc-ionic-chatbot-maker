@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IonItem, IonLabel } from '@ionic/react';
+import { IonItem, IonLabel, IonRippleEffect } from '@ionic/react';
 import { chevronBackOutline, chevronDownOutline } from 'ionicons/icons';
 import { DropDownItemProps } from 'src/types';
 
@@ -22,7 +22,8 @@ function DropDownItem(props: DropDownItemProps) {
       >
         {props.faIcon && <FontAwesomeIcon icon={props.faIcon} className="cb-" />}
         {props.iconMoon && <i className={`cb-${props.iconMoon}`} />}
-        <IonLabel>{props.title}</IonLabel>
+        <span className="label-item" >{props.title}</span>
+        <IonRippleEffect />
       </IonItem>
 
       {
@@ -39,7 +40,7 @@ function DropDownItem(props: DropDownItemProps) {
             >
               {appPage.faIcon && <FontAwesomeIcon icon={appPage.faIcon!} className="cb-" />}
               {appPage.iconMoon && <i className={`cb-${appPage.iconMoon}`} />}
-              <IonLabel>{appPage.title}</IonLabel>
+              <span className="label-item">{appPage.title}</span>
             </IonItem>
           );
         })
