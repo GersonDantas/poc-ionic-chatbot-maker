@@ -27,7 +27,7 @@
     "**/*.tsx",
     "next.config.js",
     "src/pages/Panel/componentsPanel/ApexCharts/atendimentosMock.js"
-  ],
+, "src/hooks/userLocalStorage"  ],
   "exclude": [
     "node_modules"
   ]

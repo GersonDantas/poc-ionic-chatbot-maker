@@ -18,12 +18,12 @@ import {
 } from "./navigationRoutesObjects"
 
 import { SuriLogo } from "..";
-import { DropDownItem, MenuListItem, MiddleItems, UsersDropDownList } from "./componentsMenu";
+import { DropDownItem, FooterList, MenuListItem, MiddleItems, UsersDropDownList } from "./componentsMenu";
 
 import "./styles.css";
 import { chevronForwardOutline } from "ionicons/icons";
 import { users } from "src/pages/LoginPage/mocUsers";
-import { IonAvatarStyled } from "./componentsMenu/UsersDropDownList/styles";
+import { IonAvatarStyled } from "./componentsMenu";
 
 const MenuNavigation: React.FC = () => {
 
@@ -68,29 +68,7 @@ const MenuNavigation: React.FC = () => {
 
         </IonList>
       </IonContent>
-      <IonList>
-        <IonItem
-          button
-          lines="none"
-          detail
-          detailIcon={chevronForwardOutline}
-        >
-          <IonAvatarStyled>
-            <img src={users[0].imgUserUrl} alt={users[0].email} />
-          </IonAvatarStyled>
-          <IonLabel >{`${users[0].name} ${users[0].subName}`}</IonLabel>
-        </IonItem>
-        <IonRouterLink 
-          href="https://chatbotmaker.gitbook.io/centraldeajuda/"
-          target="_blank"
-        >
-          <MenuListItem 
-            iconMoon="question-mark"
-            title="CENTRAL DE AJUDA"
-            location={location}
-          />
-        </IonRouterLink>
-      </IonList>
+      <FooterList location={location} />
     </IonMenu>
   );
 };
