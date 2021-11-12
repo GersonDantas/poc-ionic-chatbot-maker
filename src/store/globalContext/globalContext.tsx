@@ -1,11 +1,15 @@
 import React, { SetStateAction, Dispatch } from "react";
 import { UserProps } from "src/types";
+import { User } from "../dto";
+import { users } from "../mocUsers";
 
 interface GlobalContextState {
   isDark: boolean;
   setIsDark: Dispatch<SetStateAction<boolean>>;
-  checkLoggedInUser: () => UserProps;
-  addLoggedInUser: (user: UserProps) => void;
+  // checkLoggedInUser: () => UserProps | undefined;
+  // addLoggedInUser: (id: string) => void;
+  // setUserIdConected: Dispatch<SetStateAction<string | undefined>>
+  // userIdConected: string | undefined;
 }
 
 export const GlobalContext = React.createContext({} as GlobalContextState);
@@ -18,18 +22,16 @@ export function GlobalContextProvider({
   children,
 }: GlobalContextProviderProps) {
   const [isDark, setIsDark] = React.useState<boolean>(false);
-  const [userConected, setUserConected] = React.useState<UserProps>()
+  // const [userIdConected, setUserIdConected] = React.useState<string | undefined>()
 
-  const addLoggedInUser = (user: UserProps): void => {
-    setUserConected(user);
-  }
+  // const addLoggedInUser = (id: string) => setUserIdConected(id);
 
-  const checkLoggedInUser = (): UserProps => {
-    return userConected!;
-  }
+  // const checkLoggedInUser = () => users.find(existingId);
+
+  // const existingId = (user: User) => user.id === userIdConected
 
   return (
-    <GlobalContext.Provider value={{ isDark, setIsDark, checkLoggedInUser, addLoggedInUser }}>
+    <GlobalContext.Provider value={{ isDark, setIsDark/* , checkLoggedInUser, addLoggedInUser, userIdConected, setUserIdConected */ }}>
       {children}
     </GlobalContext.Provider>
   );

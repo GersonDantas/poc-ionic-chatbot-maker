@@ -1,6 +1,10 @@
+import { useIonViewDidEnter } from '@ionic/react';
 import * as History from 'history';
 import { chevronForwardOutline } from 'ionicons/icons';
-import { users } from 'src/pages/LoginPage/mocUsers';
+import { useState } from 'react';
+import { getStorageKey } from 'src/hooks';
+import { User } from 'src/store/dto';
+import { users } from 'src/store/mocUsers';
 import { IonAvatarStyled, MenuListItem } from '..';
 import { ListFooter } from './styles';
 
@@ -9,6 +13,13 @@ interface FooterListProps {
 }
 
 function FooterList({ location }: FooterListProps) {
+  const [userLogged, setUserLogged] =  useState<string>("Nome do usuário")
+
+  useIonViewDidEnter(async() => {
+    let user: User = await getStorageKey("LoggedInUserInStorage")
+    setUserLogged(user.name);
+  })
+  
   return (
     <ListFooter>
       <MenuListItem

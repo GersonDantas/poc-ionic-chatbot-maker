@@ -8,8 +8,8 @@ export type InputAndLabelComponentProps = {
 } & IonInputProps;
 
 export type InputWithMaskProps = {
-    value: string | undefined;
-    onChange: any;
+    value?: string | undefined;
+    onChange?: any;
     label?: string;
     maskProps: string;
   } & IonInputProps;

@@ -1,6 +1,6 @@
 import React from "react";
 import { IonAvatar, IonItem, IonLabel } from '@ionic/react';
-import {users} from "src/pages/LoginPage/mocUsers"
+import {users} from "src/store/mocUsers"
 import { IonAvatarStyled } from "./styles";
 import { caretDownOutline, caretUpOutline } from "ionicons/icons";
 

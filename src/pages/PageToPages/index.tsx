@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { RouteComponentProps, useParams } from "react-router";
+import { ReactNode, useState } from "react";
+import { RouteComponentProps } from "react-router";
 
 import {
   IonButtons,
@@ -9,14 +9,27 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  useIonViewDidEnter,
+  useIonViewWillEnter,
 } from "@ionic/react";
 
 import { MyIonToggleTheme } from "src/components";
 
 import { Panel, Conversations } from "..";
-import { users } from "../LoginPage/mocUsers";
+import { users } from "../../store/mocUsers";
+import { useGlobalContextData } from "src/store";
+import { getStorageKey } from "src/hooks";
+import { User } from "src/store/dto";
 
 const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match }) => {
+
+  const [userLogged, setUserLogged] =  useState<string>("Usuario")
+
+  useIonViewDidEnter(async() => {
+    let user: User = await getStorageKey("LoggedInUserInStorage")
+    setUserLogged(user.name);
+  })
+
 
   return (
     <IonPage>
@@ -29,7 +42,7 @@ const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match })
           <MyIonToggleTheme />
 
           <IonTitle style={{ textTransform: "capitalize" }} color="primary" >
-            {`${users[0].name}/${match.params.name}`}
+            {`${userLogged}/${match.params.name}`}
           </IonTitle>
         </IonToolbar>
       </IonHeader>

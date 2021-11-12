@@ -11,18 +11,18 @@ import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
 
-import GlobalStyles from "./theme/GlobalStyles";
+import GlobalStyles from "./styles/GlobalStyles";
 import Router from "./Router";
 import { GlobalContextProvider } from "./store";
 
 const App: React.FC = () => {
   return (
-    <IonApp>
-      <GlobalContextProvider>
+    <GlobalContextProvider>
+      <IonApp>
         <GlobalStyles />
         <Router />
-      </GlobalContextProvider>
-    </IonApp>
+      </IonApp>
+    </GlobalContextProvider>
   );
 };
 

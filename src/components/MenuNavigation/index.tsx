@@ -21,9 +21,6 @@ import { SuriLogo } from "..";
 import { DropDownItem, FooterList, MenuListItem, MiddleItems, UsersDropDownList } from "./componentsMenu";
 
 import "./styles.css";
-import { chevronForwardOutline } from "ionicons/icons";
-import { users } from "src/pages/LoginPage/mocUsers";
-import { IonAvatarStyled } from "./componentsMenu";
 
 const MenuNavigation: React.FC = () => {
 
