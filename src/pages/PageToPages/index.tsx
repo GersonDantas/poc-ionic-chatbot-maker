@@ -9,8 +9,6 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  useIonViewDidEnter,
-  useIonViewWillEnter,
 } from "@ionic/react";
 
 import { MyIonToggleTheme } from "src/components";
@@ -18,17 +16,14 @@ import { MyIonToggleTheme } from "src/components";
 import { Panel, Conversations } from "..";
 import { users } from "../../store/mocUsers";
 import { useGlobalContextData } from "src/store";
-import { getStorageKey } from "src/hooks";
 import { User } from "src/store/dto";
 
 const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match }) => {
 
   const [userLogged, setUserLogged] =  useState<string>("Usuario")
+  const {userConnected} = useGlobalContextData()
 
-  useIonViewDidEnter(async() => {
-    let user: User = await getStorageKey("LoggedInUserInStorage")
-    setUserLogged(user.name);
-  })
+  console.log(userConnected);
 
 
   return (

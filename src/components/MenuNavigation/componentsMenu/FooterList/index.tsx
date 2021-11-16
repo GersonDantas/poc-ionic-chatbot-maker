@@ -1,4 +1,4 @@
-import { useIonViewDidEnter } from '@ionic/react';
+import { useIonViewWillEnter } from '@ionic/react';
 import * as History from 'history';
 import { chevronForwardOutline } from 'ionicons/icons';
 import { useState } from 'react';
@@ -15,7 +15,7 @@ interface FooterListProps {
 function FooterList({ location }: FooterListProps) {
   const [userLogged, setUserLogged] =  useState<string>("Nome do usuário")
 
-  useIonViewDidEnter(async() => {
+  useIonViewWillEnter(async() => {
     let user: User = await getStorageKey("LoggedInUserInStorage")
     setUserLogged(user.name);
   })

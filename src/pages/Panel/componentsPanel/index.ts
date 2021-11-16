@@ -1,3 +1,3 @@
-export * from "./ApexCharts"
-export * from "./DatePickersWithButtons"
-export * from "./TablesPanel"
+export {ApexCharts} from "./ApexCharts"
+export {DatePickersWithButtons} from "./DatePickersWithButtons"
+export {TablesPanel} from "./TablesPanel"

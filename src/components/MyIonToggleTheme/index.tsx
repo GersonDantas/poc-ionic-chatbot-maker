@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useMemo, useRef, useState } from "react";
-import { useIonViewDidEnter } from "@ionic/react";
+import { useIonViewWillEnter } from "@ionic/react";
 
 import { IonToggleStyled } from "./styles";
 import { useGlobalContextData } from "src/store";
@@ -20,7 +20,7 @@ const MyIonToggleTheme: React.FC = () => {
     if (t) setIsDark(t === "dark");
   }, []);
 
-  useIonViewDidEnter(() => {
+  useIonViewWillEnter(() => {
     let check = setToggleRef.current?.checked;
     if (check !== undefined && isDark) {
       setToggleRef.current!.checked = true;

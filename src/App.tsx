@@ -17,12 +17,12 @@ import { GlobalContextProvider } from "./store";
 
 const App: React.FC = () => {
   return (
-    <GlobalContextProvider>
-      <IonApp>
+    <IonApp>
+      <GlobalContextProvider>
         <GlobalStyles />
         <Router />
-      </IonApp>
-    </GlobalContextProvider>
+      </GlobalContextProvider>
+    </IonApp>
   );
 };
 
