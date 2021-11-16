@@ -1,30 +1,63 @@
 import React from "react";
-import { IonAvatar, IonItem, IonLabel } from '@ionic/react';
-import {users} from "src/store/mocUsers"
-import { IonAvatarStyled } from "./styles";
+import { users } from "src/store/mocUsers"
+import { IonItem, IonSearchbar } from '@ionic/react';
+import {
+  DivListSuspended,
+  DivMenuSuspended,
+  IonAvatarStyled,
+  ListSuspendedItem,
+  SuspendedAvatar,
+  SuspendedLabel,
+  UserListSuspend
+} from "./styles";
 import { caretDownOutline, caretUpOutline } from "ionicons/icons";
+import { useGlobalContextData } from "src/store";
 
 const UsersDropDownList: React.FC = () => {
-  const [state, setState] = React.useState<boolean>(false)
+  const [isSuspended, setIsSuspended] = React.useState<boolean>(false)
+
+  const { userConnected } = useGlobalContextData()
 
   return (
-    <IonItem
-      button
-      lines="none"
-      detail
-      detailIcon={
-        state
-          ? caretUpOutline
-          : caretDownOutline
+    <DivMenuSuspended>
+      <IonItem
+        button
+        lines="none"
+        detail
+        detailIcon={
+          isSuspended
+            ? caretUpOutline
+            : caretDownOutline
+        }
+        onClick={() => setIsSuspended(!isSuspended)}
+      >
+        <IonAvatarStyled>
+          <img src={userConnected?.imgMessageUrl} alt={userConnected?.email} />
+        </IonAvatarStyled>
+        <span className="label-item noUppercase">{userConnected?.name}</span>
+      </IonItem>
+      {isSuspended && (
+        <DivListSuspended>
+          <IonSearchbar></IonSearchbar>
+          <UserListSuspend>
+            {users.map((userItems, index) => {
+              return (
+                <ListSuspendedItem key={index} lines="none">
+                  <SuspendedAvatar>
+                    <img src={userItems.imgMessageUrl} alt={userItems.email} />
+                  </SuspendedAvatar>
+                  <SuspendedLabel>
+                    {`${userItems.name} ${userItems.subName}`}
+                  </SuspendedLabel>
+                </ListSuspendedItem>
+              )
+            })}
+          </UserListSuspend>
+        </DivListSuspended>
+      )
       }
-      onClick={() => setState(!state)}
-    >
-      <IonAvatarStyled>
-        <img src={users[0].imgMessageUrl} alt={users[0].email} />
-      </IonAvatarStyled>
-      <span className="label-item noUppercase">{users[0].name}</span>
-    </IonItem>
+    </DivMenuSuspended>
   );
 };
 
-export {UsersDropDownList, IonAvatarStyled};
+export { UsersDropDownList, IonAvatarStyled };

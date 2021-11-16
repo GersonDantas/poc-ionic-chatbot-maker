@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { RouteComponentProps } from "react-router";
 
 import {
@@ -9,22 +9,23 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  useIonViewWillEnter,
 } from "@ionic/react";
 
 import { MyIonToggleTheme } from "src/components";
 
 import { Panel, Conversations } from "..";
-import { users } from "../../store/mocUsers";
 import { useGlobalContextData } from "src/store";
-import { User } from "src/store/dto";
+import { getStorageKey } from "src/hooks";
 
 const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match }) => {
 
-  const [userLogged, setUserLogged] =  useState<string>("Usuario")
-  const {userConnected} = useGlobalContextData()
+  const { userConnected, setUserConnected } = useGlobalContextData()
 
-  console.log(userConnected);
-
+  useIonViewWillEnter(async () => {
+    let user = await getStorageKey("LoggedInUserInStorage");
+    setUserConnected(user);
+  })
 
   return (
     <IonPage>
@@ -37,7 +38,7 @@ const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match })
           <MyIonToggleTheme />
 
           <IonTitle style={{ textTransform: "capitalize" }} color="primary" >
-            {`${userLogged}/${match.params.name}`}
+            {`${userConnected?.name ?? ""}/${match.params.name}`}
           </IonTitle>
         </IonToolbar>
       </IonHeader>

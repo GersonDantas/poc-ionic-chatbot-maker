@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { InputChangeEventDetail } from "@ionic/core/dist/types/interface"
@@ -46,11 +47,9 @@ import { users } from "src/store/mocUsers";
 import { maskToPhoneNumber } from "src/utils";
 import { User } from "src/store/dto";
 import { getStorageKey, setStorageByKey } from "src/hooks";
-import { useGlobalContextData } from "src/store";
 
 
 function LoginPage() {
-  const { setUserConnected, userConnected } = useGlobalContextData()
 
   const [isLoading, setIsloading] = React.useState(true);
   const [stateUser, setStateUser] = React.useState({
@@ -69,10 +68,9 @@ function LoginPage() {
       Nprogerss.inc(0.5);
       setTimeout(() => {
         if (user !== undefined) {
-          setUserConnected(user);
           window.location.replace("/page/painel");
-          setIsloading(false);
         } else {
+          setIsloading(false);
           Nprogerss.done();
         }
       }, 1000)
@@ -109,11 +107,8 @@ function LoginPage() {
     if (users.find(existingEmail)) {
       let inputUser = users.find(existingEmail);
       if (stateUser.password === inputUser?.password) {
-        
+
         await setStorageByKey("LoggedInUserInStorage", inputUser);
-        console.log(inputUser)
-        setUserConnected(inputUser);
-        console.log(userConnected)
 
         // window.location.replace("/page/painel");
 

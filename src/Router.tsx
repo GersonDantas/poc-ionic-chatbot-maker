@@ -11,7 +11,7 @@ const Router: React.FC = () => {
   const [isLoginPage, setIsLoginPage] = useState(true)
 
   return (
-    <IonReactRouter>
+    <IonReactRouter >
 
       <IonSplitPane
         disabled={isLoginPage}

@@ -3,12 +3,9 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import {
   IonContent,
-  IonItem,
-  IonLabel,
   IonList,
   IonListHeader,
   IonMenu,
-  IonRouterLink,
 } from "@ionic/react";
 
 import {
@@ -18,7 +15,12 @@ import {
 } from "./navigationRoutesObjects"
 
 import { SuriLogo } from "..";
-import { DropDownItem, FooterList, MenuListItem, MiddleItems, UsersDropDownList } from "./componentsMenu";
+import {
+  DropDownItem,
+  FooterList,
+  MiddleItems,
+  UsersDropDownList
+} from "./componentsMenu";
 
 import "./styles.css";
 
