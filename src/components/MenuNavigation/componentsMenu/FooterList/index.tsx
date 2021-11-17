@@ -1,6 +1,11 @@
+import { useIonViewWillEnter } from '@ionic/react';
 import * as History from 'history';
 import { chevronForwardOutline } from 'ionicons/icons';
-import { users } from 'src/pages/LoginPage/mocUsers';
+import { useState } from 'react';
+import { getStorageKey } from 'src/hooks';
+import { useGlobalContextData } from 'src/store';
+import { User } from 'src/store/dto';
+import { users } from 'src/store/mocUsers';
 import { IonAvatarStyled, MenuListItem } from '..';
 import { ListFooter } from './styles';
 
@@ -9,6 +14,8 @@ interface FooterListProps {
 }
 
 function FooterList({ location }: FooterListProps) {
+  const { userConnected } = useGlobalContextData();
+
   return (
     <ListFooter>
       <MenuListItem
@@ -16,12 +23,12 @@ function FooterList({ location }: FooterListProps) {
         lines="none"
         detail
         detailIcon={chevronForwardOutline}
-        title={`${users[0].name} ${users[0].subName}`}
+        title={`${userConnected?.name} ${userConnected?.subName}`}
         location={location}
         noUppercase
       >
         <IonAvatarStyled>
-          <img src={users[0].imgUserUrl} alt={users[0].email} />
+          <img src={userConnected?.imgUserUrl} alt={userConnected?.email} />
         </IonAvatarStyled>
       </MenuListItem>
       <MenuListItem

@@ -24,7 +24,7 @@ class User {
     this.id = id;
     this.password = password;
     this.name = name;
-    this.subName = subName;
+    this.subName = subName ?? "";
     this.email = email;
     this.phoneNumber = phoneNumber;
     this.imgUserUrl = imgUserUrl ?? "https://ionicframework.com/docs/demos/api/avatar/avatar.svg";
