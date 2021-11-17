@@ -38,7 +38,7 @@ ion-menu.md ion-list#labels-list ion-list-header {
 ion-menu.md ion-item {
   --padding-start: 5px;
   --padding-end: 10px;
-  border-radius: 4px;
+  border-radius: var(--border-card-radius);
 }
 
 ion-menu.md ion-item.selected {
@@ -135,7 +135,7 @@ ion-item {
   --color-focused: white;
   text-transform: uppercase;
   height: 50px;
-  --border-radius: 5px;
+  --border-radius: var(--border-card-radius);
 }
 
 ion-item .label-item {
@@ -144,6 +144,7 @@ ion-item .label-item {
   padding-top: 3px;
   white-space: nowrap;
   text-overflow: ellipsis;
+  max-width: 80%;
 }
 
 ion-item .noUppercase {
@@ -154,7 +155,7 @@ ion-item:hover {
   --background: var(--ion-color-primary);
   --color: white;
   --detail-icon-color: white;
-  --border-radius: 5px;
+  --border-radius: var(--border-card-radius);
 }
 
 ion-item:hover [class^="cb-"],
@@ -172,7 +173,7 @@ ion-item:focus {
   --background: var(--ion-color-primary);
   --color: white;
   --detail-icon-color: white;
-  --border-radius: 5px;
+  --border-radius: var(--border-card-radius);
   border: 1px solid var(--ion-color-warning-contrast);
   outline: max(1px, 0.1em) solid currentColor;
   outline-offset: 0.25em;

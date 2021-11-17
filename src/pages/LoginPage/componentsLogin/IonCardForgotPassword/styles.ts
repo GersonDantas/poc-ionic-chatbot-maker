@@ -9,7 +9,7 @@ import {
 import { MyIonInputStyled } from "src/components/MyIonComonsStyleds";
 
 export const IonModalForgot = styled(IonModal)`
-  --border-radius: 10px;
+  --border-radius: var(--border-card-radius);
   @media screen and (max-width: 560px) {
   --border-radius: 0px;
   }

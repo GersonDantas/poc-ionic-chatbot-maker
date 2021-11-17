@@ -7,12 +7,12 @@ export const SkeletonLogo = styled(IonSkeletonText)`
 `
 export const SkeletonButton = styled(IonSkeletonText)`
     height: 6vh;
-    --border-radius: 16px;
+    --border-radius: var(--border-global-radius);
     margin: 15px 0;
 `
 
 export const SkeletonInput = styled(IonSkeletonText)`
     height: 6vh;
-    --border-radius: 16px;
+    --border-radius: var(--border-global-radius);
     margin-bottom: 30px;
 `

@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { IonButton, IonLabel } from "@ionic/react";
+import { IonButton } from "@ionic/react";
 
 import {
   MyIonCardTitleForgot,
@@ -29,7 +29,7 @@ const IonCardForgotPassword: React.FC<IonCardForgotPasswordProps> = ({
           Qual o e-mail do cadastro?
         </MyIonCardSubtitleForgot>
 
-        <MyIonInputForgot 
+        <MyIonInputForgot
           type="email"
           autocomplete="email"
           placeholder="Digite sua email..."
@@ -53,11 +53,11 @@ const IonCardForgotPassword: React.FC<IonCardForgotPasswordProps> = ({
               ENVIAR
             </IonButton>
           </IonColButtons>
-          
+
         </IonRowButtons>
       </IonColModalForgot>
     </IonRowModalForgot>
   );
 };
 
-export { IonModalForgot, IonCardForgotPassword};
+export { IonModalForgot, IonCardForgotPassword };

@@ -93,6 +93,8 @@ function LoginPage() {
 
     e.preventDefault();
 
+    
+
     if (isSigningForm) {
       signingIn()
     } else {
@@ -264,9 +266,7 @@ function LoginPage() {
                             shape="round"
                             size="default"
                             type="submit"
-                            // onClick={loginFake}
                             strong
-                          // onSubmit={() => { }}
                           >
                             {isSigningForm ? "FAZER LOGIN" : "CADASTRE-SE"}
                             <IonRippleEffect />
