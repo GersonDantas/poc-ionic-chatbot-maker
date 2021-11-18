@@ -1,4 +1,5 @@
 import { mediumMenuList } from '../../navigationRoutesObjects';
+import {v4 as uuidv4} from 'uuid'
 import * as History from 'history';
 import {MenuListItem} from '..';
 
@@ -12,7 +13,7 @@ function MiddleItems({ location }: MiddleItemsProps) {
       {mediumMenuList.map((appPage, index) => {
         return (
           <MenuListItem 
-            key={index}
+            key={`${index}${uuidv4()}`}
             location={location}
             url={appPage.url}
             title={appPage.title}

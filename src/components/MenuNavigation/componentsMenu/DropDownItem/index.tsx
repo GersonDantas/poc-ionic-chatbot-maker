@@ -1,4 +1,5 @@
 import React from 'react';
+import {v4 as uuidv4} from 'uuid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IonItem, IonLabel, IonRippleEffect } from '@ionic/react';
 import { chevronBackOutline, chevronDownOutline } from 'ionicons/icons';
@@ -30,7 +31,7 @@ function DropDownItem(props: DropDownItemProps) {
         state && props.dropDownObject.map((appPage, index) => {
           return (
             <IonItem
-              key={index}
+              key={`${index} ${uuidv4()}`}
               className={
                 `${props.location.pathname === appPage.url ? "selected" : ""} sub-menu`
               }

@@ -112,7 +112,7 @@ function LoginPage() {
 
         await setStorageByKey("LoggedInUserInStorage", inputUser);
 
-        // window.location.replace("/page/painel");
+        window.location.replace("/page/painel");
 
         setIsloading(false);
         Nprogerss.done();
