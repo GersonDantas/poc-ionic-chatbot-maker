@@ -1,11 +1,8 @@
 import styled from "styled-components";
 import {
   IonAvatar,
-  IonCard,
   IonItem,
   IonLabel,
-  IonCardHeader,
-  IonCardContent,
   IonList,
 } from "@ionic/react";
 export const DivMenuSuspended = styled.div`
@@ -28,12 +25,26 @@ export const DivListSuspended = styled.div`
   top: 100%;
   width: 100%;
   box-shadow: none;
-  border: 1px solid rgba(var(--ion-text-color-rgb), 0.3);
+  border: 1px ridge rgba(var(--ion-text-color-rgb), 0.3);
   background: var(--ion-card-background);
   height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-radius: var(--border-card-radius);
+  padding: 2px;
+`;
+
+export const InputListSuspended = styled.input`
+  height: 25px;
+  border-radius: var(--border-card-radius);
+  padding: 10px 5px;
+  border: 2px ridge rgba(var(--ion-text-color-rgb), 0.2);
+  margin: 1px 0;
+  :focus {
+    outline-color: var(--ion-color-primary);
+  }
+  background: url(../../../../assets/icons/magnifier.png) 100% -20px no-repeat, var(--ion-card-background);
 `;
 
 export const UserListSuspend = styled(IonList)`

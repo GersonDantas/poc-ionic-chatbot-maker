@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const IonCommonButton = styled(IonButton)`
   height: 42px;
-  --border-radius: 5px;
+  --border-radius: var(--border-card-radius);
 `;
 
 export const IonCommonButtonIcon = styled(FontAwesomeIcon)`

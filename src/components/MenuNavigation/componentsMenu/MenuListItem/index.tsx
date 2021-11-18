@@ -4,7 +4,7 @@ import {IonItemProps} from "src/types"
 import * as History from 'history';
 
 type MenuListItemProps = {
-  key?: number;
+  key?: string | undefined;
   url?: string;
   children: ReactNode;
   title: string;
@@ -15,7 +15,6 @@ type MenuListItemProps = {
 function MenuListItem(props: MenuListItemProps) {
   return (
     <IonItem
-      key={props.key}
       className={
         props.location?.pathname === props.url ? "selected" : ""
       }

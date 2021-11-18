@@ -2,7 +2,7 @@ import { IonCard, IonInput, IonLabel } from "@ionic/react";
 import styled from "styled-components";
 
 export const IonCardWithHeader = styled(IonCard)`
-    border-radius: 5px;
+    border-radius: var(--border-card-radius);
     box-shadow: 2px 8px 17px 2px var(--ion-shadow-color);
     --background: var(--ion-card-background);
 `
@@ -17,14 +17,13 @@ export const MyIonInputStyled = styled(IonInput)`
   background-color: #fff;
   background-image: none;
   border: 1px solid rgba(var(--ion-text-color-rgb), 0.2);
-  border-radius: 1px;
   color: inherit;
   display: block;
   padding: 6px 20px;
   transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
   width: 100%;
   font-size: 14px;
-  border-radius: 18px;
+  border-radius: var(--border-input-radius);
   line-height: 1.42857143;
   margin-bottom: 20px;
 
@@ -37,7 +36,7 @@ export const MyIonInputStyled = styled(IonInput)`
   
   .native-input.sc-ion-input-md:-webkit-autofill {
     background-color: transparent;
-    border-radius: 16px;
+    border-radius: var(--border-input-radius);
   }
 `;
 

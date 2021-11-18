@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useLocation } from "react-router-dom";
+import {  faThLarge } from "@fortawesome/free-solid-svg-icons"
 import {
   IonContent,
   IonList,
@@ -41,7 +42,7 @@ const MenuNavigation: React.FC = () => {
             title="Gestão"
             dropDownObject={managementMenu}
             location={location}
-            faIcon="th-large"
+            faIcon={faThLarge}
           />
 
           <hr className="divider-management" />
