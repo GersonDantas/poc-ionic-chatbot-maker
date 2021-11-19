@@ -1,3 +1,4 @@
+import {v4 as uuidv4} from "uuid";
 import Table from "@material-ui/core/Table"
 import TableContainer from '@material-ui/core/TableContainer';
 import TableBody from '@material-ui/core/TableBody';
@@ -19,15 +20,15 @@ function TablesPanel(props: TablesPanelProps) {
 
         <TableHead>
           <TableRow>
-            {props.headers.map((title: string) =>
-              <StyledTableCell>{title}</StyledTableCell>
+            {props.headers.map((title: string, index) =>
+              <StyledTableCell key={`${index} ${uuidv4()}`}>{title}</StyledTableCell>
             )}
           </TableRow>
         </TableHead>
 
         <TableBody>
-          {props.rows.map((row) => (
-            <StyledTableRow key={row.name}>
+          {props.rows.map((row, index) => (
+            <StyledTableRow key={`${uuidv4()} ${index} ${row.name}`}>
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>

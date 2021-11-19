@@ -44,8 +44,8 @@ const ModalUseDetailComponent: React.FC<ModalUseDetailProps> = (props) => {
 
   const onClose = (event: any) => {
     event.preventDefault();
-    if (event.target.id === "rowModalUserDetail" || event.target.id === "colModalUserDetail")
-      props.setIsModal(false);
+    if (event.target.id === "rowModalUserDetail"
+      || event.target.id === "colModalUserDetail") props.setIsModal(false);
   }
 
   React.useEffect(() => {
@@ -74,22 +74,24 @@ const ModalUseDetailComponent: React.FC<ModalUseDetailProps> = (props) => {
           sizeMd="8"
           sizeSm="12"
         >
-
           <CardModal>
 
             <CardModalUserDetailHeader color="primary">
               <UserDetailAvatar>
                 <img src={userConnected?.imgUserUrl} alt={userConnected?.email} />
               </UserDetailAvatar>
+
               <UserDetailTitle>
                 {`${stateUser.name} ${stateUser.subName}`}
               </UserDetailTitle>
             </CardModalUserDetailHeader>
+
             <CardModalUserDetailContent>
               {handlerRowInputs()}
 
               {HandlerRowButtons()}
             </CardModalUserDetailContent>
+
           </CardModal>
         </ColModal>
       </RowModal>

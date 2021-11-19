@@ -31,8 +31,7 @@ const Router: React.FC = () => {
             path="/page/:name"
             exact={true}
             render={(pageProps) => {
-              setIsLoginPage(false);
-              return <PageToPage {...pageProps} />;
+              return (<PageToPage {...pageProps} />);
             }}
           />
 
