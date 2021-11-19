@@ -1,20 +1,10 @@
-import { IonCol } from '@ionic/react';
+import React from 'react';
 import * as History from 'history';
 import { chevronForwardOutline } from 'ionicons/icons';
-import { useState } from 'react';
-import { CommonButton, InputAndLabelComponent } from 'src/components';
-import { useGlobalContextData } from 'src/store';
 import { IonAvatarStyled, MenuListItem } from '..';
-import {
-  CardModalUserDetail,
-  CardModalUserDetailContent,
-  CardModalUserDetailHeader,
-  ListFooter,
-  ModalUserDetail,
-  RowFooter,
-  UserDetailAvatar,
-  UserDetailTitle
-} from './styles';
+import { ModalUseDetailComponent } from "./ModalUseDetailComponent"
+import { useGlobalContextData } from 'src/store';
+import { ListFooter} from './styles';
 
 interface FooterListProps {
   location: History.Location;
@@ -22,52 +12,17 @@ interface FooterListProps {
 
 function FooterList({ location }: FooterListProps) {
   const { userConnected } = useGlobalContextData();
-
-  const [isModalUserDetail, setIsModalUserDetail] = useState<boolean>(false);
-
+  const [isModalUserDetail, setIsModalUserDetail] = React.useState<boolean>(false);
 
   return (
     <>
       {isModalUserDetail &&
-        (<ModalUserDetail
-          isOpen={isModalUserDetail}
-          onDidDismiss={() => setIsModalUserDetail(false)}
-        >
-          <CardModalUserDetail>
-            <CardModalUserDetailHeader>
-              <UserDetailAvatar>
-
-              </UserDetailAvatar>
-              <UserDetailTitle>
-
-              </UserDetailTitle>
-            </CardModalUserDetailHeader>
-            <CardModalUserDetailContent>
-              <InputAndLabelComponent />
-
-              <InputAndLabelComponent />
-
-              <InputAndLabelComponent />
-              <RowFooter>
-                <IonCol>
-                  <CommonButton >
-                    SAIR
-                  </CommonButton>
-                </IonCol>
-                <IonCol>
-                  <CommonButton >
-                    CANCELAR
-                  </CommonButton>
-                </IonCol>
-                <IonCol>
-                  <CommonButton >
-                    SALVAR
-                  </CommonButton>
-                </IonCol>
-              </RowFooter>
-            </CardModalUserDetailContent>
-          </CardModalUserDetail>
-        </ModalUserDetail>)}
+        (
+          <ModalUseDetailComponent
+            isModal={isModalUserDetail}
+            setIsModal={setIsModalUserDetail}
+          />
+        )}
       <ListFooter>
         <MenuListItem
           button
@@ -77,6 +32,7 @@ function FooterList({ location }: FooterListProps) {
           title={`${userConnected?.name} ${userConnected?.subName}`}
           location={location}
           noUppercase
+          onClick={() => setIsModalUserDetail(true)}
         >
           <IonAvatarStyled>
             <img src={userConnected?.imgUserUrl} alt={userConnected?.email} />

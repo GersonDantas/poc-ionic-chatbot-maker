@@ -3,7 +3,6 @@
 import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
-import { InputChangeEventDetail } from "@ionic/core/dist/types/interface"
 
 
 import Nprogerss from "nprogress";
@@ -23,20 +22,17 @@ import {
   HtmlHr,
   FacebookButton,
   IonCardFormLogin,
-  IonCheckBox,
   ForgotYourPasswordButton,
   IonGridLogin,
   IonRowCardLine,
   MyIonSigningSigningupButton,
   IonSubTitleLogin,
-  MyIonTextTerms,
   IonTitleLogin,
   MyIonToggleSigningSigniup,
-  IonColTerms,
-  IonRowTerms,
   IonModalForgot,
   IonContentLogin,
-  PageLoginSkeleton
+  PageLoginSkeleton,
+  SuriTerms,
 } from "./componentsLogin";
 
 import {
@@ -44,9 +40,9 @@ import {
   InputAndLabelComponent,
 } from "src/components";
 import { users } from "src/store/mocUsers";
-import { maskToPhoneNumber } from "src/utils";
 import { User } from "src/store/dto";
-import { getStorageKey, setStorageByKey } from "src/hooks";
+import { getStorageKey, pushHistory, setStorageByKey } from "src/hooks";
+import {valueInput} from "src/utils";
 
 
 function LoginPage() {
@@ -80,14 +76,6 @@ function LoginPage() {
     }
   })
 
-  const valueInput = (e: CustomEvent<InputChangeEventDetail>, name: string): void => {
-    if (name === "phoneNumber") {
-      setStateUser({ ...stateUser, phoneNumber: maskToPhoneNumber(e.detail.value!) })
-    } else {
-      setStateUser({ ...stateUser, [name]: e.detail.value })
-    }
-  };
-
   const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     Nprogerss.start();
 
@@ -112,7 +100,7 @@ function LoginPage() {
 
         await setStorageByKey("LoggedInUserInStorage", inputUser);
 
-        window.location.replace("/page/painel");
+        pushHistory("/page/panel");
 
         setIsloading(false);
         Nprogerss.done();
@@ -192,7 +180,12 @@ function LoginPage() {
                           type="text"
                           autocomplete="name"
                           placeholder="Digite sua nome..."
-                          onIonChange={(e) => valueInput(e, "name")}
+                          onIonChange={(e) => valueInput({
+                            name: "name",
+                            event: e,
+                            state: stateUser,
+                            setState: setStateUser,
+                          })}
                         />
                       )}
 
@@ -202,7 +195,12 @@ function LoginPage() {
                         type="email"
                         name="email"
                         placeholder="Digite sua email..."
-                        onIonChange={(e) => valueInput(e, "email")}
+                        onIonChange={(e) => valueInput({
+                          name: "email",
+                          event: e,
+                          state: stateUser,
+                          setState: setStateUser,
+                        })}
                       />
 
                       <InputAndLabelComponent
@@ -212,7 +210,12 @@ function LoginPage() {
                         name="password"
                         placeholder="Digite sua senha..."
                         autocomplete="current-password"
-                        onIonChange={(e) => valueInput(e, "password")}
+                        onIonChange={(e) => valueInput({
+                          name: "password",
+                          event: e,
+                          state: stateUser,
+                          setState: setStateUser,
+                        })}
                       />
 
                       {!isSigningForm && (
@@ -222,7 +225,12 @@ function LoginPage() {
                           name="phoneNumber"
                           placeholder="(__) ____-____"
                           autocomplete="tel"
-                          onIonChange={(e) => valueInput(e, "phoneNumber")}
+                          onIonChange={(e) => valueInput({
+                            name: "phoneNumber",
+                            event: e,
+                            state: stateUser,
+                            setState: setStateUser,
+                          })}
                         />
                       )}
 
@@ -237,24 +245,7 @@ function LoginPage() {
                           Esqueceu sua senha?
                         </ForgotYourPasswordButton>
                       ) : (
-                        <IonRowTerms>
-                          <IonColTerms sizeLg="0.6" size="1">
-                            <IonCheckBox />
-                          </IonColTerms>
-                          <IonCol sizeLg="11.4" size="11">
-                            <MyIonTextTerms>
-                              <a
-                                href="https://drive.google.com/file/d/1F9oyvCEV0MjXNZD2X7DSXqqVElEICPEV/view"
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                Termos, Política de Dados e Política de Cookies.
-                              </a>
-                              Aceito receber notificações sobre atualizações e
-                              novidades da plataforma pelo Whatsapp.
-                            </MyIonTextTerms>
-                          </IonCol>
-                        </IonRowTerms>
+                        <SuriTerms />
                       )}
 
                       <IonRow style={{ justifyContent: "center" }} >

@@ -10,6 +10,6 @@ export { MyIonToggleSigningSigniup } from "./MyIonToggleSigninSigniup";
 export { IonRowCardLine } from "./IonRowCardLine";
 export { ForgotYourPasswordButton } from "./ForgotYourPasswordButton";
 export { MyIonSigningSigningupButton } from "./MyIonSigningSigningupButton";
-export { IonColTerms, IonRowTerms, MyIonTextTerms } from "./ComponentsTerms";
+export { SuriTerms } from "./ComponentTerms";
 export { IonContentLogin } from "./IonContentLogin";
 export { PageLoginSkeleton } from "./PageLoginSkeleton";

@@ -1,6 +1,5 @@
 import { IonCardContent, IonCardHeader, IonCol, IonRow, IonSkeletonText } from '@ionic/react';
-import { ReactNode } from 'react';
-import { IonCardFormLogin, IonContentLogin, IonGridLogin, IonRowCardLine, IonRowTerms, IonSubTitleLogin, IonTitleLogin, MyIonSigningSigningupButton, MyIonTextTerms, MyIonToggleSigningSigniup } from '..';
+import { IonCardFormLogin, IonContentLogin, IonGridLogin, IonRowCardLine, IonSubTitleLogin, IonTitleLogin } from '..';
 import { SkeletonButton, SkeletonInput, SkeletonLogo } from './styles';
 
 function PageLoginSkeleton() {

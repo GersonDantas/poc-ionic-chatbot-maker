@@ -41,9 +41,9 @@ export default createGlobalStyle`
   :root {
     --border-card-radius: 5px;
     --border-input-radius: 5px;
+    font-family: "Inter", sans-serif;
 
-
-    --ion-font-family: sans-serif;
+    --ion-font-family:  sans-serif;
     --ion-margin: 0;
     --ion-padding: 0;
   /** primary **/

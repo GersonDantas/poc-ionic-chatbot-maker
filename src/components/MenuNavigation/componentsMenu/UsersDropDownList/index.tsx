@@ -17,9 +17,9 @@ const UsersDropDownList: React.FC = () => {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [searchResults, setSearchResults] = React.useState<User[]>([]);
 
-  const onClose = (e: any) => {
-    e.preventDefault();
-    if (!e.target.classList.contains("suspended-menu-user-click")) {
+  const onClose = (event: any) => {
+    event.preventDefault();
+    if (!event.target.classList.contains("suspended-menu-user-click")) {
       setIsSuspended(false);
       setSearchTerm("");
     }
@@ -27,7 +27,7 @@ const UsersDropDownList: React.FC = () => {
 
   React.useEffect(() => {
     const results = users.filter(person =>
-      person.name.toLowerCase().includes(searchTerm)
+      person.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(results);
   }, [searchTerm]);

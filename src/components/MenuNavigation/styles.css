@@ -158,6 +158,12 @@ ion-item:hover {
   --border-radius: var(--border-card-radius);
 }
 
+ion-item.suspended-menu-user-click:hover {
+  --background: var(--ion-card-background);
+  --color: var(--ion-text-color);
+  --detail-icon-color: var(--ion-text-color);
+}
+
 ion-item:hover [class^="cb-"],
 ion-item:hover [class*=" cb-"] {
   color: white;
@@ -177,6 +183,16 @@ ion-item:focus {
   border: 1px solid var(--ion-color-warning-contrast);
   outline: max(1px, 0.1em) solid currentColor;
   outline-offset: 0.25em;
+}
+
+ion-item.suspended-menu-user-click:focus {
+  --background: var(--ion-card-background);
+  --color: var(--ion-text-color);
+  --detail-icon-color: var(--ion-text-color);
+  --border-radius: var(--border-card-radius);
+  border: none;
+  outline: none;
+  outline-offset: none;
 }
 
 .sub-menu {
