@@ -19,7 +19,10 @@ export const MyIonInputStyled = styled(IonInput)`
   border: 1px solid rgba(var(--ion-text-color-rgb), 0.2);
   color: inherit;
   display: block;
-  padding: 6px 20px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 6px;
+  --padding-bottom: 6px;
   transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
   width: 100%;
   font-size: 14px;

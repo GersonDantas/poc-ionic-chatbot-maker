@@ -1,8 +1,9 @@
 import { UserProps } from "src/types/interfaces";
+import {v4 as uuidv4} from 'uuid'
 
 
 class User {
-  id!: string;
+  id?: string;
   password!: string;
   name!: string;
   subName?: string;
@@ -21,7 +22,7 @@ class User {
     imgUserUrl,
     imgMessageUrl,
   }: UserProps) {
-    this.id = id;
+    this.id = id ?? uuidv4();
     this.password = password;
     this.name = name;
     this.subName = subName ?? "";
