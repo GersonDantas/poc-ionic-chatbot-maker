@@ -6,8 +6,8 @@ export const IonRowTerms = styled(IonRow)`
 `;
 
 export const IonColTerms = styled(IonCol)`
-  display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 export const MyIonTextTerms = styled(IonText)`

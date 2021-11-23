@@ -20,10 +20,11 @@ import { getStorageKey } from "src/hooks";
 
 const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match }) => {
 
-  const { userConnected, setUserConnected } = useGlobalContextData()
+  const { userConnected, setUserConnected, setIsLoginPage } = useGlobalContextData()
 
   useIonViewWillEnter(async () => {
     let user = await getStorageKey("LoggedInUserInStorage");
+    setIsLoginPage(false);
     setUserConnected(user);
   })
 

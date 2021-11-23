@@ -4,10 +4,7 @@ import { IonCardDateButtons, IonLabelDate,  IonRowDateButtons, IonGridColumns } 
 import { usePanelLocalContextData } from "src/store/localContext";
 
 
-
-interface DatePickersWithButtonsProps { }
-
-function DatePickersWithButtons(props: DatePickersWithButtonsProps) {
+function DatePickersWithButtons() {
   const {initialDate, finalDate, setFinalDate, setInitialDate} = usePanelLocalContextData();
 
   return (

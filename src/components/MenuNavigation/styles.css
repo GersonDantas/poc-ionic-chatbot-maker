@@ -212,6 +212,6 @@ ion-item.selected {
 
 @media (min-width: 1025px) {
   .left-bar {
-    max-width: 15%;
+    max-width: 20%;
   }
 }

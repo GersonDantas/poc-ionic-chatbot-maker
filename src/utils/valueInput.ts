@@ -11,13 +11,14 @@ interface valueInputProps {
 }
 
 const valueInput = (props: valueInputProps): void => {
-  if (props.name === "phoneNumber") {
-    props.setState({
-      ...props.state,
-      phoneNumber: maskToPhoneNumber(props.event.detail.value!),
+  const { name, state, event, setState } = props;
+  if (name === "phoneNumber") {
+    setState({
+      ...state,
+      phoneNumber: maskToPhoneNumber(event.detail.value!),
     });
   } else {
-    props.setState({ ...props.state, [props.name]: props.event.detail.value });
+    setState({ ...state, [name]: event.detail.value });
   }
 };
 

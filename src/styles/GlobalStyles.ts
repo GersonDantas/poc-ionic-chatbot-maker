@@ -83,11 +83,11 @@ export default createGlobalStyle`
     --ion-color-warning-shade: #e0ac08;
     --ion-color-warning-tint: #ffca22;
 
-    --ion-color-danger: #eb445a;
+    --ion-color-danger: #e14b4b;
     --ion-color-danger-rgb: 235,68,90;
     --ion-color-danger-contrast: #ffffff;
     --ion-color-danger-contrast-rgb: 255,255,255;
-    --ion-color-danger-shade: #cf3c4f;
+    --ion-color-danger-shade: #cc5965;
     --ion-color-danger-tint: #ed576b;
 
     --ion-color-dark: #222428;

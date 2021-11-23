@@ -28,7 +28,6 @@ export const MyIonInputStyled = styled(IonInput)`
   font-size: 14px;
   border-radius: var(--border-input-radius);
   line-height: 1.42857143;
-  margin-bottom: 20px;
 
   &:focus-within {
     outline: none;

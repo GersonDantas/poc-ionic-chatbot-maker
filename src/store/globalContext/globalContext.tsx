@@ -6,6 +6,8 @@ interface GlobalContextState {
   setIsDark: Dispatch<SetStateAction<boolean>>;
   userConnected: User | undefined;
   setUserConnected: Dispatch<SetStateAction<User | undefined>>
+  isLoginPage: boolean
+  setIsLoginPage: Dispatch<SetStateAction<boolean>>;
 }
 
 export const GlobalContext = React.createContext({} as GlobalContextState);
@@ -19,9 +21,10 @@ export function GlobalContextProvider({
 }: GlobalContextProviderProps) {
   const [isDark, setIsDark] = React.useState<boolean>(false);
   const [userConnected, setUserConnected] = React.useState<User | undefined>()
+  const [isLoginPage, setIsLoginPage] = React.useState(true)
 
   return (
-    <GlobalContext.Provider value={{ isDark, setIsDark, userConnected, setUserConnected }}>
+    <GlobalContext.Provider value={{ isDark, setIsDark, userConnected, setUserConnected, isLoginPage, setIsLoginPage }}>
       {children}
     </GlobalContext.Provider>
   );

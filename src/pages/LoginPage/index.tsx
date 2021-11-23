@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 
 
+import axios from "axios";
+
 import Nprogerss from "nprogress";
 
 import {
@@ -41,85 +43,86 @@ import {
 } from "src/components";
 import { users } from "src/store/mocUsers";
 import { User } from "src/store/dto";
-import { getStorageKey, pushHistory, setStorageByKey } from "src/hooks";
-import {valueInput} from "src/utils";
+import { getStorageKey, pushHistory, setStorageByKey, useForm } from "src/hooks";
+import { valueInput } from "src/utils";
+import { initialStateUser, initialStatusError } from "./initialStatusObjects";
+import { validateForm } from "./utils";
 
 
 function LoginPage() {
 
   const [isLoading, setIsloading] = React.useState(true);
-  const [stateUser, setStateUser] = React.useState({
-    name: '',
-    email: '',
-    password: '',
-    phoneNumber: '',
-  });
   const [isSigningForm, setIsSigningForm] = React.useState(true);
   const [forgotPassword, setForgotPassword] = React.useState(false);
+  // const [stateUser, setStateUser] = React.useState(initialStateUser);
+  // const [error, setError] = React.useState(initialStatusError);
 
   useIonViewWillEnter(async () => {
     try {
       Nprogerss.start();
       let user = await getStorageKey("LoggedInUserInStorage")
       Nprogerss.inc(0.5);
-      setTimeout(() => {
-        if (user !== undefined) {
-          window.location.replace("/page/painel");
-        } else {
-          setIsloading(false);
-          Nprogerss.done();
-        }
-      }, 1000)
+      if (user !== undefined) {
+        window.location.replace("/page/painel");
+      } else {
+        setIsloading(false);
+        Nprogerss.done();
+      }
     } catch (error: any) {
       setIsloading(false);
       console.log(error.message);
     }
   })
 
-  const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
-    Nprogerss.start();
+  const form = useForm({
+    initialValues: initialStateUser,
+    validate: validateForm
+  })
 
-    e.preventDefault();
+  // const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   Nprogerss.start();
 
-    
+  //   e.preventDefault();
 
-    if (isSigningForm) {
-      signingIn()
-    } else {
-      signingUp()
-    }
-  }
+  //   // if(!(await validate())) return;
 
-  const signingIn = async () => {
-    Nprogerss.inc(0.5);
-    setIsloading(true);
+  //   if (isSigningForm) {
+  //     signingIn()
+  //   } else {
+  //     signingUp()
+  //   }
+  // }
 
-    if (users.find(existingEmail)) {
-      let inputUser = users.find(existingEmail);
-      if (stateUser.password === inputUser?.password) {
+  // const signingIn = async () => {
+  //   Nprogerss.inc(0.5);
+  //   setIsloading(true);
 
-        await setStorageByKey("LoggedInUserInStorage", inputUser);
+  //   if (users.find(existingEmail)) {
+  //     let inputUser = users.find(existingEmail);
+  //     if (stateUser.password === inputUser?.password) {
 
-        pushHistory("/page/panel");
+  //       await setStorageByKey("LoggedInUserInStorage", inputUser);
 
-        setIsloading(false);
-        Nprogerss.done();
-      } else {
-        console.log("senha incorreta");
+  //       pushHistory("/page/panel");
 
-        setIsloading(false);
-        Nprogerss.done();
-      }
-    } else {
-      console.log("email não encontrado")
-      Nprogerss.done();
-      setIsloading(false);
-    }
-  }
+  //       setIsloading(false);
+  //       Nprogerss.done();
+  //     } else {
+  //       console.log("senha incorreta");
 
-  const signingUp = () => { }
+  //       setIsloading(false);
+  //       Nprogerss.done();
+  //     }
+  //   } else {
+  //     console.log("email não encontrado")
+  //     Nprogerss.done();
+  //     setIsloading(false);
+  //   }
+  // }
 
-  const existingEmail = (user: User) => user.email === stateUser.email
+  // const signingUp = () => { }
+
+  // const existingEmail = (user: User) => user.email === stateUser.email
 
   return (
     <IonPage >
@@ -137,7 +140,7 @@ function LoginPage() {
           <IonGridLogin>
             <IonRowCardLine>
 
-              <IonCol sizeMd="4.5" size="12">
+              <IonCol sizeMd="4.3" size="12">
                 <IonCardFormLogin>
                   <IonCardHeader>
                     <SuriLogo columnSize="6" />
@@ -172,65 +175,58 @@ function LoginPage() {
                         } com seu email`}
                     />
 
-                    <form onSubmit={(e) => handleSignIn(e)}>
+                    <form /* onSubmit={(e) => handleSignIn(e)} */>
                       {!isSigningForm && (
                         <InputAndLabelComponent
                           label="Nome"
-                          value={stateUser.name}
+                          touched={form.touched.name}
+                          spanError={form.errors.name}
+                          value={form.values.name}
                           type="text"
+                          name="name"
                           autocomplete="name"
                           placeholder="Digite sua nome..."
-                          onIonChange={(e) => valueInput({
-                            name: "name",
-                            event: e,
-                            state: stateUser,
-                            setState: setStateUser,
-                          })}
+                          onBlur={form.handleBlur}
+                          onIonChange={form.handleChange}
                         />
                       )}
 
                       <InputAndLabelComponent
                         label="Email"
-                        value={stateUser.email}
-                        type="email"
+                        touched={form.touched.email}
+                        spanError={form.errors.email}
+                        value={form.values.email}
+                        type="text"
                         name="email"
                         placeholder="Digite sua email..."
-                        onIonChange={(e) => valueInput({
-                          name: "email",
-                          event: e,
-                          state: stateUser,
-                          setState: setStateUser,
-                        })}
+                        onIonBlur={form.handleBlur}
+                        onIonChange={form.handleChange}
                       />
 
                       <InputAndLabelComponent
                         label="Senha"
-                        value={stateUser.password}
+                        touched={form.touched.password}
+                        spanError={form.errors.password}
+                        value={form.values.password}
                         type="password"
                         name="password"
                         placeholder="Digite sua senha..."
                         autocomplete="current-password"
-                        onIonChange={(e) => valueInput({
-                          name: "password",
-                          event: e,
-                          state: stateUser,
-                          setState: setStateUser,
-                        })}
+                        onIonBlur={form.handleBlur}
+                        onIonChange={form.handleChange}
                       />
 
                       {!isSigningForm && (
                         <InputAndLabelComponent
                           label="Whatsapp"
-                          value={stateUser.phoneNumber}
-                          name="phoneNumber"
+                          touched={form.touched.whatsApp}
+                          spanError={form.errors.whatsApp}
+                          value={form.values.whatsApp}
+                          name="whatsApp"
                           placeholder="(__) ____-____"
                           autocomplete="tel"
-                          onIonChange={(e) => valueInput({
-                            name: "phoneNumber",
-                            event: e,
-                            state: stateUser,
-                            setState: setStateUser,
-                          })}
+                          onIonBlur={form.handleBlur}
+                          onIonChange={form.handleChange}
                         />
                       )}
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 import { IonRouterOutlet, IonSplitPane } from '@ionic/react';
@@ -6,9 +6,10 @@ import { IonReactRouter } from '@ionic/react-router';
 
 import { PageToPage, LoginPage } from './pages';
 import { MenuNavigation } from './components';
+import { useGlobalContextData } from './store';
 
 const Router: React.FC = () => {
-  const [isLoginPage, setIsLoginPage] = useState(true)
+  const {isLoginPage} = useGlobalContextData();
 
   return (
     <IonReactRouter >
@@ -31,7 +32,7 @@ const Router: React.FC = () => {
             path="/page/:name"
             exact={true}
             render={(pageProps) => {
-              return (<PageToPage {...pageProps} />);
+              return (<PageToPage {...pageProps}  />);
             }}
           />
 

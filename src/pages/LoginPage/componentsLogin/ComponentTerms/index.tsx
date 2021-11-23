@@ -14,6 +14,7 @@ const SuriTerms: React.FC = () => {
       </IonColTerms>
       <IonCol sizeLg="11.4" size="11">
         <MyIonTextTerms>
+          Aceito os{' '}
           <a
             href="https://drive.google.com/file/d/1F9oyvCEV0MjXNZD2X7DSXqqVElEICPEV/view"
             target="_blank"

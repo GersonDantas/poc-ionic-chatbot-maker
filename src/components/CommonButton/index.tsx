@@ -8,12 +8,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 function CommonButton(props: CommonButtonProps) {
+  const { faIcon, children } = props;
+
   return (
     <IonCommonButton {...props} >
 
-      {props.faIcon && <FontAwesomeIcon icon={props.faIcon} />}
+      {faIcon && <FontAwesomeIcon icon={faIcon} />}
 
-      <IonCommonButtonLabel>{props.children}</IonCommonButtonLabel>
+      <IonCommonButtonLabel>{children}</IonCommonButtonLabel>
 
     </IonCommonButton>
   );

@@ -5,6 +5,8 @@ import {RouterOptions} from "node_modules/@ionic/react/dist/types"
 
 export type InputAndLabelComponentProps = {
     label?: string;
+    touched?: boolean;
+    spanError?: string; 
 } & IonInputProps;
 
 export type InputWithMaskProps = {

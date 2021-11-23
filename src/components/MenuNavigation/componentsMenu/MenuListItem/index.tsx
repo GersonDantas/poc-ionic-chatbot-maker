@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { IonItem, IonLabel } from '@ionic/react';
-import {IonItemProps} from "src/types"
+import { IonItemProps } from "src/types"
 import * as History from 'history';
 
 type MenuListItemProps = {
@@ -13,25 +13,27 @@ type MenuListItemProps = {
 } & IonItemProps
 
 function MenuListItem(props: MenuListItemProps) {
+  const { children, location, url, noUppercase, title } = props;
+
   return (
     <IonItem
       className={
-        props.location?.pathname === props.url ? "selected" : ""
+        location?.pathname === url ? "selected" : ""
       }
-      routerLink={props.url}
+      routerLink={url}
       routerDirection="none"
       lines="none"
       detail={false}
       {...props}
     >
-      {props.children}
-      <span  
-        className={`${props.noUppercase ? "noUppercase" : ""} label-item`}
+      {children}
+      <span
+        className={`${noUppercase ? "noUppercase" : ""} label-item`}
       >
-          {props.title}
+        {title}
       </span>
     </IonItem>
   );
 }
 
-export {MenuListItem};
+export { MenuListItem };

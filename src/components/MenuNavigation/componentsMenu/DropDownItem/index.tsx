@@ -1,11 +1,13 @@
 import React from 'react';
-import {v4 as uuidv4} from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IonItem, IonLabel, IonRippleEffect } from '@ionic/react';
 import { chevronBackOutline, chevronDownOutline } from 'ionicons/icons';
 import { DropDownItemProps } from 'src/types';
 
 function DropDownItem(props: DropDownItemProps) {
+  const { faIcon, iconMoon, dropDownObject, location, title } = props;
+
   const [state, setState] = React.useState<boolean>(false)
 
   return (
@@ -21,19 +23,19 @@ function DropDownItem(props: DropDownItemProps) {
         }
         onClick={() => setState(!state)}
       >
-        {props.faIcon && <FontAwesomeIcon icon={props.faIcon} className="cb-" />}
-        {props.iconMoon && <i className={`cb-${props.iconMoon}`} />}
-        <span className="label-item" >{props.title}</span>
+        {faIcon && <FontAwesomeIcon icon={faIcon} className="cb-" />}
+        {iconMoon && <i className={`cb-${iconMoon}`} />}
+        <span className="label-item" >{title}</span>
         <IonRippleEffect />
       </IonItem>
 
       {
-        state && props.dropDownObject.map((appPage, index) => {
+        state && dropDownObject.map((appPage, index) => {
           return (
             <IonItem
               key={`${index} ${uuidv4()}`}
               className={
-                `${props.location.pathname === appPage.url ? "selected" : ""} sub-menu`
+                `${location.pathname === appPage.url ? "selected" : ""} sub-menu`
               }
               routerLink={appPage.url}
               routerDirection="none"
@@ -50,4 +52,4 @@ function DropDownItem(props: DropDownItemProps) {
   );
 };
 
-export {DropDownItem};
+export { DropDownItem };
