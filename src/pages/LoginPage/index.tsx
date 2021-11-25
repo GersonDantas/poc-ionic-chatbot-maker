@@ -44,9 +44,7 @@ import {
 import { users } from "src/store/mocUsers";
 import { User } from "src/store/dto";
 import { getStorageKey, pushHistory, setStorageByKey, useForm } from "src/hooks";
-import { valueInput } from "src/utils";
-import { initialStateUser, initialStatusError } from "./initialStatusObjects";
-import { validateForm } from "./utils";
+import { initialStateUser, validateForm, maskToPhoneNumber } from "src/utils";
 
 
 function LoginPage() {
@@ -54,6 +52,7 @@ function LoginPage() {
   const [isLoading, setIsloading] = React.useState(true);
   const [isSigningForm, setIsSigningForm] = React.useState(true);
   const [forgotPassword, setForgotPassword] = React.useState(false);
+  const [showErrorTerms, setShowErrorTerms] = React.useState(false)
   // const [stateUser, setStateUser] = React.useState(initialStateUser);
   // const [error, setError] = React.useState(initialStatusError);
 
@@ -79,19 +78,37 @@ function LoginPage() {
     validate: validateForm
   })
 
-  // const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   Nprogerss.start();
+  const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  //   e.preventDefault();
+    let checkboxTermsIsChekced = document.getElementById("checkboxMyTerms")?.ariaChecked === "true"
+    if (!checkboxTermsIsChekced && !isSigningForm) {
+      setShowErrorTerms(true);
+      return;
+    }
 
-  //   // if(!(await validate())) return;
+    let errors = Object.values(form.errors)
+    if (isSigningForm) {
+      console.log(errors[1])
+      if (errors[1] !== "" && errors[2] !== "") return
+    } else {
+      let isError = errors.every(error => error !== "")
+      if (isError) return
+    }
 
-  //   if (isSigningForm) {
-  //     signingIn()
-  //   } else {
-  //     signingUp()
-  //   }
-  // }
+    pushHistory("/page/panel")
+
+    // Nprogerss.start();
+
+
+    // // if(!(await validate())) return;
+
+    // if (isSigningForm) {
+    //   signingIn()
+    // } else {
+    //   signingUp()
+    // }
+  }
 
   // const signingIn = async () => {
   //   Nprogerss.inc(0.5);
@@ -175,18 +192,19 @@ function LoginPage() {
                         } com seu email`}
                     />
 
-                    <form /* onSubmit={(e) => handleSignIn(e)} */>
+                    <form onSubmit={(e) => handleSignIn(e)}>
                       {!isSigningForm && (
                         <InputAndLabelComponent
                           label="Nome"
                           touched={form.touched.name}
                           spanError={form.errors.name}
+
                           value={form.values.name}
                           type="text"
                           name="name"
                           autocomplete="name"
                           placeholder="Digite sua nome..."
-                          onBlur={form.handleBlur}
+                          onIonBlur={form.handleBlur}
                           onIonChange={form.handleChange}
                         />
                       )}
@@ -195,10 +213,12 @@ function LoginPage() {
                         label="Email"
                         touched={form.touched.email}
                         spanError={form.errors.email}
+
                         value={form.values.email}
                         type="text"
                         name="email"
                         placeholder="Digite sua email..."
+                        autocomplete="email"
                         onIonBlur={form.handleBlur}
                         onIonChange={form.handleChange}
                       />
@@ -207,6 +227,7 @@ function LoginPage() {
                         label="Senha"
                         touched={form.touched.password}
                         spanError={form.errors.password}
+
                         value={form.values.password}
                         type="password"
                         name="password"
@@ -221,12 +242,13 @@ function LoginPage() {
                           label="Whatsapp"
                           touched={form.touched.whatsApp}
                           spanError={form.errors.whatsApp}
+
                           value={form.values.whatsApp}
                           name="whatsApp"
                           placeholder="(__) ____-____"
                           autocomplete="tel"
                           onIonBlur={form.handleBlur}
-                          onIonChange={form.handleChange}
+                          onIonChange={(e: any) => form.handleChange(e, maskToPhoneNumber(e?.target.value))}
                         />
                       )}
 
@@ -241,7 +263,10 @@ function LoginPage() {
                           Esqueceu sua senha?
                         </ForgotYourPasswordButton>
                       ) : (
-                        <SuriTerms />
+                        <SuriTerms
+                          showError={showErrorTerms}
+                          setShowError={setShowErrorTerms}
+                        />
                       )}
 
                       <IonRow style={{ justifyContent: "center" }} >

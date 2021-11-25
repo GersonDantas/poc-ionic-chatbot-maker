@@ -1,2 +1,3 @@
 export { maskToPhoneNumber } from "./maskPhoneNumber";
-export { valueInput } from "./valueInput";
+export { validateForm } from "./validateForm";
+export {initialStateUser, initialStatusError, initialStatusTouched} from "./initialStatusObjects"

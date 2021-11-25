@@ -3,6 +3,16 @@ import styled from "styled-components";
 
 export const IonRowTerms = styled(IonRow)`
   align-items: center;
+  .span-error {
+    display: block;
+    color: var(--ion-color-danger-shade);
+    display: inline-block;
+    margin-left: 5px;
+    font-weight: 700;
+  }
+  .no-error{
+    display: none;
+  }
 `;
 
 export const IonColTerms = styled(IonCol)`

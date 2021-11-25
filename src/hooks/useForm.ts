@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { PlatformUserRegister } from "src/types";
-import { initialStatusTouched, initialStatusError} from "../pages/LoginPage/initialStatusObjects"
+import { initialStatusTouched, initialStatusError } from "src/utils";
 
 interface useFormProps {
   initialValues: PlatformUserRegister;
@@ -15,23 +15,27 @@ function useForm({ initialValues, validate }: useFormProps) {
   useEffect(() => {
     validateValues(values);
   }, [values]);
-
-  function handleChange(event: any) {
+  
+  function handleChange(event: any, valueWithMask?: string) {
+    const fieldName = event.target.name;
+    const { value } = event.target;
+    setValues({
+      ...values,
+      [fieldName]: valueWithMask ? valueWithMask : value,
+    });
+    setTouchedFields({
+      ...touched,
+      [fieldName]: false,
+    });
+  }
+  
+  function handleBlur(event: any) {
     const fieldName = event.target.name;
     const { value } = event.target;
     setValues({
       ...values,
       [fieldName]: value,
     });
-    setTouchedFields({
-      ...touched,
-      [fieldName]: false,
-    })
-  }
-
-  function handleBlur(event: any) {
-    const fieldName = event.target.name;
-    console.log(fieldName)
     setTouchedFields({
       ...touched,
       [fieldName]: true,

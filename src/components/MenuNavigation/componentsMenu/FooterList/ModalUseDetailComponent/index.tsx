@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { IonCol, IonRippleEffect } from '@ionic/react';
 import { useGlobalContextData } from 'src/store';
-import { valueInput } from 'src/utils';
 import { User } from 'src/store/dto';
 import {
   CardModal,
@@ -19,7 +18,8 @@ import {
 } from '../styles';
 import { removeStorageByKey } from 'src/hooks/useLocalStorageCapacitor';
 import { InputAndLabelComponent } from 'src/components';
-import { replaceHistory } from 'src/hooks';
+import { replaceHistory, useForm } from 'src/hooks';
+import { initialStateUser, validateForm } from 'src/utils';
 
 
 interface ModalUseDetailProps {
@@ -41,6 +41,11 @@ const ModalUseDetailComponent: React.FC<ModalUseDetailProps> = (props) => {
     removeStorageByKey("LoggedInUserInStorage");
     replaceHistory("/");
   }
+
+  const form = useForm({
+    initialValues: initialStateUser,
+    validate: validateForm
+  })
 
   const onClose = (event: any) => {
     event.preventDefault();
@@ -103,43 +108,48 @@ const ModalUseDetailComponent: React.FC<ModalUseDetailProps> = (props) => {
       <RowInputs>
         <IonCol>
           <InputAndLabelComponent
-            className="input-user-detail"
             label="Nome"
-            value={stateUser.name}
+            touched={form.touched.name}
+            spanError={form.errors.name}
+
+            value={form.values.name}
             type="text"
+            name="name"
             autocomplete="name"
-            onIonChange={(e) => valueInput({
-              name: "name",
-              event: e,
-              state: stateUser,
-              setState: setStateUser,
-            })} />
+            placeholder="Digite sua nome..."
+            onIonBlur={form.handleBlur}
+            onIonChange={form.handleChange}
+          />
 
           <InputAndLabelComponent
-            className="input-user-detail"
             label="Email"
-            value={stateUser.email}
+            touched={form.touched.email}
+            spanError={form.errors.email}
+
+            className="input-user-detail"
+            value={form.values.email}
             type="text"
+            name="email"
+            placeholder="Digite sua email..."
             autocomplete="email"
-            onIonChange={(e) => valueInput({
-              name: "email",
-              event: e,
-              state: stateUser,
-              setState: setStateUser,
-            })} />
+            onIonBlur={form.handleBlur}
+            onIonChange={form.handleChange}
+          />
 
           <InputAndLabelComponent
-            className="input-user-detail"
             label="WhatsApp"
-            value={stateUser.phoneNumber}
-            type="text"
+            touched={form.touched.whatsApp}
+            spanError={form.errors.whatsApp}
+            
+            className="input-user-detail"
+            value={form.values.whatsApp}
+            name="whatsApp"
+            placeholder="(__) ____-____"
             autocomplete="tel"
-            onIonChange={(e) => valueInput({
-              name: "phoneNumber",
-              event: e,
-              state: stateUser,
-              setState: setStateUser,
-            })} />
+            onIonBlur={form.handleBlur}
+            onIonChange={form.handleChange}
+
+          />
 
           <IonTextTerms
             href="https://drive.google.com/file/d/1F9oyvCEV0MjXNZD2X7DSXqqVElEICPEV/view"
