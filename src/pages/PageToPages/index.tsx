@@ -17,15 +17,18 @@ import { MyIonToggleTheme } from "src/components";
 import { Panel, Conversations } from "..";
 import { useGlobalContextData } from "src/store";
 import { getStorageKey } from "src/hooks";
+import { returnTheFirstName } from "src/utils";
 
 const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match }) => {
 
-  const { userConnected, setUserConnected, setIsLoginPage } = useGlobalContextData()
+  const { setUserSession, userSession, setIsLoginPage } = useGlobalContextData()
 
   useIonViewWillEnter(async () => {
-    let user = await getStorageKey("LoggedInUserInStorage");
+    let session = await getStorageKey("SessionUserInLocalStorage");
+
     setIsLoginPage(false);
-    setUserConnected(user);
+    setUserSession(session);
+
   })
 
   return (
@@ -39,7 +42,7 @@ const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match })
           <MyIonToggleTheme />
 
           <IonTitle style={{ textTransform: "capitalize" }} color="primary" >
-            {`${userConnected?.name ?? ""}/${match.params.name}`}
+            {`${returnTheFirstName(userSession?.name) ?? ""}/${match.params.name}`}
           </IonTitle>
         </IonToolbar>
       </IonHeader>

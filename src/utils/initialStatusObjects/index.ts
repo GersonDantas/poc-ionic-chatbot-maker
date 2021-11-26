@@ -6,15 +6,26 @@ export const initialStateUser = {
 };
 
 export const initialStatusError = {
-    name: "",
-    email: "",
-    password: "",
-    whatsApp: "",
+  name: "",
+  email: "",
+  password: "",
+  whatsApp: "",
 };
 
 export const initialStatusTouched = {
-    name: false,
-    email: false,
-    password: false,
-    whatsApp: false,
+  name: false,
+  email: false,
+  password: false,
+  whatsApp: false,
+};
+
+export const initialPlatformUser = {
+  name: "",
+  email: "",
+  whatsApp: "",
+  id: "",
+  imageUrl: "",
+  chatbots: [],
+  notification: false,
+  lastPing: new Date(),
 };

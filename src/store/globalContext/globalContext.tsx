@@ -1,11 +1,11 @@
 import React, { SetStateAction, Dispatch } from "react";
-import { User } from "../dto";
+import { Session } from "src/types";
 
 interface GlobalContextState {
   isDark: boolean;
   setIsDark: Dispatch<SetStateAction<boolean>>;
-  userConnected: User | undefined;
-  setUserConnected: Dispatch<SetStateAction<User | undefined>>
+  userSession: Session | undefined;
+  setUserSession: Dispatch<SetStateAction<Session | undefined>>
   isLoginPage: boolean
   setIsLoginPage: Dispatch<SetStateAction<boolean>>;
 }
@@ -20,11 +20,11 @@ export function GlobalContextProvider({
   children,
 }: GlobalContextProviderProps) {
   const [isDark, setIsDark] = React.useState<boolean>(false);
-  const [userConnected, setUserConnected] = React.useState<User | undefined>()
+  const [userSession, setUserSession] = React.useState<Session | undefined>()
   const [isLoginPage, setIsLoginPage] = React.useState(true)
 
   return (
-    <GlobalContext.Provider value={{ isDark, setIsDark, userConnected, setUserConnected, isLoginPage, setIsLoginPage }}>
+    <GlobalContext.Provider value={{ isDark, setIsDark, userSession, setUserSession, isLoginPage, setIsLoginPage }}>
       {children}
     </GlobalContext.Provider>
   );

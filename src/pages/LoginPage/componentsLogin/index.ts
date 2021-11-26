@@ -13,3 +13,4 @@ export { MyIonSigningSigningupButton } from "./MyIonSigningSigningupButton";
 export { SuriTerms } from "./ComponentTerms";
 export { IonContentLogin } from "./IonContentLogin";
 export { PageLoginSkeleton } from "./PageLoginSkeleton";
+export {AlertInvalidCrud} from "./AlertInvalidCrud"

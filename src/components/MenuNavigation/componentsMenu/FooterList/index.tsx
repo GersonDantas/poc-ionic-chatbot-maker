@@ -4,40 +4,52 @@ import { chevronForwardOutline } from 'ionicons/icons';
 import { IonAvatarStyled, MenuListItem } from '..';
 import { ModalUseDetailComponent } from "./ModalUseDetailComponent"
 import { useGlobalContextData } from 'src/store';
-import { ListFooter} from './styles';
+import { ListFooter } from './styles';
+import { returnTheFirstName, returnTheSurname } from 'src/utils';
 
 interface FooterListProps {
   location: History.Location;
 }
 
 function FooterList({ location }: FooterListProps) {
-  const { userConnected } = useGlobalContextData();
+  const { userSession } = useGlobalContextData();
   const [isModalUserDetail, setIsModalUserDetail] = React.useState<boolean>(false);
 
   return (
     <>
-      {isModalUserDetail &&
+      {
+        isModalUserDetail &&
         (
           <ModalUseDetailComponent
             isModal={isModalUserDetail}
             setIsModal={setIsModalUserDetail}
           />
-        )}
+        )
+      }
+
       <ListFooter>
+
         <MenuListItem
           button
           lines="none"
           detail
           detailIcon={chevronForwardOutline}
-          title={`${userConnected?.name} ${userConnected?.subName}`}
+          title={`${returnTheFirstName(userSession?.name)} ${returnTheSurname(userSession?.name)}`}
           location={location}
           noUppercase
           onClick={() => setIsModalUserDetail(true)}
         >
+
           <IonAvatarStyled>
-            <img src={userConnected?.imgUserUrl} alt={userConnected?.email} />
+            <img src={
+              userSession?.platformUser.imageUrl ?? "https://ionicframework.com/docs/demos/api/avatar/avatar.svg"
+            } alt={
+              userSession?.platformUser?.email ?? "Foto do usuário conectado"
+            } />
           </IonAvatarStyled>
+
         </MenuListItem>
+
         <MenuListItem
           href="https://chatbotmaker.gitbook.io/centraldeajuda/"
           target="_blank"

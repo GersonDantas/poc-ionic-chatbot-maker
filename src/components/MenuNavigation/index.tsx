@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useLocation } from "react-router-dom";
 import {  faThLarge } from "@fortawesome/free-solid-svg-icons"

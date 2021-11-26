@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { IonCol, IonRippleEffect } from '@ionic/react';
 import { useGlobalContextData } from 'src/store';
-import { User } from 'src/store/dto';
 import {
   CardModal,
   CardModalUserDetailContent,
@@ -19,7 +18,8 @@ import {
 import { removeStorageByKey } from 'src/hooks/useLocalStorageCapacitor';
 import { InputAndLabelComponent } from 'src/components';
 import { replaceHistory, useForm } from 'src/hooks';
-import { initialStateUser, validateForm } from 'src/utils';
+import { initialPlatformUser, initialStateUser, returnTheFirstName, returnTheSurname, validateForm } from 'src/utils';
+import { PlatformUser, Session } from 'src/types';
 
 
 interface ModalUseDetailProps {
@@ -28,17 +28,14 @@ interface ModalUseDetailProps {
 }
 
 const ModalUseDetailComponent: React.FC<ModalUseDetailProps> = (props) => {
-  const { userConnected } = useGlobalContextData();
+  const { userSession } = useGlobalContextData()
 
-  const [stateUser, setStateUser] = React.useState<User>({
-    name: `${userConnected?.name} ${userConnected?.subName}`,
-    email: '',
-    phoneNumber: '',
-    password: '',
+  const [stateUser, setStateUser] = React.useState<PlatformUser>({
+    ...initialPlatformUser,
   });
 
   const logout = (): void => {
-    removeStorageByKey("LoggedInUserInStorage");
+    removeStorageByKey("SessionUserInLocalStorage");
     replaceHistory("/");
   }
 
@@ -55,15 +52,9 @@ const ModalUseDetailComponent: React.FC<ModalUseDetailProps> = (props) => {
 
   React.useEffect(() => {
     document.body.addEventListener("click", onClose, false);
-  });
-
-  React.useEffect(() => {
+    setStateUser(userSession?.platformUser ?? initialPlatformUser);
     return () => document.body.removeEventListener("click", onClose, false);
-  }, []);
-
-  React.useEffect(() => {
-    setStateUser(userConnected!);
-  }, [userConnected]);
+  }, [userSession]);
 
   return (
     <ModalUserDetail
@@ -83,11 +74,11 @@ const ModalUseDetailComponent: React.FC<ModalUseDetailProps> = (props) => {
 
             <CardModalUserDetailHeader color="primary">
               <UserDetailAvatar>
-                <img src={userConnected?.imgUserUrl} alt={userConnected?.email} />
+                <img src={stateUser.imageUrl} alt={stateUser.email} />
               </UserDetailAvatar>
 
               <UserDetailTitle>
-                {`${stateUser.name} ${stateUser.subName}`}
+                {`${stateUser.name}`}
               </UserDetailTitle>
             </CardModalUserDetailHeader>
 
@@ -116,7 +107,7 @@ const ModalUseDetailComponent: React.FC<ModalUseDetailProps> = (props) => {
             type="text"
             name="name"
             autocomplete="name"
-            placeholder="Digite sua nome..."
+            placeholder={stateUser.name}
             onIonBlur={form.handleBlur}
             onIonChange={form.handleChange}
           />
@@ -130,7 +121,7 @@ const ModalUseDetailComponent: React.FC<ModalUseDetailProps> = (props) => {
             value={form.values.email}
             type="text"
             name="email"
-            placeholder="Digite sua email..."
+            placeholder={stateUser.email}
             autocomplete="email"
             onIonBlur={form.handleBlur}
             onIonChange={form.handleChange}
@@ -140,11 +131,11 @@ const ModalUseDetailComponent: React.FC<ModalUseDetailProps> = (props) => {
             label="WhatsApp"
             touched={form.touched.whatsApp}
             spanError={form.errors.whatsApp}
-            
+
             className="input-user-detail"
             value={form.values.whatsApp}
             name="whatsApp"
-            placeholder="(__) ____-____"
+            placeholder={stateUser.whatsApp}
             autocomplete="tel"
             onIonBlur={form.handleBlur}
             onIonChange={form.handleChange}

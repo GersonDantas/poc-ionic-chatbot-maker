@@ -14,10 +14,10 @@ interface SuriTermsProps {
 const SuriTerms: React.FC<SuriTermsProps> = ({ showError, setShowError }) => {
   return (
     <IonRowTerms>
-      <IonColTerms sizeLg="0.6" size="1">
+      <IonColTerms sizeLg="0.8" size="1">
         <IonCheckBox id="checkboxMyTerms" onIonChange={() => setShowError(false)} />
       </IonColTerms>
-      <IonCol sizeLg="11.4" size="11">
+      <IonCol sizeLg="11.2" size="11">
         <MyIonTextTerms>
           Aceito os{' '}
           <a

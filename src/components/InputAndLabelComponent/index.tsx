@@ -14,7 +14,7 @@ function InputAndLabelComponent(props: InputAndLabelComponentProps) {
           className={touched && spanError ? "input-error" : ""} 
           {...props}
         />
-        {touched && spanError && <span className="span-error">{spanError}</span>}
+        {((touched && spanError) || (spanError)) && <span className="span-error">{spanError}</span>}
       </ColInputAndLabel>
     </IonRow>
   );

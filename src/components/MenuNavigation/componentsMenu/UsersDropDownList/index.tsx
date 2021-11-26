@@ -5,13 +5,14 @@ import {
   DivMenuSuspended,
   IonAvatarStyled,
 } from "./styles";
-import {SuspendedMenu} from "./SuspendedMenu"
+import { SuspendedMenu } from "./SuspendedMenu"
 import { caretDownOutline, caretUpOutline } from "ionicons/icons";
 import { useGlobalContextData } from "src/store";
 import { User } from "src/store/dto";
+import { returnTheFirstName } from "src/utils";
 
 const UsersDropDownList: React.FC = () => {
-  const { userConnected } = useGlobalContextData();
+  const { userSession } = useGlobalContextData();
 
   const [isSuspended, setIsSuspended] = React.useState<boolean>(false);
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -47,12 +48,15 @@ const UsersDropDownList: React.FC = () => {
         className="suspended-menu-user-click"
       >
         <IonAvatarStyled>
-          <img src={userConnected?.imgMessageUrl} alt={userConnected?.email} />
+          <img src={
+            userSession?.platformUser.imageUrl ?? "https://ionicframework.com/docs/demos/api/avatar/avatar.svg"
+          } alt={userSession?.platformUser.email} />
         </IonAvatarStyled>
-        <span className="label-item noUppercase">{userConnected?.name}</span>
+
+        <span className="label-item noUppercase">{returnTheFirstName(userSession?.name)}</span>
       </IonItem>
       {isSuspended && (
-        <SuspendedMenu 
+        <SuspendedMenu
           setSearchTerm={setSearchTerm}
           onClose={onClose}
           searchResults={searchResults}

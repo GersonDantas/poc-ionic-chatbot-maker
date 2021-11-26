@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { PlatformUserRegister } from "src/types";
 import { initialStatusTouched, initialStatusError } from "src/utils";
 
@@ -11,24 +11,26 @@ function useForm({ initialValues, validate }: useFormProps) {
   const [touched, setTouchedFields] = useState(initialStatusTouched);
   const [errors, setErrors] = useState(initialStatusError);
   const [values, setValues] = useState(initialValues);
+  const [init, setInit] = useState(true);
 
   useEffect(() => {
+    setInit(false);
     validateValues(values);
   }, [values]);
-  
+
   function handleChange(event: any, valueWithMask?: string) {
     const fieldName = event.target.name;
     const { value } = event.target;
     setValues({
       ...values,
-      [fieldName]: valueWithMask ? valueWithMask : value,
+      [fieldName]: !valueWithMask ? value : valueWithMask,
     });
     setTouchedFields({
       ...touched,
       [fieldName]: false,
     });
   }
-  
+
   function handleBlur(event: any) {
     const fieldName = event.target.name;
     const { value } = event.target;
@@ -43,7 +45,7 @@ function useForm({ initialValues, validate }: useFormProps) {
   }
 
   function validateValues(values: PlatformUserRegister) {
-    setErrors(validate(values));
+    setErrors(init ? initialStatusError : validate(values));
   }
 
   return {
