@@ -7,13 +7,15 @@ interface SelectAdaptiveDatePickerProps {
 }
 
 function IonHeaderContainer(props: SelectAdaptiveDatePickerProps) {
+    const { name, children } = props;
+
     return (
         <IonHeader>
             <IonToolbar style={{ display: 'flex' }}>
 
-                {props.children ? props.children :
+                {children ? children :
                     <>
-                        <IonTitle color="primary" style={{ textTransform: "capitalize" }}>{props.name}</IonTitle>
+                        <IonTitle color="primary" style={{ textTransform: "capitalize" }}>{name}</IonTitle>
 
                         <IonButtons slot="start">
                             <IonMenuButton />

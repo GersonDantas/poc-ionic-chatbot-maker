@@ -9,10 +9,18 @@ import {
 import { MyIonInputStyled } from "src/components/MyIonComonsStyleds";
 
 export const IonModalForgot = styled(IonModal)`
-  --border-radius: 10px;
+  --border-radius: var(--border-card-radius);
   @media screen and (max-width: 560px) {
-  --border-radius: 0px;
+    --border-radius: 0px;
   }
+`;
+export const IonRowModalForgot = styled(IonRow)`
+  height: 100%;
+  align-items: center;
+`;
+
+export const IonColModalForgot = styled(IonCol)`
+  padding: 0 10%;
 `;
 
 export const MyIonCardTitleForgot = styled(IonCardTitle)`
@@ -38,13 +46,6 @@ export const MyIonCardSubtitleForgot = styled(IonCardSubtitle)`
 export const MyIonInputForgot = styled(MyIonInputStyled)`
   margin-bottom: 10%;
 `;
-export const IonRowModalForgot = styled(IonRow)`
-  height: 100%;
-  align-items: center;
-`;
-export const IonColModalForgot = styled(IonCol)`
-  padding: 0 10%;
-`;
 
 export const IonRowButtons = styled(IonRow)`
   align-items: center;
@@ -56,5 +57,4 @@ export const IonColButtons = styled(IonCol)`
   display: flex;
   justify-content: center;
   align-items: center;
-
 `;

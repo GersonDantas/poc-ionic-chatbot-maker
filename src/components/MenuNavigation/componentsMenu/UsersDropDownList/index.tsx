@@ -1,30 +1,70 @@
 import React from "react";
-import { IonAvatar, IonItem, IonLabel } from '@ionic/react';
-import {users} from "src/pages/LoginPage/mocUsers"
-import { IonAvatarStyled } from "./styles";
+import { users } from "src/store/mocUsers";
+import { IonItem } from '@ionic/react';
+import {
+  DivMenuSuspended,
+  IonAvatarStyled,
+} from "./styles";
+import { SuspendedMenu } from "./SuspendedMenu"
 import { caretDownOutline, caretUpOutline } from "ionicons/icons";
+import { useGlobalContextData } from "src/store";
+import { User } from "src/store/dto";
+import { returnTheFirstName } from "src/utils";
 
 const UsersDropDownList: React.FC = () => {
-  const [state, setState] = React.useState<boolean>(false)
+  const { userSession } = useGlobalContextData();
+
+  const [isSuspended, setIsSuspended] = React.useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const [searchResults, setSearchResults] = React.useState<User[]>([]);
+
+  const onClose = (event: any) => {
+    event.preventDefault();
+    if (!event.target.classList.contains("suspended-menu-user-click")) {
+      setIsSuspended(false);
+      setSearchTerm("");
+    }
+  }
+
+  React.useEffect(() => {
+    const results = users.filter(person =>
+      person.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setSearchResults(results);
+  }, [searchTerm]);
 
   return (
-    <IonItem
-      button
-      lines="none"
-      detail
-      detailIcon={
-        state
-          ? caretUpOutline
-          : caretDownOutline
-      }
-      onClick={() => setState(!state)}
-    >
-      <IonAvatarStyled>
-        <img src={users[0].imgMessageUrl} alt={users[0].email} />
-      </IonAvatarStyled>
-      <span className="label-item noUppercase">{users[0].name}</span>
-    </IonItem>
+    <DivMenuSuspended >
+      <IonItem
+        button
+        lines="none"
+        detail
+        detailIcon={
+          isSuspended
+            ? caretUpOutline
+            : caretDownOutline
+        }
+        onClick={() => setIsSuspended(!isSuspended)}
+        className="suspended-menu-user-click"
+      >
+        <IonAvatarStyled>
+          <img src={
+            userSession?.platformUser.imageUrl ?? "https://ionicframework.com/docs/demos/api/avatar/avatar.svg"
+          } alt={userSession?.platformUser.email} />
+        </IonAvatarStyled>
+
+        <span className="label-item noUppercase">{returnTheFirstName(userSession?.name)}</span>
+      </IonItem>
+      {isSuspended && (
+        <SuspendedMenu
+          setSearchTerm={setSearchTerm}
+          onClose={onClose}
+          searchResults={searchResults}
+        />
+      )}
+    </DivMenuSuspended>
   );
 };
 
-export {UsersDropDownList, IonAvatarStyled};
+export { UsersDropDownList, IonAvatarStyled };
+

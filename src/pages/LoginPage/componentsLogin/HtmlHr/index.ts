@@ -20,6 +20,6 @@ export const HtmlHr = styled.hr`
     transform: translateX(-50%);
     font-size: 0.9rem;
     padding: 0.3em;
-    background: var(--ion-background-color);
+    background: var(--ion-card-background);
   }
 `;

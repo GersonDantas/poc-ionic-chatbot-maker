@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { RouteComponentProps, useParams } from "react-router";
+import { RouteComponentProps } from "react-router";
 
 import {
   IonButtons,
@@ -9,14 +9,27 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  useIonViewWillEnter,
 } from "@ionic/react";
 
 import { MyIonToggleTheme } from "src/components";
 
 import { Panel, Conversations } from "..";
-import { users } from "../LoginPage/mocUsers";
+import { useGlobalContextData } from "src/store";
+import { getStorageKey } from "src/hooks";
+import { returnTheFirstName } from "src/utils";
 
 const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match }) => {
+
+  const { setUserSession, userSession, setIsLoginPage } = useGlobalContextData()
+
+  useIonViewWillEnter(async () => {
+    let session = await getStorageKey("SessionUserInLocalStorage");
+
+    setIsLoginPage(false);
+    setUserSession(session);
+
+  })
 
   return (
     <IonPage>
@@ -29,7 +42,7 @@ const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match })
           <MyIonToggleTheme />
 
           <IonTitle style={{ textTransform: "capitalize" }} color="primary" >
-            {`${users[0].name}/${match.params.name}`}
+            {`${returnTheFirstName(userSession?.name) ?? ""}/${match.params.name}`}
           </IonTitle>
         </IonToolbar>
       </IonHeader>

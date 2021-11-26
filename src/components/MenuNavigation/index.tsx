@@ -1,14 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useLocation } from "react-router-dom";
+import {  faThLarge } from "@fortawesome/free-solid-svg-icons"
 import {
   IonContent,
-  IonItem,
-  IonLabel,
   IonList,
   IonListHeader,
   IonMenu,
-  IonRouterLink,
 } from "@ionic/react";
 
 import {
@@ -18,12 +15,14 @@ import {
 } from "./navigationRoutesObjects"
 
 import { SuriLogo } from "..";
-import { DropDownItem, FooterList, MenuListItem, MiddleItems, UsersDropDownList } from "./componentsMenu";
+import {
+  DropDownItem,
+  FooterList,
+  MiddleItems,
+  UsersDropDownList
+} from "./componentsMenu";
 
 import "./styles.css";
-import { chevronForwardOutline } from "ionicons/icons";
-import { users } from "src/pages/LoginPage/mocUsers";
-import { IonAvatarStyled } from "./componentsMenu";
 
 const MenuNavigation: React.FC = () => {
 
@@ -42,7 +41,7 @@ const MenuNavigation: React.FC = () => {
             title="Gestão"
             dropDownObject={managementMenu}
             location={location}
-            faIcon="th-large"
+            faIcon={faThLarge}
           />
 
           <hr className="divider-management" />

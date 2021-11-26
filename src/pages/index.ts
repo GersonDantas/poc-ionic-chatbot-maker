@@ -1,4 +1,4 @@
-export * from './LoginPage'
-export * from './Panel'
-export * from './PageToPages'
-export * from './Conversations'
+export { LoginPage } from "./LoginPage";
+export { Panel } from "./Panel";
+export { PageToPage } from "./PageToPages";
+export { Conversations } from "./Conversations";
