@@ -1,6 +1,6 @@
-import { IonCol, IonRow } from "@ionic/react";
-import { IonCardWithHeader, MyIonLabel } from "src/components";
-import styled from "styled-components";
+import { IonCol, IonRow } from '@ionic/react';
+import { IonCardWithHeader, MyIonLabel } from 'src/components';
+import styled from 'styled-components';
 
 export const IonCardDateButtons = styled(IonCardWithHeader)``;
 

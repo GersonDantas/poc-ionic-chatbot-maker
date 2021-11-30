@@ -1,5 +1,5 @@
 export enum EnvironmentType {
-    PROD,
-    STG,
-    DEV
+  PROD,
+  STG,
+  DEV,
 }

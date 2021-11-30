@@ -1,25 +1,25 @@
-import { createBrowserHistory } from "history";
+import { createBrowserHistory } from 'history';
 
 const history = createBrowserHistory();
 
 const updateLocation = () => {
-  let pathUrl = window.location.href;
+  const pathUrl = window.location.href;
   window.location.href = pathUrl;
 };
 
-function pushHistory(path: string) {
+function pushHistory(path: string): void {
   history.push(path);
   updateLocation();
 }
 
-function replaceHistory(path: string) {
+function replaceHistory(path: string): void {
   history.replace(path);
   updateLocation();
 }
 
-function gobackHistory(path: string) {
+function goBackHistory(): void {
   history.goBack();
   updateLocation();
 }
 
-export { pushHistory, replaceHistory, gobackHistory };
+export { pushHistory, replaceHistory, goBackHistory };

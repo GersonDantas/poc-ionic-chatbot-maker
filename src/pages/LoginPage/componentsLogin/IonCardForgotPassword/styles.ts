@@ -1,12 +1,8 @@
-import styled from "styled-components";
 import {
-  IonCardSubtitle,
-  IonCardTitle,
-  IonCol,
-  IonModal,
-  IonRow,
-} from "@ionic/react";
-import { MyIonInputStyled } from "src/components/MyIonComonsStyleds";
+  IonCardSubtitle, IonCardTitle, IonCol, IonModal, IonRow,
+} from '@ionic/react';
+import { MyIonInputStyled } from 'src/components/MyIonComonsStyleds';
+import styled from 'styled-components';
 
 export const IonModalForgot = styled(IonModal)`
   --border-radius: var(--border-card-radius);
@@ -33,13 +29,13 @@ export const MyIonCardTitleForgot = styled(IonCardTitle)`
   padding: 0;
   line-height: 40px;
   display: block;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 `;
 
 export const MyIonCardSubtitleForgot = styled(IonCardSubtitle)`
   text-align: center;
   margin-bottom: 5%;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
 `;
 

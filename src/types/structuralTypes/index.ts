@@ -1,6 +1,7 @@
-import * as History from 'history';
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { Dispatch, ReactNode, SetStateAction } from "react";
+/* eslint-disable no-use-before-define */
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
+import type * as History from 'history';
+import type { Dispatch, ReactNode, SetStateAction } from 'react';
 
 export type DropDownItemProps = {
   title: string;

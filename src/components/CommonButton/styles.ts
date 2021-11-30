@@ -1,5 +1,5 @@
-import { IonButton, IonLabel } from "@ionic/react";
-import styled from "styled-components";
+import { IonButton, IonLabel } from '@ionic/react';
+import styled from 'styled-components';
 
 export const IonCommonButton = styled(IonButton)`
   height: 42px;

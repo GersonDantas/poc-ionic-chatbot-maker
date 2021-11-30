@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -26,9 +22,8 @@
     "**/*.ts",
     "**/*.tsx",
     "next.config.js",
-    "src/pages/Panel/componentsPanel/ApexCharts/atendimentosMock.js"
-, "src/hooks/userLocalStorage"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "src/pages/Panel/componentsPanel/ApexCharts/atendimentosMock.js",
+    "src/hooks/userLocalStorage"
+  ],
+  "exclude": ["node_modules"]
 }

@@ -1,19 +1,23 @@
-import { CommonButton, SelectAdaptiveDatePicker } from "src/components";
-import { faSyncAlt, faDownload } from "@fortawesome/free-solid-svg-icons"
-import { IonCardDateButtons, IonLabelDate,  IonRowDateButtons, IonGridColumns } from "./styles";
-import { usePanelLocalContextData } from "src/store/localContext";
+import { faSyncAlt, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { CommonButton, SelectAdaptiveDatePicker } from 'src/components';
+import { usePanelLocalContextData } from 'src/store/localContext';
 
+import {
+  IonCardDateButtons, IonLabelDate, IonRowDateButtons, IonGridColumns,
+} from './styles';
 
-function DatePickersWithButtons() {
-  const {initialDate, finalDate, setFinalDate, setInitialDate} = usePanelLocalContextData();
+const DatePickersWithButtons = function () {
+  const {
+    initialDate, finalDate, setFinalDate, setInitialDate,
+  } = usePanelLocalContextData();
 
   return (
     <IonCardDateButtons className="border-radius-5">
       <IonRowDateButtons>
 
-        <IonGridColumns >
+        <IonGridColumns>
           <IonLabelDate>Início</IonLabelDate>
-          <SelectAdaptiveDatePicker 
+          <SelectAdaptiveDatePicker
             initialDate={initialDate}
             finalDate={finalDate}
             setFinalDate={setFinalDate}
@@ -21,9 +25,9 @@ function DatePickersWithButtons() {
           />
         </IonGridColumns>
 
-        <IonGridColumns >
+        <IonGridColumns>
           <IonLabelDate>Fim</IonLabelDate>
-          <SelectAdaptiveDatePicker 
+          <SelectAdaptiveDatePicker
             isFinalDate
             initialDate={initialDate}
             finalDate={finalDate}
@@ -32,7 +36,7 @@ function DatePickersWithButtons() {
           />
         </IonGridColumns>
 
-        <IonGridColumns >
+        <IonGridColumns>
           <CommonButton expand="full" color="success" faIcon={faSyncAlt} onClick={() => document.location.reload()}>ATUALIZAR</CommonButton>
         </IonGridColumns>
 
@@ -43,6 +47,6 @@ function DatePickersWithButtons() {
       </IonRowDateButtons>
     </IonCardDateButtons>
   );
-}
+};
 
-export {DatePickersWithButtons};
+export { DatePickersWithButtons };

@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import "../assets/icons/CBM Icons/cbm-icons.css";
+import { createGlobalStyle } from 'styled-components';
+import '../assets/icons/CBM Icons/cbm-icons.css';
 
 export default createGlobalStyle`
     @font-face {

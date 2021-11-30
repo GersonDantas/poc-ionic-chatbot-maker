@@ -1,9 +1,8 @@
-import styled from "@material-ui/styled-engine-sc"
-import TableRow from "@material-ui/core/TableRow";
-import TableCell, { tableCellClasses } from "@material-ui/core/TableCell";
+import TableCell, { tableCellClasses } from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import styled from '@material-ui/styled-engine-sc';
 
 export const StyledTableCell = styled(TableCell)`
-  
   &.${tableCellClasses.head} {
     background-color: var(--ion-card-background);
     color: var(--ion-text-color);
@@ -18,19 +17,19 @@ export const StyledTableCell = styled(TableCell)`
 `;
 
 export const StyledTableRow = styled(TableRow)`
-
-&:hover {
-  background-color: rgba(var(--ion-color-primary-rgb), 0.05);
-}
-
-&:nth-of-type(odd) {
-  background-color: var(--ion-card-background-contrast);
   &:hover {
-  background-color: rgba(var(--ion-color-primary-rgb), 0.08);
-}
-}
+    background-color: rgba(var(--ion-color-primary-rgb), 0.05);
+  }
 
-  &:last-child td, &:last-child th {
+  &:nth-of-type(odd) {
+    background-color: var(--ion-card-background-contrast);
+    &:hover {
+      background-color: rgba(var(--ion-color-primary-rgb), 0.08);
+    }
+  }
+
+  &:last-child td,
+  &:last-child th {
     border: 0;
   }
 `;

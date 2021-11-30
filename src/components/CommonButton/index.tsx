@@ -1,17 +1,16 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { CommonButtonProps } from 'src/types';
+
 import {
   IonCommonButton,
   IonCommonButtonLabel,
-} from "./styles";
+} from './styles';
 
-import { CommonButtonProps } from "src/types"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-
-function CommonButton(props: CommonButtonProps) {
+const CommonButton = function (props: CommonButtonProps) {
   const { faIcon, children } = props;
 
   return (
-    <IonCommonButton {...props} >
+    <IonCommonButton {...props}>
 
       {faIcon && <FontAwesomeIcon icon={faIcon} />}
 
@@ -19,6 +18,6 @@ function CommonButton(props: CommonButtonProps) {
 
     </IonCommonButton>
   );
-}
+};
 
 export { CommonButton };

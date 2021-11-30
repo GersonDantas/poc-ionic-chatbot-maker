@@ -1,22 +1,20 @@
-import { IonCardContent, IonCardHeader } from "@ionic/react";
+import { IonCardContent, IonCardHeader } from '@ionic/react';
+import type{ CardWithHeaderProps } from 'src/types';
 
-import { IonCardHeaderContentRow, IonCardHeaderTitle, RowCardHeader } from "./styles";
+import { IonCardHeaderContentRow, IonCardHeaderTitle, RowCardHeader } from './styles';
+import CommonIconButtonStyled from './CommonIconButtonStyled';
 
+import { IonCardWithHeader } from '..';
 
-
-import CommonIconButtonStyled from "./CommonIconButtonStyled";
-import { CardWithHeaderProps } from "src/types";
-import { IonCardWithHeader } from "..";
-
-
-
-function CardWithHeader(props: CardWithHeaderProps) {
-  const {cardTitle, children, hasIcon, titleInCenter} = props;
+const CardWithHeader = function (props: CardWithHeaderProps) {
+  const {
+    cardTitle, children, hasIcon, titleInCenter,
+  } = props;
 
   return (
     <IonCardWithHeader className="border-radius-5">
       <IonCardHeader color="primary">
-        <RowCardHeader style={{ justifyContent: titleInCenter ? "center" : "space-between" }}>
+        <RowCardHeader style={{ justifyContent: titleInCenter ? 'center' : 'space-between' }}>
 
           <IonCardHeaderTitle>{cardTitle}</IonCardHeaderTitle>
 
@@ -31,6 +29,6 @@ function CardWithHeader(props: CardWithHeaderProps) {
 
     </IonCardWithHeader>
   );
-}
+};
 
 export { CardWithHeader };

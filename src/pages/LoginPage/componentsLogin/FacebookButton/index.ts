@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { IonButton } from '@ionic/react';
+import styled from 'styled-components';
 
 export const FacebookButton = styled(IonButton)`
   --background-hover: var(--ion-color-primary);
@@ -10,5 +10,5 @@ export const FacebookButton = styled(IonButton)`
   --color-activated: var(--ion-color-primary);
   --background-focused: rgba(var(--ion-color-secondary-rgb), 0.8);
   font-size: 1em;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 `;

@@ -1,5 +1,6 @@
-import { IonCol } from "@ionic/react";
-import styled from "styled-components";
+import { IonCol } from '@ionic/react';
+import styled from 'styled-components';
+
 export const ColInputAndLabel = styled(IonCol)`
   padding: 0;
   margin-bottom: 20px;

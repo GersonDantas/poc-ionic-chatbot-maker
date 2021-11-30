@@ -1,6 +1,6 @@
 export interface PlatformUserRegister {
-    name: string;
-    email: string;
-    whatsApp: string;
-    password: string;
+  name: string;
+  email: string;
+  whatsApp: string;
+  password: string;
 }

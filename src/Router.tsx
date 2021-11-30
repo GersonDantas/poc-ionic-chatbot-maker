@@ -1,18 +1,17 @@
+import { IonRouterOutlet, IonSplitPane } from '@ionic/react';
+import { IonReactRouter } from '@ionic/react-router';
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
-import { IonRouterOutlet, IonSplitPane } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-
-import { PageToPage, LoginPage } from './pages';
 import { MenuNavigation } from './components';
+import { PageToPage, LoginPage } from './pages';
 import { useGlobalContextData } from './store';
 
-const Router: React.FC = () => {
-  const {isLoginPage} = useGlobalContextData();
+const Router: React.FC = function () {
+  const { isLoginPage } = useGlobalContextData();
 
   return (
-    <IonReactRouter >
+    <IonReactRouter>
 
       <IonSplitPane
         disabled={isLoginPage}
@@ -30,16 +29,14 @@ const Router: React.FC = () => {
 
           <Route
             path="/page/:name"
-            exact={true}
-            render={(pageProps) => {
-              return (<PageToPage {...pageProps}  />);
-            }}
+            exact
+            render={(pageProps) => (<PageToPage {...pageProps} />)}
           />
 
         </IonRouterOutlet>
       </IonSplitPane>
     </IonReactRouter>
-  )
-}
+  );
+};
 
 export default Router;

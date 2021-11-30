@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { IonCardTitle } from "@ionic/react";
+import { IonCardTitle } from '@ionic/react';
+import styled from 'styled-components';
 
 export const IonTitleLogin = styled(IonCardTitle)`
   margin-bottom: 3%;
@@ -7,5 +7,5 @@ export const IonTitleLogin = styled(IonCardTitle)`
   color: var(--ion-text-color);
   font-weight: bold;
   font-size: 1rem;
-  font-family: "Inter-ExtraBold", sans-serif;
+  font-family: 'Inter-ExtraBold', sans-serif;
 `;

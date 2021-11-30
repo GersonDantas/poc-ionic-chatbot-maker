@@ -1,5 +1,5 @@
-import { IonCol, IonRow, IonText } from "@ionic/react";
-import styled from "styled-components";
+import { IonCol, IonRow, IonText } from '@ionic/react';
+import styled from 'styled-components';
 
 export const IonRowTerms = styled(IonRow)`
   align-items: center;
@@ -10,7 +10,7 @@ export const IonRowTerms = styled(IonRow)`
     margin-left: 5px;
     font-weight: 700;
   }
-  .no-error{
+  .no-error {
     display: none;
   }
 `;

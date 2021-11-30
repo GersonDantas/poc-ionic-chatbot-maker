@@ -1,6 +1,10 @@
-import React, { SetStateAction, Dispatch } from "react";
-import { format, subDays } from "date-fns";
-import pt from "date-fns/locale/pt-BR";
+/* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable no-var */
+/* eslint-disable import/no-mutable-exports */
+/* eslint-disable vars-on-top */
+import { format, subDays } from 'date-fns';
+import React, { SetStateAction, Dispatch } from 'react';
+import { useGlobalContextData } from '..';
 
 interface PanelLocalContextState {
   initialDate: string;
@@ -10,22 +14,25 @@ interface PanelLocalContextState {
 }
 
 export const PanelLocalContext = React.createContext(
-  {} as PanelLocalContextState
+  {} as PanelLocalContextState,
 );
 
 type PanelContextProviderProps = {
   children: React.ReactNode;
 };
 
-export function PanelContextProvider({ children }: PanelContextProviderProps) {
+export var PanelContextProvider = function ({ children }: PanelContextProviderProps) {
+
+  const {userSession} = useGlobalContextData()
   const decreasedDays = subDays(new Date(), 7);
 
   const [initialDate, setInitialDate] = React.useState<string>(
-    format(decreasedDays, "yyyy-MM-dd", { locale: pt })
+    format(decreasedDays, 'yyyy-MM-dd'),
   );
   const [finalDate, setFinalDate] = React.useState<string>(
-    format(new Date(), "yyyy-MM-dd", { locale: pt })
+    format(new Date(), 'yyyy-MM-dd'),
   );
+  console.log(userSession)
 
   return (
     <PanelLocalContext.Provider
@@ -39,7 +46,6 @@ export function PanelContextProvider({ children }: PanelContextProviderProps) {
       {children}
     </PanelLocalContext.Provider>
   );
-}
+};
 
-export const usePanelLocalContextData = () =>
-  React.useContext(PanelLocalContext);
+export const usePanelLocalContextData = () => React.useContext(PanelLocalContext);

@@ -1,14 +1,20 @@
-import { IonCol, IonRow } from "@ionic/react";
-import { CardWithHeader } from "src/components";
-import { PanelContextProvider } from "src/store/localContext";
-import { rowsAgent, rowsDepartment } from "./componentsPanel/TablesPanel/mocData"
-import { ApexCharts, DatePickersWithButtons, TablesPanel } from "./componentsPanel";
-import { IonCardLabel, IonGridPanel, IonTitleDepartment } from "./styles";
+import { IonCol, IonRow, useIonViewWillEnter } from '@ionic/react';
+import { CardWithHeader } from 'src/components';
+import { PanelContextProvider } from 'src/store/localContext';
 
-function Panel() {
+import { ApexCharts, DatePickersWithButtons, TablesPanel } from './componentsPanel';
+import { rowsAgent, rowsDepartment } from './componentsPanel/TablesPanel/mocData';
+import { IonCardLabel, IonGridPanel, IonTitleDepartment } from './styles';
+
+const Panel = function () {
+  useIonViewWillEnter(() => {
+    
+  })
+
+
   return (
     <IonGridPanel>
-      <IonRow style={{ marginBottom: "20px" }}>
+      <IonRow style={{ marginBottom: '20px' }}>
         <IonCol size="12">
           <IonTitleDepartment color="primary">CLIENTES</IonTitleDepartment>
         </IonCol>
@@ -39,7 +45,7 @@ function Panel() {
           </IonCol>
         </IonRow>
 
-        <IonRow style={{ alignItems: "center" }}>
+        <IonRow style={{ alignItems: 'center' }}>
           <IonCol sizeXl="3" sizeLg="6" sizeMd="6" sizeSm="12" size="12">
             <CardWithHeader cardTitle="FINALIZADOS">
               <IonCardLabel>2</IonCardLabel>
@@ -78,14 +84,13 @@ function Panel() {
             <CardWithHeader cardTitle="ATENDIMENTOS POR DEPARTAMENTO" hasIcon>
               <TablesPanel
                 headers={[
-                  "DEPARTAMENTO",
-                  "ESPERANDO",
-                  "EM ATENDIMENTO",
-                  "FINALIZADOS",
-                  "TEMPO DE ESPERA",
-                  "TEMPO DE ATENDIMENTO",
+                  'DEPARTAMENTO',
+                  'ESPERANDO',
+                  'EM ATENDIMENTO',
+                  'FINALIZADOS',
+                  'TEMPO DE ESPERA',
+                  'TEMPO DE ATENDIMENTO',
                 ]}
-
                 rows={rowsDepartment}
               />
             </CardWithHeader>
@@ -97,14 +102,13 @@ function Panel() {
             <CardWithHeader cardTitle="ATENDIMENTOS POR DEPARTAMENTO" hasIcon>
               <TablesPanel
                 headers={[
-                  "AGENTE",
-                  "ESPERANDO",
-                  "EM ANDAMENTO",
-                  "FINALIZADOS",
-                  "TEMPO DE ESPERA",
-                  "TEMPO DE ATENDIMENTO",
+                  'AGENTE',
+                  'ESPERANDO',
+                  'EM ANDAMENTO',
+                  'FINALIZADOS',
+                  'TEMPO DE ESPERA',
+                  'TEMPO DE ATENDIMENTO',
                 ]}
-
                 rows={rowsAgent}
               />
             </CardWithHeader>
@@ -113,6 +117,6 @@ function Panel() {
       </PanelContextProvider>
     </IonGridPanel>
   );
-}
+};
 
 export { Panel };

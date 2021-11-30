@@ -1,1 +1,1 @@
-export type {ChatbotItem} from "./chatbotIntens"
+export type { ChatbotItem } from './chatbotIntens';

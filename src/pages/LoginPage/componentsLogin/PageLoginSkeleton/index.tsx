@@ -1,64 +1,70 @@
-import { IonCardContent, IonCardHeader, IonCol, IonRow, IonSkeletonText } from '@ionic/react';
-import { IonCardFormLogin, IonContentLogin, IonGridLogin, IonRowCardLine, IonSubTitleLogin, IonTitleLogin } from '..';
+import {
+  IonCardContent, IonCardHeader, IonCol, IonRow, IonSkeletonText,
+} from '@ionic/react';
+
+import {
+  IonCardFormLogin, IonContentLogin, IonGridLogin, IonRowCardLine, IonSubTitleLogin, IonTitleLogin,
+} from '..';
+
 import { SkeletonButton, SkeletonInput, SkeletonLogo } from './styles';
 
-function PageLoginSkeleton() {
+const PageLoginSkeleton = function () {
   return (
     <IonContentLogin fullscreen>
 
-    <IonGridLogin>
-      <IonRowCardLine>
+      <IonGridLogin>
+        <IonRowCardLine>
 
-        <IonCol sizeMd="4.5" size="12">
-          <IonCardFormLogin>
-            <IonCardHeader>
-              <IonRow style={{ justifyContent: "center" }}>
-                <IonCol size="6">
-                  <SkeletonLogo animated />
-                </IonCol>
-              </IonRow>
-            </IonCardHeader>
+          <IonCol sizeMd="4.5" size="12">
+            <IonCardFormLogin>
+              <IonCardHeader>
+                <IonRow style={{ justifyContent: 'center' }}>
+                  <IonCol size="6">
+                    <SkeletonLogo animated />
+                  </IonCol>
+                </IonRow>
+              </IonCardHeader>
 
-            <IonCardContent>
+              <IonCardContent>
 
-              <IonTitleLogin>
+                <IonTitleLogin>
+                  <IonSkeletonText animated style={{ width: '10%' }} />
+                </IonTitleLogin>
+
+                <IonSubTitleLogin>
+                  <IonSkeletonText animated style={{ width: '15%' }} />
+                </IonSubTitleLogin>
+
+                <SkeletonButton animated />
+
+                <IonRow style={{ marginBottom: '10px ' }}>
+                  <IonCol>
+                    <IonSkeletonText animated style={{ height: '0.5vh' }} />
+                  </IonCol>
+                </IonRow>
+
                 <IonSkeletonText animated style={{ width: '10%' }} />
-              </IonTitleLogin>
 
-              <IonSubTitleLogin>
-                <IonSkeletonText animated style={{ width: '15%' }} />
-              </IonSubTitleLogin>
+                <SkeletonInput animated />
 
-              <SkeletonButton animated />
+                <IonSkeletonText animated style={{ width: '10%' }} />
 
-              <IonRow style={{ marginBottom: "10px " }}>
-                <IonCol>
-                  <IonSkeletonText animated style={{ height: "0.5vh" }} />
-                </IonCol>
-              </IonRow>
+                <SkeletonInput animated />
 
-              <IonSkeletonText animated style={{ width: '10%' }} />
+                <IonSkeletonText animated style={{ width: '25%' }} />
 
-              <SkeletonInput animated />
+                <IonRow style={{ justifyContent: 'center' }}>
+                  <IonCol size="11">
+                    <SkeletonButton animated />
+                    <IonSkeletonText animated style={{ width: '60%' }} />
+                  </IonCol>
+                </IonRow>
 
-              <IonSkeletonText animated style={{ width: '10%' }} />
-
-              <SkeletonInput animated />
-
-              <IonSkeletonText animated style={{ width: '25%' }} />
-
-              <IonRow style={{ justifyContent: "center" }}>
-                <IonCol size="11">
-                  <SkeletonButton animated />
-                  <IonSkeletonText animated style={{ width: '60%' }} />
-                </IonCol>
-              </IonRow>
-
-            </IonCardContent>
-          </IonCardFormLogin>
-        </IonCol>
-      </IonRowCardLine>
-    </IonGridLogin>
+              </IonCardContent>
+            </IonCardFormLogin>
+          </IonCol>
+        </IonRowCardLine>
+      </IonGridLogin>
     </IonContentLogin>
   );
 };

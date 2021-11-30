@@ -1,9 +1,9 @@
-import { EnvironmentType } from "../enums";
+import type { EnvironmentType } from '../enums';
 
 export interface Settings {
-    environment: EnvironmentType;
-    chatAppId: string;
-    webChatUrl: string;
-    version: string;
-    pliqSurveyUrl: string;
+  environment: EnvironmentType;
+  chatAppId: string;
+  webChatUrl: string;
+  version: string;
+  pliqSurveyUrl: string;
 }

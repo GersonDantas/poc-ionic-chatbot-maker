@@ -1,10 +1,8 @@
-import styled from "styled-components";
 import {
-  IonAvatar,
-  IonItem,
-  IonLabel,
-  IonList,
-} from "@ionic/react";
+  IonAvatar, IonItem, IonLabel, IonList,
+} from '@ionic/react';
+import styled from 'styled-components';
+
 export const DivMenuSuspended = styled.div`
   position: relative;
   width: 100%;

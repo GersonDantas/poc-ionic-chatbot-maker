@@ -1,25 +1,24 @@
 import { IonCol } from '@ionic/react';
-import { Dispatch, ReactNode, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { IonCheckBox } from 'src/pages/LoginPage/componentsLogin';
 
-
 import { IonColTerms, IonRowTerms, MyIonTextTerms } from './styles';
-
 
 interface SuriTermsProps {
   showError: boolean;
   setShowError: Dispatch<SetStateAction<boolean>>
 }
 
-const SuriTerms: React.FC<SuriTermsProps> = ({ showError, setShowError }) => {
+const SuriTerms: React.FC<SuriTermsProps> = function ({ showError, setShowError }) {
   return (
     <IonRowTerms>
-      <IonColTerms sizeLg="0.6" size="1">
+      <IonColTerms sizeLg="0.8" size="1">
         <IonCheckBox id="checkboxMyTerms" onIonChange={() => setShowError(false)} />
       </IonColTerms>
-      <IonCol sizeLg="11.4" size="11">
+      <IonCol sizeLg="11.2" size="11">
         <MyIonTextTerms>
-          Aceito os{' '}
+          Aceito os
+          {' '}
           <a
             href="https://drive.google.com/file/d/1F9oyvCEV0MjXNZD2X7DSXqqVElEICPEV/view"
             target="_blank"
@@ -31,11 +30,12 @@ const SuriTerms: React.FC<SuriTermsProps> = ({ showError, setShowError }) => {
           novidades da plataforma pelo Whatsapp.
         </MyIonTextTerms>
       </IonCol>
-      {showError &&
-        <IonCol size="12" >
+      {showError
+        && (
+        <IonCol size="12">
           <span className="span-error">Este campo é requerido.</span>
         </IonCol>
-      }
+        )}
     </IonRowTerms>
   );
 };
