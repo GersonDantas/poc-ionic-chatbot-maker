@@ -180,9 +180,8 @@ ion-item:focus {
   --color: white;
   --detail-icon-color: white;
   --border-radius: var(--border-card-radius);
-  border: 1px solid var(--ion-color-warning-contrast);
-  outline: max(1px, 0.1em) solid currentColor;
-  outline-offset: 0.25em;
+  border-radius: var(--border-card-radius);
+  border: 1px solid var(--border-focus-color);
 }
 
 ion-item.suspended-menu-user-click:focus {

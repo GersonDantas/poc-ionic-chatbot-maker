@@ -1,14 +1,9 @@
-import styled from "styled-components";
-import { IonToggle } from "@ionic/react";
+import { IonToggle } from '@ionic/react';
+import styled from 'styled-components';
 
 export const IonToggleStyled = styled(IonToggle)`
   margin-right: 15px;
-  --handle-background: radial-gradient(
-    circle farthest-corner at 74% 40%,
-    #173c66 42%,
-    #fef89f 59.2%,
-    #fff 10%
-  );
+  --handle-background: radial-gradient(circle farthest-corner at 74% 40%, #173c66 42%, #fef89f 59.2%, #fff 10%);
   --handle-background-checked: radial-gradient(
     circle,
     rgba(254, 248, 159, 1) 70%,

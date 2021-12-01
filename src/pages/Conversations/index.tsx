@@ -1,28 +1,29 @@
-import { IonGridConversations } from './styles';
-import { IonToolbar, IonSearchbar, IonList, IonItem, IonFab, IonFabButton, IonIcon, IonFabList } from "@ionic/react";
-import { IonHeaderContainer } from "../../components/IonHeaderContainer";
+import {
+  IonToolbar, IonSearchbar, IonList, IonItem, IonFab, IonFabButton, IonIcon, IonFabList,
+} from '@ionic/react';
 import { add, download, chatbubbleEllipses } from 'ionicons/icons';
-import "./style.css";
 
-function Conversations() {
+import { IonGridConversations } from './styles';
+import './style.css';
+
+const Conversations = function () {
   return (
     <>
       {/* <IonHeaderContainer name="Conversas" /> */}
 
       <IonFab vertical="bottom" horizontal="end" edge slot="fixed" className="button-mais-conversas">
-          <IonFabButton>
-            <IonIcon icon={add} />
-          </IonFabButton>
-          <IonFabList side="top">
-            <IonFabButton color="tertiary"><IonIcon icon={download} /></IonFabButton>
-            <IonFabButton className="button-new-mens"><IonIcon icon={chatbubbleEllipses} /></IonFabButton>
-          </IonFabList>
-        </IonFab>
-
+        <IonFabButton>
+          <IonIcon icon={add} />
+        </IonFabButton>
+        <IonFabList side="top">
+          <IonFabButton color="tertiary"><IonIcon icon={download} /></IonFabButton>
+          <IonFabButton className="button-new-mens"><IonIcon icon={chatbubbleEllipses} /></IonFabButton>
+        </IonFabList>
+      </IonFab>
 
       <IonGridConversations>
         <IonToolbar>
-          <IonSearchbar style={{ maxWidth: 400 }}></IonSearchbar>
+          <IonSearchbar style={{ maxWidth: 400 }} />
         </IonToolbar>
 
         <IonList>

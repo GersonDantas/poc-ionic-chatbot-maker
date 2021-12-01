@@ -1,11 +1,15 @@
-import React, { SetStateAction, Dispatch } from "react";
-import { User } from "../dto";
+import React, { SetStateAction, Dispatch } from 'react';
+import { ChatbotItem, Session } from 'src/types';
 
 interface GlobalContextState {
   isDark: boolean;
   setIsDark: Dispatch<SetStateAction<boolean>>;
-  userConnected: User | undefined;
-  setUserConnected: Dispatch<SetStateAction<User | undefined>>
+  userSession: Session | undefined;
+  setUserSession: Dispatch<SetStateAction<Session | undefined>>
+  chatbotConnected: ChatbotItem | undefined;
+  setChatbotConnected: Dispatch<SetStateAction<ChatbotItem | undefined>>
+  isLoginPage: boolean
+  setIsLoginPage: Dispatch<SetStateAction<boolean>>;
 }
 
 export const GlobalContext = React.createContext({} as GlobalContextState);
@@ -14,17 +18,29 @@ type GlobalContextProviderProps = {
   children: React.ReactNode;
 };
 
-export function GlobalContextProvider({
+export var GlobalContextProvider = function ({
   children,
 }: GlobalContextProviderProps) {
   const [isDark, setIsDark] = React.useState<boolean>(false);
-  const [userConnected, setUserConnected] = React.useState<User | undefined>()
+  const [userSession, setUserSession] = React.useState<Session | undefined>();
+  const [chatbotConnected, setChatbotConnected] = React.useState<ChatbotItem | undefined>();
+  const [isLoginPage, setIsLoginPage] = React.useState(true);
 
   return (
-    <GlobalContext.Provider value={{ isDark, setIsDark, userConnected, setUserConnected }}>
+    <GlobalContext.Provider value={{
+      isDark,
+      setIsDark,
+      userSession,
+      setUserSession,
+      isLoginPage,
+      setIsLoginPage,
+      chatbotConnected,
+      setChatbotConnected,
+    }}
+    >
       {children}
     </GlobalContext.Provider>
   );
-}
+};
 
 export const useGlobalContextData = () => React.useContext(GlobalContext);

@@ -1,4 +1,7 @@
-import { IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton } from "@ionic/react";
+/* eslint-disable react/require-default-props */
+import {
+  IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton,
+} from '@ionic/react';
 import { ReactNode } from 'react';
 
 interface SelectAdaptiveDatePickerProps {
@@ -6,23 +9,25 @@ interface SelectAdaptiveDatePickerProps {
     children?: ReactNode | undefined;
 }
 
-function IonHeaderContainer(props: SelectAdaptiveDatePickerProps) {
-    return (
-        <IonHeader>
-            <IonToolbar style={{ display: 'flex' }}>
+const IonHeaderContainer = function (props: SelectAdaptiveDatePickerProps) {
+  const { name, children } = props;
 
-                {props.children ? props.children :
-                    <>
-                        <IonTitle color="primary" style={{ textTransform: "capitalize" }}>{props.name}</IonTitle>
+  return (
+    <IonHeader>
+      <IonToolbar style={{ display: 'flex' }}>
 
-                        <IonButtons slot="start">
-                            <IonMenuButton />
-                        </IonButtons>
-                    </>
-                }
-            </IonToolbar>
-        </IonHeader>
-    )
-}
+        {children || (
+        <>
+          <IonTitle color="primary" style={{ textTransform: 'capitalize' }}>{name}</IonTitle>
+
+          <IonButtons slot="start">
+            <IonMenuButton />
+          </IonButtons>
+        </>
+        )}
+      </IonToolbar>
+    </IonHeader>
+  );
+};
 
 export { IonHeaderContainer };

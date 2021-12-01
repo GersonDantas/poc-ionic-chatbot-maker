@@ -1,2 +1,3 @@
-export { getStorageKey, setStorageByKey } from "./useLocalStorageCapacitor";
-export { gobackHistory, pushHistory, replaceHistory } from "./history";
+export { getStorageKey, setStorageByKey } from './useLocalStorageCapacitor';
+export { goBackHistory, pushHistory, replaceHistory } from './history';
+export { useForm } from './useForm';

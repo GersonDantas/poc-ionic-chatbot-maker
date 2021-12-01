@@ -1,31 +1,43 @@
-import { ReactNode } from "react";
-import { RouteComponentProps } from "react-router";
-
+import React, { ReactNode } from 'react';
 import {
   IonButtons,
   IonContent,
   IonHeader,
+  useIonViewWillEnter,
   IonMenuButton,
   IonPage,
   IonTitle,
   IonToolbar,
-  useIonViewWillEnter,
-} from "@ionic/react";
+} from '@ionic/react';
+import { RouteComponentProps } from 'react-router';
+import { MyIonToggleTheme } from 'src/components';
+import { useGlobalContextData } from 'src/store';
+import { getStorageKey } from 'src/hooks';
+import { returnTheFirstName } from 'src/utils';
+import { ChatbotItem, Session } from 'src/types';
 
-import { MyIonToggleTheme } from "src/components";
+import { Panel, Conversations } from '..';
 
-import { Panel, Conversations } from "..";
-import { useGlobalContextData } from "src/store";
-import { getStorageKey } from "src/hooks";
+const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = function ({ match }) {
+  const {
+    setUserSession,
+    userSession,
+    setIsLoginPage,
+    setChatbotConnected,
+    chatbotConnected,
+  } = useGlobalContextData();
 
-const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match }) => {
-
-  const { userConnected, setUserConnected } = useGlobalContextData()
+  const [chatbotName, setChatbotName] = React.useState<ChatbotItem | undefined>()
 
   useIonViewWillEnter(async () => {
-    let user = await getStorageKey("LoggedInUserInStorage");
-    setUserConnected(user);
-  })
+    const session: Session = await getStorageKey('SessionUserInLocalStorage');
+    const chatbotItem: ChatbotItem = await getStorageKey('ChatbotSelectedInLocalStorage');
+
+    setIsLoginPage(false);
+    setUserSession(session);
+    setChatbotConnected(chatbotItem ?? userSession?.platformUser.chatbots[0])
+  });
+
 
   return (
     <IonPage>
@@ -37,8 +49,9 @@ const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match })
 
           <MyIonToggleTheme />
 
-          <IonTitle style={{ textTransform: "capitalize" }} color="primary" >
-            {`${userConnected?.name ?? ""}/${match.params.name}`}
+          <IonTitle style={{ textTransform: 'capitalize' }} color="primary">
+            {`${chatbotConnected?.name ?? userSession?.platformUser.chatbots[0].name ?? "Sem chatbot"}
+            /${match.params.name}`}
           </IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -58,9 +71,9 @@ const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = ({ match })
 
 function selectPageContent(name: string): ReactNode {
   switch (name) {
-    case "painel":
+    case 'painel':
       return <Panel />;
-    case "conversas":
+    case 'conversas':
       return <Conversations />;
     default:
       return <Panel />;

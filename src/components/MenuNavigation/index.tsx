@@ -1,40 +1,37 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React from "react";
-import { useLocation } from "react-router-dom";
-import {  faThLarge } from "@fortawesome/free-solid-svg-icons"
+import { faThLarge } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   IonContent,
   IonList,
   IonListHeader,
   IonMenu,
-} from "@ionic/react";
+} from '@ionic/react';
 
-import {
-  settingsMenuList,
-  skillsMenu,
-  managementMenu
-} from "./navigationRoutesObjects"
-
-import { SuriLogo } from "..";
 import {
   DropDownItem,
   FooterList,
   MiddleItems,
-  UsersDropDownList
-} from "./componentsMenu";
+  UsersDropDownList,
+} from './componentsMenu';
+import {
+  settingsMenuList,
+  skillsMenu,
+  managementMenu,
+} from './navigationRoutesObjects';
 
-import "./styles.css";
+import { SuriLogo } from '..';
 
-const MenuNavigation: React.FC = () => {
+import './styles.css';
 
+const MenuNavigation: React.FC = function () {
   const location = useLocation();
-
 
   return (
     <IonMenu contentId="main" type="overlay" className="left-bar">
-      <IonContent >
+      <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader style={{ marginBottom: "30px" }}>
+          <IonListHeader style={{ marginBottom: '30px' }}>
             <SuriLogo className="logo" columnSize="12" />
           </IonListHeader>
 
@@ -64,7 +61,6 @@ const MenuNavigation: React.FC = () => {
             location={location}
             iconMoon="options"
           />
-
 
         </IonList>
       </IonContent>

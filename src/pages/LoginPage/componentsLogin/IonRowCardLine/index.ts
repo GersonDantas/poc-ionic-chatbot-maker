@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { IonRow } from "@ionic/react";
+import { IonRow } from '@ionic/react';
+import styled from 'styled-components';
 
 export const IonRowCardLine = styled(IonRow)`
   justify-content: center;

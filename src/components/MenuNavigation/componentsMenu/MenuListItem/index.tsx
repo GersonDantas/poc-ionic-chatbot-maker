@@ -1,7 +1,8 @@
-import { ReactNode } from 'react';
-import { IonItem, IonLabel } from '@ionic/react';
-import {IonItemProps} from "src/types"
+/* eslint-disable react/require-default-props */
+import { IonItem } from '@ionic/react';
 import * as History from 'history';
+import { ReactNode } from 'react';
+import { IonItemProps } from 'src/types';
 
 type MenuListItemProps = {
   key?: string | undefined;
@@ -12,26 +13,30 @@ type MenuListItemProps = {
   noUppercase?: boolean;
 } & IonItemProps
 
-function MenuListItem(props: MenuListItemProps) {
+const MenuListItem = function (props: MenuListItemProps) {
+  const {
+    children, location, url, noUppercase, title,
+  } = props;
+
   return (
     <IonItem
       className={
-        props.location?.pathname === props.url ? "selected" : ""
+        location?.pathname === url ? 'selected' : ''
       }
-      routerLink={props.url}
+      routerLink={url}
       routerDirection="none"
       lines="none"
       detail={false}
       {...props}
     >
-      {props.children}
-      <span  
-        className={`${props.noUppercase ? "noUppercase" : ""} label-item`}
+      {children}
+      <span
+        className={`${noUppercase ? 'noUppercase' : ''} label-item`}
       >
-          {props.title}
+        {title}
       </span>
     </IonItem>
   );
-}
+};
 
-export {MenuListItem};
+export { MenuListItem };

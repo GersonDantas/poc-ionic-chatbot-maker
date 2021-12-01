@@ -1,6 +1,7 @@
-import styled from "styled-components";
-import { IonDatetime } from "@ionic/react";
-import { MyIonInputStyled } from "../MyIonComonsStyleds";
+import { IonDatetime } from '@ionic/react';
+import styled from 'styled-components';
+
+import { MyIonInputStyled } from '../MyIonComonsStyleds';
 
 export const IonInputWeb = styled(MyIonInputStyled)`
   position: relative;

@@ -1,12 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
-
-
-import Nprogerss from "nprogress";
-
+import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   IonCardContent,
   IonCardHeader,
@@ -15,7 +8,19 @@ import {
   IonRippleEffect,
   IonRow,
   useIonViewWillEnter,
-} from "@ionic/react";
+} from '@ionic/react';
+import Nprogerss from 'nprogress';
+import React from 'react';
+import {
+  SuriLogo,
+  InputAndLabelComponent,
+} from 'src/components';
+import {
+  getStorageKey, replaceHistory, setStorageByKey, useForm,
+} from 'src/hooks';
+import { api } from 'src/services';
+import { Session } from 'src/types';
+import { initialStateUser, validateForm, maskToPhoneNumber } from 'src/utils';
 
 import {
   IonCardForgotPassword,
@@ -33,264 +38,308 @@ import {
   IonContentLogin,
   PageLoginSkeleton,
   SuriTerms,
-} from "./componentsLogin";
+  AlertInvalidCrud,
+} from './componentsLogin';
 
-import {
-  SuriLogo,
-  InputAndLabelComponent,
-} from "src/components";
-import { users } from "src/store/mocUsers";
-import { User } from "src/store/dto";
-import { getStorageKey, pushHistory, setStorageByKey } from "src/hooks";
-import {valueInput} from "src/utils";
-
-
-function LoginPage() {
-
+const LoginPage = function () {
   const [isLoading, setIsloading] = React.useState(true);
-  const [stateUser, setStateUser] = React.useState({
-    name: '',
-    email: '',
-    password: '',
-    phoneNumber: '',
-  });
   const [isSigningForm, setIsSigningForm] = React.useState(true);
   const [forgotPassword, setForgotPassword] = React.useState(false);
+  const [showErrorTerms, setShowErrorTerms] = React.useState(false);
+  const [showLoginError, setShowLoginError] = React.useState(false);
 
   useIonViewWillEnter(async () => {
     try {
       Nprogerss.start();
-      let user = await getStorageKey("LoggedInUserInStorage")
+
+      const user = await getStorageKey('SessionUserInLocalStorage');
+
       Nprogerss.inc(0.5);
-      setTimeout(() => {
-        if (user !== undefined) {
-          window.location.replace("/page/painel");
-        } else {
-          setIsloading(false);
-          Nprogerss.done();
-        }
-      }, 1000)
+      if (user !== undefined) {
+        window.location.replace('/page/painel');
+      } else {
+        setIsloading(false);
+        Nprogerss.done();
+      }
     } catch (error: any) {
       setIsloading(false);
       console.log(error.message);
     }
-  })
+  });
 
-  const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
-    Nprogerss.start();
+  const form = useForm({
+    initialValues: initialStateUser,
+    validate: validateForm,
+  });
 
+  const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    
-
-    if (isSigningForm) {
-      signingIn()
-    } else {
-      signingUp()
-    }
-  }
-
-  const signingIn = async () => {
-    Nprogerss.inc(0.5);
+    Nprogerss.start();
     setIsloading(true);
 
-    if (users.find(existingEmail)) {
-      let inputUser = users.find(existingEmail);
-      if (stateUser.password === inputUser?.password) {
+    if (!formIsValid()) return;
 
-        await setStorageByKey("LoggedInUserInStorage", inputUser);
-
-        pushHistory("/page/panel");
-
-        setIsloading(false);
-        Nprogerss.done();
-      } else {
-        console.log("senha incorreta");
-
-        setIsloading(false);
-        Nprogerss.done();
-      }
+    if (isSigningForm) {
+      signingIn();
     } else {
-      console.log("email não encontrado")
-      Nprogerss.done();
-      setIsloading(false);
+      signingUp();
     }
+  };
+
+  const formIsValid = (): boolean => {
+    const checkboxTermsIsChekced = document.getElementById('checkboxMyTerms')?.ariaChecked === 'true';
+    const errors = Object.values(form.errors);
+
+    if (isSigningForm) {
+      if (errors[1] !== '' || errors[2] !== '') {
+        Nprogerss.done();
+        setIsloading(false);
+        return false;
+      }
+      return true;
+    }
+
+    const isError = !errors.every((error) => error === '');
+
+    if (!checkboxTermsIsChekced) {
+      setShowErrorTerms(true);
+      setIsloading(false);
+      Nprogerss.done();
+
+      return false;
+    } if (isError) {
+      Nprogerss.done();
+
+      return false;
+    }
+    return true;
+  };
+
+  const signingIn = () => {
+    Nprogerss.inc(0.5);
+
+    api.post('/api/v1/session', {
+      email: form.values.email,
+      password: form.values.password,
+    }).then((res) => {
+      connectPanel(res.data)
+    })
+      .catch((e) => {
+        if (e.message === 'Request failed with status code 400') {
+          Nprogerss.done();
+          setIsloading(false);
+          setShowLoginError(true);
+          setTimeout(() => setShowLoginError(false), 5000);
+        }
+      });
+  };
+
+  const signingUp = () => {
+    Nprogerss.inc(0.5);
+
+    api.post("/api/v1/session/register", {
+      name: form.values.name,
+      email: form.values.email,
+      whatsApp: form.values.whatsapp,
+      password: form.values.password,
+    })
+      .then(res => connectPanel(res.data))
+      .catch(err => {
+        console.log(err.message);
+        Nprogerss.done();
+        setIsloading(false);
+        setShowLoginError(true);
+        setTimeout(() => setShowLoginError(false), 5000);
+      });
+  };
+
+  const connectPanel = (data: Session): void => {
+    // Nprogerss.done();
+    // setIsloading(false);
+    setStorageByKey<Session>('SessionUserInLocalStorage', data);
+    replaceHistory('/page/panel');
   }
 
-  const signingUp = () => { }
-
-  const existingEmail = (user: User) => user.email === stateUser.email
-
   return (
-    <IonPage >
+    <IonPage>
       {isLoading
         ? <PageLoginSkeleton />
-        : <IonContentLogin fullscreen>
+        : (
+          <IonContentLogin fullscreen>
 
-          <IonModalForgot
-            isOpen={forgotPassword}
-            onDidDismiss={() => setForgotPassword(false)}
-          >
-            <IonCardForgotPassword setTheModal={setForgotPassword} />
-          </IonModalForgot>
+            <IonModalForgot
+              isOpen={forgotPassword}
+              onDidDismiss={() => setForgotPassword(false)}
+            >
+              <IonCardForgotPassword setTheModal={setForgotPassword} />
+            </IonModalForgot>
 
-          <IonGridLogin>
-            <IonRowCardLine>
+            <IonGridLogin>
+              <IonRowCardLine>
 
-              <IonCol sizeMd="4.5" size="12">
-                <IonCardFormLogin>
-                  <IonCardHeader>
-                    <SuriLogo columnSize="6" />
-                  </IonCardHeader>
+                <IonCol sizeMd="5" size="12">
+                  <IonCardFormLogin>
+                    <IonCardHeader>
+                      <SuriLogo columnSize="6" />
+                    </IonCardHeader>
 
-                  <IonCardContent>
+                    <IonCardContent>
 
-                    <IonTitleLogin>
-                      {isSigningForm ? "Entre" : "Cadastre-se"}
-                    </IonTitleLogin>
+                      <IonTitleLogin>
+                        {isSigningForm ? 'Entre' : 'Cadastre-se'}
+                      </IonTitleLogin>
 
-                    <IonSubTitleLogin>
-                      {isSigningForm
-                        ? "E encante seus clientes"
-                        : "Só vai levar alguns segundos"}
-                    </IonSubTitleLogin>
+                      <IonSubTitleLogin>
+                        {isSigningForm
+                          ? 'E encante seus clientes'
+                          : 'Só vai levar alguns segundos'}
+                      </IonSubTitleLogin>
 
-                    <FacebookButton
-                      expand="block"
-                      fill="outline"
-                      shape="round"
-                      size="large"
-                      strong
-                    >
-                      <FontAwesomeIcon icon={faFacebookF} size="sm" pull="left" />
-                      {isSigningForm ? "ENTRE" : "CADASTRE-SE"} COM O FACEBOOK
-                      <IonRippleEffect />
-                    </FacebookButton>
+                      <FacebookButton
+                        expand="block"
+                        fill="outline"
+                        shape="round"
+                        size="large"
+                        strong
+                      >
+                        <FontAwesomeIcon icon={faFacebookF} size="sm" pull="left" />
+                        {isSigningForm ? 'ENTRE' : 'CADASTRE-SE'}
+                        {' '}
+                        COM O FACEBOOK
+                        <IonRippleEffect />
+                      </FacebookButton>
 
-                    <HtmlHr
-                      data-after={`ou ${isSigningForm ? "entre" : "cadastre-se"
-                        } com seu email`}
-                    />
+                      <HtmlHr
+                        data-after={`ou ${isSigningForm ? 'entre' : 'cadastre-se'
+                          } com seu email`}
+                      />
 
-                    <form onSubmit={(e) => handleSignIn(e)}>
-                      {!isSigningForm && (
+                      <form onSubmit={(e) => handleSignIn(e)}>
+                        {!isSigningForm && (
+                          <InputAndLabelComponent
+                            label="Nome"
+                            touched={form.touched.name}
+                            spanError={form.errors.name}
+                            value={form.values.name}
+                            type="text"
+                            name="name"
+                            autocomplete="name"
+                            placeholder="Digite sua nome..."
+                            onIonBlur={form.handleBlur}
+                            onIonChange={form.handleChange}
+                          />
+                        )}
+
                         <InputAndLabelComponent
-                          label="Nome"
-                          value={stateUser.name}
+                          label="Email"
+                          touched={form.touched.email}
+                          spanError={form.errors.email}
+                          value={form.values.email}
                           type="text"
-                          autocomplete="name"
-                          placeholder="Digite sua nome..."
-                          onIonChange={(e) => valueInput({
-                            name: "name",
-                            event: e,
-                            state: stateUser,
-                            setState: setStateUser,
-                          })}
+                          name="email"
+                          placeholder="Digite sua email..."
+                          autocomplete="email"
+                          onIonBlur={form.handleBlur}
+                          onIonChange={form.handleChange}
                         />
-                      )}
 
-                      <InputAndLabelComponent
-                        label="Email"
-                        value={stateUser.email}
-                        type="email"
-                        name="email"
-                        placeholder="Digite sua email..."
-                        onIonChange={(e) => valueInput({
-                          name: "email",
-                          event: e,
-                          state: stateUser,
-                          setState: setStateUser,
-                        })}
-                      />
-
-                      <InputAndLabelComponent
-                        label="Senha"
-                        value={stateUser.password}
-                        type="password"
-                        name="password"
-                        placeholder="Digite sua senha..."
-                        autocomplete="current-password"
-                        onIonChange={(e) => valueInput({
-                          name: "password",
-                          event: e,
-                          state: stateUser,
-                          setState: setStateUser,
-                        })}
-                      />
-
-                      {!isSigningForm && (
                         <InputAndLabelComponent
-                          label="Whatsapp"
-                          value={stateUser.phoneNumber}
-                          name="phoneNumber"
-                          placeholder="(__) ____-____"
-                          autocomplete="tel"
-                          onIonChange={(e) => valueInput({
-                            name: "phoneNumber",
-                            event: e,
-                            state: stateUser,
-                            setState: setStateUser,
-                          })}
+                          label="Senha"
+                          touched={form.touched.password}
+                          spanError={form.errors.password}
+                          value={form.values.password}
+                          type="password"
+                          name="password"
+                          placeholder="Digite sua senha..."
+                          autocomplete="current-password"
+                          onIonBlur={form.handleBlur}
+                          onIonChange={form.handleChange}
                         />
-                      )}
 
-                      {isSigningForm ? (
-                        <ForgotYourPasswordButton
-                          fill="clear"
-                          color="primary"
-                          size="small"
-                          type="reset"
-                          onClick={() => setForgotPassword(true)}
-                        >
-                          Esqueceu sua senha?
-                        </ForgotYourPasswordButton>
-                      ) : (
-                        <SuriTerms />
-                      )}
+                        {!isSigningForm && (
+                          <InputAndLabelComponent
+                            label="Whatsapp"
+                            touched={form.touched.whatsApp}
+                            spanError={form.errors.whatsApp}
+                            value={form.values.whatsApp}
+                            name="whatsApp"
+                            maxlength={15}
+                            placeholder="(__) ____-____"
+                            autocomplete="tel"
+                            onIonBlur={form.handleBlur}
+                            onIonChange={
+                              (e: any) => form.handleChange(e, maskToPhoneNumber(e?.target.value))
+                            }
+                          />
+                        )}
 
-                      <IonRow style={{ justifyContent: "center" }} >
-                        <IonCol size="11.5">
-
-                          <MyIonSigningSigningupButton
-                            expand="full"
-                            fill="solid"
-                            shape="round"
-                            size="default"
-                            type="submit"
-                            strong
+                        {isSigningForm ? (
+                          <ForgotYourPasswordButton
+                            fill="clear"
+                            color="primary"
+                            size="small"
+                            type="reset"
+                            onClick={() => setForgotPassword(true)}
                           >
-                            {isSigningForm ? "FAZER LOGIN" : "CADASTRE-SE"}
-                            <IonRippleEffect />
-                          </MyIonSigningSigningupButton>
+                            Esqueceu sua senha?
+                          </ForgotYourPasswordButton>
+                        ) : (
+                          <SuriTerms
+                            showError={showErrorTerms}
+                            setShowError={setShowErrorTerms}
+                          />
+                        )}
 
-                          <MyIonToggleSigningSigniup >
+                        <IonRow style={{ justifyContent: 'center' }}>
+                          <IonCol size="11.5">
 
-                            {isSigningForm
-                              ? "Não é cadastrado ainda? "
-                              : "Já possui cadastro? "}
-
-                            <a
-                              onClick={() => setIsSigningForm(!isSigningForm)}
-                              className="toggle-signin"
+                            <MyIonSigningSigningupButton
+                              expand="full"
+                              fill="solid"
+                              shape="round"
+                              size="default"
+                              type="submit"
+                              strong
                             >
+                              {isSigningForm ? 'FAZER LOGIN' : 'CADASTRE-SE'}
+                              <IonRippleEffect />
+                            </MyIonSigningSigningupButton>
+
+                            <MyIonToggleSigningSigniup>
+
                               {isSigningForm
-                                ? "Crie sua conta"
-                                : "Entre em sua conta"}
-                            </a>
+                                ? 'Não é cadastrado ainda? '
+                                : 'Já possui cadastro? '}
 
-                          </MyIonToggleSigningSigniup>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  form.clearErrors();
+                                  setIsSigningForm(!isSigningForm);
+                                }}
+                                className="toggle-signin"
+                              >
+                                {isSigningForm
+                                  ? 'Crie sua conta'
+                                  : 'Entre em sua conta'}
+                              </button>
 
-                        </IonCol>
-                      </IonRow>
-                    </form>
-                  </IonCardContent>
-                </IonCardFormLogin>
-              </IonCol>
-            </IonRowCardLine>
-          </IonGridLogin>
-        </IonContentLogin>}
+                            </MyIonToggleSigningSigniup>
+
+                          </IonCol>
+                        </IonRow>
+                        {showLoginError && <AlertInvalidCrud />}
+                      </form>
+                    </IonCardContent>
+                  </IonCardFormLogin>
+                </IonCol>
+              </IonRowCardLine>
+            </IonGridLogin>
+          </IonContentLogin>
+        )}
     </IonPage>
   );
-}
+};
 
 export { LoginPage };

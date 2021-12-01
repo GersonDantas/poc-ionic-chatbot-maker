@@ -7,9 +7,10 @@ import {
   IonCol,
   IonModal,
   IonRow,
-} from "@ionic/react";
-import styled from "styled-components";
-import { IonAvatarStyled } from "..";
+} from '@ionic/react';
+import styled from 'styled-components';
+
+import { IonAvatarStyled } from '..';
 
 export const ListFooter = styled.div`
   padding: 0 8px 0 15px;
@@ -67,10 +68,12 @@ export const CardModalUserDetailContent = styled(IonCardContent)`
 `;
 export const RowInputs = styled(IonRow)`
   padding: 5px 10px 5px 10px;
+  background: var(--ion-background-color);
   .input-user-detail {
-    background: var(--ion-background-color);
     font-size: 16px;
+    font-weight: 400;
     color: var(--ion-text-color);
+    background: var(--ion-card-background);
   }
   .input-user-detail:focus {
     background: var(--ion-card-background);
@@ -91,7 +94,7 @@ export const RowFooter = styled(IonRow)`
   padding: 5px 5px 10px 5px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-areas: "getOut" "space" "cancel" "save";
+  grid-template-areas: 'getOut' 'space' 'cancel' 'save';
   @media (max-width: 540px) {
     grid-template-columns: 1fr;
 

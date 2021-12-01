@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { IonButton } from "@ionic/react";
+import { IonButton } from '@ionic/react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 import {
   MyIonCardTitleForgot,
@@ -10,15 +10,15 @@ import {
   IonModalForgot,
   IonRowButtons,
   IonColButtons,
-} from "./styles";
+} from './styles';
 
 type IonCardForgotPasswordProps = {
   setTheModal: Dispatch<SetStateAction<boolean>>;
 };
 
-const IonCardForgotPassword: React.FC<IonCardForgotPasswordProps> = ({
+const IonCardForgotPassword: React.FC<IonCardForgotPasswordProps> = function ({
   setTheModal,
-}) => {
+}) {
   return (
     <IonRowModalForgot>
       <IonColModalForgot>
@@ -35,7 +35,7 @@ const IonCardForgotPassword: React.FC<IonCardForgotPasswordProps> = ({
           placeholder="Digite sua email..."
         />
 
-        <IonRowButtons >
+        <IonRowButtons>
 
           <IonColButtons sizeSm="3.5" size="12">
             <IonButton

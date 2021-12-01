@@ -1,0 +1,14 @@
+.common-icon-button-styled {
+    margin: -5px 0 -5px 0;
+    height: fit-content;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    --padding-start: 10px;
+    --padding-end: 10px;
+}
+
+@media screen and (max-width: 334px) {
+    .common-icon-button-styled {
+        margin: 5px;
+    }
+}

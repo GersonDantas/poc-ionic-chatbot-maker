@@ -1,9 +1,11 @@
-import Table from "@material-ui/core/Table"
-import TableContainer from '@material-ui/core/TableContainer';
+import { IonCol } from '@ionic/react';
+import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
+import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { IonCol } from "@ionic/react"
+import { v4 as uuidv4 } from 'uuid';
+
 import { StyledTableCell, StyledTableRow } from './styles';
 
 interface TablesPanelProps {
@@ -11,27 +13,25 @@ interface TablesPanelProps {
   rows: Array<any>;
 }
 
-
-function TablesPanel(props: TablesPanelProps) {
+const TablesPanel = function (props: TablesPanelProps) {
+  const { headers, rows } = props;
   return (
     <TableContainer component={IonCol}>
       <Table sx={{ minWidth: 700 }} aria-label="attendance table">
 
         <TableHead>
           <TableRow>
-            {props.headers.map((title: string) =>
-              <StyledTableCell>{title}</StyledTableCell>
-            )}
+            {headers.map((title: string) => <StyledTableCell key={`${uuidv4()}`}>{title}</StyledTableCell>)}
           </TableRow>
         </TableHead>
 
         <TableBody>
-          {props.rows.map((row) => (
-            <StyledTableRow key={row.name}>
+          {rows.map((row) => (
+            <StyledTableRow key={`${uuidv4()}`}>
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
-              <StyledTableCell >{row.waiting}</StyledTableCell>
+              <StyledTableCell>{row.waiting}</StyledTableCell>
               <StyledTableCell align="center">{row.inAttendance}</StyledTableCell>
               <StyledTableCell align="center">{row.finalized}</StyledTableCell>
               <StyledTableCell align="center">{row.waitingTime}</StyledTableCell>
@@ -39,7 +39,7 @@ function TablesPanel(props: TablesPanelProps) {
             </StyledTableRow>
           ))}
         </TableBody>
-        
+
       </Table>
     </TableContainer>
   );

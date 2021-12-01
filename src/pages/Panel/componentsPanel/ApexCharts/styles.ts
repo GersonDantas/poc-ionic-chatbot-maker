@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Chart from "react-apexcharts";
+import Chart from 'react-apexcharts';
+import styled from 'styled-components';
 
 export const ChartContainer = styled.div`
   width: 100%;
