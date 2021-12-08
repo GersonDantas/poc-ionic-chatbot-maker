@@ -1,4 +1,4 @@
-import { Storage } from '@capacitor/storage';
+import { Storage } from "@capacitor/storage";
 
 export const getStorageKey = async (key: string): Promise<any> => {
   try {
@@ -10,7 +10,10 @@ export const getStorageKey = async (key: string): Promise<any> => {
   }
 };
 
-export const setStorageByKey = async <typeValue>(key: string, value: typeValue) => {
+export const setStorageByKey = async <typeValue>(
+  key: string,
+  value: typeValue
+): Promise<void> => {
   const stringValue = JSON.stringify(value);
   try {
     await Storage.set({
@@ -22,9 +25,17 @@ export const setStorageByKey = async <typeValue>(key: string, value: typeValue) 
   }
 };
 
-export const removeStorageByKey = async (key: string) => {
+export const removeStorageByKey = async (key: string): Promise<void> => {
   try {
     await Storage.remove({ key });
+  } catch (error: any) {
+    console.log(error);
+  }
+};
+
+export const clearStorage = async (): Promise<void> => {
+  try {
+    await Storage.clear();
   } catch (error: any) {
     console.log(error);
   }

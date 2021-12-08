@@ -1,3 +1,4 @@
+import React from "react";
 import { IonCardContent, IonCardHeader } from '@ionic/react';
 import type{ CardWithHeaderProps } from 'src/types';
 
@@ -8,7 +9,7 @@ import { IonCardWithHeader } from '..';
 
 const CardWithHeader = function (props: CardWithHeaderProps) {
   const {
-    cardTitle, children, hasIcon, titleInCenter,
+    cardTitle, children, hasIcon, titleInCenter, minHeight
   } = props;
 
   return (
@@ -24,7 +25,9 @@ const CardWithHeader = function (props: CardWithHeaderProps) {
       </IonCardHeader>
 
       <IonCardContent>
-        <IonCardHeaderContentRow>{children}</IonCardHeaderContentRow>
+        <IonCardHeaderContentRow style={{
+          minHeight: minHeight && "300px"
+        }}>{children}</IonCardHeaderContentRow>
       </IonCardContent>
 
     </IonCardWithHeader>

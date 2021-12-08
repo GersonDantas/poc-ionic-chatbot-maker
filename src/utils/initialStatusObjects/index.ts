@@ -1,15 +1,17 @@
+import { WidgetType } from "src/types/enums";
+
 export const initialStateUser = {
-  name: '',
-  email: '',
-  password: '',
-  whatsApp: '',
+  name: "",
+  email: "",
+  password: "",
+  whatsApp: "",
 };
 
 export const initialStatusError = {
-  name: '',
-  email: '',
-  password: '',
-  whatsApp: '',
+  name: "",
+  email: "",
+  password: "",
+  whatsApp: "",
 };
 
 export const initialStatusTouched = {
@@ -20,12 +22,22 @@ export const initialStatusTouched = {
 };
 
 export const initialPlatformUser = {
-  name: '',
-  email: '',
-  whatsApp: '',
-  id: '',
-  imageUrl: '',
+  name: "",
+  email: "",
+  whatsApp: "",
+  id: "",
+  imageUrl: "",
   chatbots: [],
   notification: false,
   lastPing: new Date(),
+};
+
+export const initialWidget = {
+  name: "",
+  type: WidgetType.label,
+  size: 0,
+};
+
+export const initialWidgetPanel = {
+  widgets: [initialWidget],
 };

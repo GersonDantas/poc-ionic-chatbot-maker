@@ -1,3 +1,4 @@
+import React from "react";
 import {
   IonCardContent, IonCardHeader, IonCol, IonRow, IonSkeletonText,
 } from '@ionic/react';

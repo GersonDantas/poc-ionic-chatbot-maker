@@ -22,4 +22,4 @@ function goBackHistory(): void {
   updateLocation();
 }
 
-export { pushHistory, replaceHistory, goBackHistory };
+export { pushHistory, replaceHistory, goBackHistory, updateLocation };

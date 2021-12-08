@@ -1,4 +1,4 @@
-/* eslint-disable react/require-default-props */
+import React from "react";
 import { IonItem } from '@ionic/react';
 import * as History from 'history';
 import { ReactNode } from 'react';

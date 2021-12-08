@@ -1,40 +1,41 @@
 export type { ChatbotItem } from "./chatbotModels";
 
 export type {
-	PlatformUser,
-	PlatformUserRegister,
-	Session,
-	Settings,
-	UserProps,
+  PlatformUser,
+  PlatformUserRegister,
+  Session,
+  Settings,
+  UserProps,
 } from "./userModels";
 
 export type {
-	CommonButtonProps,
-	InputAndLabelComponentProps,
-	InputWithMaskProps,
-	IonButtonProps,
-	IonCheckboxProps,
-	IonImgProps,
-	IonInputProps,
-	IonItemProps,
+  CommonButtonProps,
+  InputAndLabelComponentProps,
+  InputWithMaskProps,
+  IonButtonProps,
+  IonCheckboxProps,
+  IonImgProps,
+  IonInputProps,
+  IonItemProps,
 } from "./ionsCompoentTyping";
 
 export type {
-	AppPage,
-	CardWithHeaderProps,
-	DatetimeChangeEventDetail,
-	DropDownItemProps,
-	SelectAdaptiveDatePickerProps,
+  AppPage,
+  CardWithHeaderProps,
+  DatetimeChangeEventDetail,
+  DropDownItemProps,
+  SelectAdaptiveDatePickerProps,
+  setStateType,
 } from "./structuralTypes";
 
 export type {
-	WdgetPanel,
-	Widget,
-	WidgetChartSerie,
-	WidgetLabel,
-	WidgetTable,
-	WidgetTableColumn,
-	ExportAttendanceFilter,
-	ExportWidget,
-	WidgetChart,
+  WidgetPanel,
+  Widget,
+  WidgetChartSerie,
+  WidgetLabel,
+  WidgetTable,
+  WidgetTableColumn,
+  ExportAttendanceFilter,
+  ExportWidget,
+  WidgetChart,
 } from "./panelModels";

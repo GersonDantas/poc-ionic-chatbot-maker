@@ -1,3 +1,4 @@
+import React from "react";
 import { IonRow } from '@ionic/react';
 import { InputAndLabelComponentProps } from 'src/types';
 

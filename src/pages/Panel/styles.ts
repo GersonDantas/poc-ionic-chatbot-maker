@@ -1,13 +1,6 @@
 import { IonGrid, IonLabel, IonTitle } from '@ionic/react';
 import styled from 'styled-components';
 
-export const IonGridPanel = styled(IonGrid)`
-  --ion-grid-padding: 15px;
-
-  @media (min-width: 1130px) {
-    --ion-grid-padding: 30px;
-  }
-`;
 export const IonTitleDepartment = styled(IonTitle)`
   font-family: 'Inter', sans-serif;
   font-weight: 500;

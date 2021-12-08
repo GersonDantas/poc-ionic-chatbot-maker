@@ -1,4 +1,3 @@
-import React, { ReactNode } from 'react';
 import {
   IonButtons,
   IonContent,
@@ -8,52 +7,62 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  useIonViewDidEnter,
 } from '@ionic/react';
+import React, { ReactNode } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { MyIonToggleTheme } from 'src/components';
+import { getStorageKey, replaceHistory } from 'src/hooks';
 import { useGlobalContextData } from 'src/store';
-import { getStorageKey } from 'src/hooks';
-import { returnTheFirstName } from 'src/utils';
+import { PanelContextProvider } from 'src/store/localContext';
 import { ChatbotItem, Session } from 'src/types';
 
-import { Panel, Conversations } from '..';
+import { Panel, Conversations } from '../';
+import SkeletonHeader from './componetsPageToPages/SkeletonHeader';
 
 const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = function ({ match }) {
   const {
     setUserSession,
     userSession,
-    setIsLoginPage,
     setChatbotConnected,
     chatbotConnected,
+    isLoading,
   } = useGlobalContextData();
-
-  const [chatbotName, setChatbotName] = React.useState<ChatbotItem | undefined>()
 
   useIonViewWillEnter(async () => {
     const session: Session = await getStorageKey('SessionUserInLocalStorage');
     const chatbotItem: ChatbotItem = await getStorageKey('ChatbotSelectedInLocalStorage');
 
-    setIsLoginPage(false);
-    setUserSession(session);
-    setChatbotConnected(chatbotItem ?? userSession?.platformUser.chatbots[0])
+    if (session?.tokenSession) {
+      setUserSession(session);
+      setChatbotConnected(chatbotItem);
+    } else {
+      replaceHistory("/");
+    }
   });
-
-
+  
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonMenuButton color="primary" />
-          </IonButtons>
+        <>
+          {isLoading
+            ? <SkeletonHeader />
+            : <IonToolbar
+                style={{ "--background": "var(--ion-card-background)" }}
+            >
+              <IonButtons slot="start">
+                <IonMenuButton color="primary" />
+              </IonButtons>
 
-          <MyIonToggleTheme />
+              <MyIonToggleTheme />
 
-          <IonTitle style={{ textTransform: 'capitalize' }} color="primary">
-            {`${chatbotConnected?.name ?? userSession?.platformUser.chatbots[0].name ?? "Sem chatbot"}
+              <IonTitle style={{ textTransform: 'capitalize' }} color="primary">
+                {`${chatbotConnected?.name ?? userSession?.platformUser.chatbots[0].name ?? "Sem chatbot"}
             /${match.params.name}`}
-          </IonTitle>
-        </IonToolbar>
+              </IonTitle>
+            </IonToolbar>
+          }
+        </>
       </IonHeader>
 
       <IonContent fullscreen>
@@ -72,7 +81,7 @@ const PageToPage: React.FC<RouteComponentProps<{ name: string; }>> = function ({
 function selectPageContent(name: string): ReactNode {
   switch (name) {
     case 'painel':
-      return <Panel />;
+    return <Panel />;
     case 'conversas':
       return <Conversations />;
     default:

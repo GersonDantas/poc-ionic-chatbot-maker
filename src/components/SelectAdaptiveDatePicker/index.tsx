@@ -1,7 +1,9 @@
 import { InputChangeEventDetail } from '@ionic/core';
 import { isPlatform } from '@ionic/react';
-import { format } from 'date-fns';
+import { format, isBefore } from 'date-fns';
+import React from "react";
 import { SelectAdaptiveDatePickerProps } from 'src/types';
+import { formatUSDate } from 'src/utils';
 
 import { IonInputMobile, IonInputWeb } from './styles';
 
@@ -18,10 +20,13 @@ const SelectAdaptiveDatePicker = function (props: SelectAdaptiveDatePickerProps)
     }
   };
 
+  const maxDate = () => isFinalDate ? formatUSDate(new Date()) : formatUSDate(new Date(finalDate))
+  const minDate = () => isFinalDate ? formatUSDate(new Date(initialDate)) : "2019"
+
   return isPlatform('mobile') ? (
     <IonInputMobile
-      min="2019"
-      max={format(new Date(), 'yyyy-MM-dd')}
+      min={minDate()}
+      max={maxDate()}
       monthShortNames="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez"
       cancelText="Cancelar"
       doneText="ok"
@@ -33,11 +38,13 @@ const SelectAdaptiveDatePicker = function (props: SelectAdaptiveDatePickerProps)
   ) : (
     <IonInputWeb
       type="date"
-      max={format(new Date(), 'yyyy-MM-dd')}
+      min={minDate()}
+      max={maxDate()}
       value={isFinalDate ? finalDate : initialDate}
       onIonChange={handleIonChange}
     />
   );
 };
+
 
 export { SelectAdaptiveDatePicker };

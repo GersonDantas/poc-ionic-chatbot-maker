@@ -1,9 +1,10 @@
-export { maskToPhoneNumber } from './maskPhoneNumber';
-export { validateForm } from './validateForm';
+export { maskToPhoneNumber } from "./maskPhoneNumber";
+export { validateForm } from "./validateForm";
 export {
   initialStateUser,
   initialStatusError,
   initialStatusTouched,
   initialPlatformUser,
-} from './initialStatusObjects';
-export { returnTheFirstName, returnTheSurname } from './returnTheName';
+} from "./initialStatusObjects";
+export { returnTheFirstName, returnTheSurname } from "./returnTheName";
+export { formatUSDate } from "./formatDate";

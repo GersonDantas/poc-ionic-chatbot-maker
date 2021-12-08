@@ -22,7 +22,7 @@
     "**/*.ts",
     "**/*.tsx",
     "next.config.js",
-    "src/pages/Panel/componentsPanel/ApexCharts/atendimentosMock.js",
+    "src/pages/Panel/componentsPanel/ApexCharts/atendimentosMockInit.js",
     "src/hooks/userLocalStorage"
   ],
   "exclude": ["node_modules"]

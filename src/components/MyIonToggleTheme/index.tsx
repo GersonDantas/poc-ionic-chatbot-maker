@@ -15,8 +15,8 @@ const MyIonToggleTheme: React.FC = function () {
   );
 
   useMemo(async () => {
-    const t = await storageInitTheme;
-    if (t) setIsDark(t === 'dark');
+    const theme = await storageInitTheme;
+    if (theme) setIsDark(theme === 'dark');
   }, []);
 
   useIonViewWillEnter(() => {

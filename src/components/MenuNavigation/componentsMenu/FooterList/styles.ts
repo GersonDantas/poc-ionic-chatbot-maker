@@ -15,6 +15,7 @@ import { IonAvatarStyled } from '..';
 export const ListFooter = styled.div`
   padding: 0 8px 0 15px;
   background-color: var(--ion-card-background);
+  margin-bottom: 15px;
 `;
 export const ModalUserDetail = styled(IonModal)`
   --border-radius: 0;

@@ -3,6 +3,9 @@ import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import type * as History from 'history';
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
 
+export type setStateType<type> = Dispatch<SetStateAction<type>>
+
+
 export type DropDownItemProps = {
   title: string;
   dropDownObject: AppPage[];
@@ -14,8 +17,9 @@ export type DropDownItemProps = {
 export type CardWithHeaderProps = {
   children: ReactNode;
   titleInCenter?: boolean | undefined;
-  cardTitle: string;
+  cardTitle: string | ReactNode;
   hasIcon?: boolean;
+  minHeight?: boolean
 };
 
 export type AppPage = {
@@ -33,6 +37,6 @@ export type SelectAdaptiveDatePickerProps = {
   isFinalDate?: boolean;
   initialDate: string;
   finalDate: string;
-  setFinalDate: Dispatch<SetStateAction<string>>;
-  setInitialDate: Dispatch<SetStateAction<string>>;
+  setFinalDate: setStateType<string>;
+  setInitialDate: setStateType<string>;
 };

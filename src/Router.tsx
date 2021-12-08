@@ -15,13 +15,13 @@ const Router: React.FC = function () {
 
       <IonSplitPane
         disabled={isLoginPage}
-        contentId="main"
+        contentId="mainMenu"
         when="(min-width: 1025px)"
       >
 
         <MenuNavigation />
 
-        <IonRouterOutlet id="main">
+        <IonRouterOutlet id="mainMenu">
 
           <Route path="/" component={LoginPage} />
 

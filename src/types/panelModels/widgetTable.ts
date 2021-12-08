@@ -1,6 +1,6 @@
-import { WidgetTableColumn } from ".";
+import { Widget, WidgetTableColumn } from ".";
 
-export interface WidgetTable {
-    columns: WidgetTableColumn[];
-    rows:  Array<Array<string>>;
+export interface WidgetTable extends Widget {
+	columns: WidgetTableColumn[];
+	rows: Array<Array<string>>;
 }

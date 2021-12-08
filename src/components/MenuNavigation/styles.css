@@ -1,5 +1,9 @@
 ion-menu ion-content {
-  --background: var(--ion-item-background, var(--ion-background-color, #fff));
+  --background: var(--ion-card-background);
+}
+
+#inbox-list, #inbox-list-skeleton {
+  background-color: var(--ion-card-background);
 }
 
 ion-menu.md ion-content {
@@ -27,7 +31,7 @@ ion-menu.md ion-list#inbox-list ion-list-header {
   min-height: 20px;
 }
 
-ion-menu.md ion-list#inbox-list .logo {
+ion-menu.md ion-list#inbox-list .logo-menu {
   width: 100%;
 }
 
@@ -131,6 +135,7 @@ hr.divider-management {
 
 ion-item {
   --background-focused: var(--ion-color-primary);
+  --background: var(--ion-card-background);
   --background-focused-opacity: 1;
   --color-focused: white;
   text-transform: uppercase;
@@ -158,11 +163,6 @@ ion-item:hover {
   --border-radius: var(--border-card-radius);
 }
 
-ion-item.suspended-menu-user-click:hover {
-  --background: var(--ion-card-background);
-  --color: var(--ion-text-color);
-  --detail-icon-color: var(--ion-text-color);
-}
 
 ion-item:hover [class^="cb-"],
 ion-item:hover [class*=" cb-"] {
@@ -182,6 +182,13 @@ ion-item:focus {
   --border-radius: var(--border-card-radius);
   border-radius: var(--border-card-radius);
   border: 1px solid var(--border-focus-color);
+}
+
+
+ion-item.suspended-menu-user-click:hover {
+  --background: var(--ion-card-background);
+  --color: var(--ion-text-color);
+  --detail-icon-color: var(--ion-text-color);
 }
 
 ion-item.suspended-menu-user-click:focus {

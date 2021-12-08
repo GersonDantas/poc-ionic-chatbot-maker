@@ -1,5 +1,4 @@
 module.exports = {
-    ...require("./prettier-config.json"),
-    useTabs: true,
-    tabWidth: 2,
+	...require("./prettier-config.json"),
+	tabWidth: 2,
 };

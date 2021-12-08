@@ -4,13 +4,15 @@ import TableBody from '@material-ui/core/TableBody';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import React from "react";
+import { WidgetTableColumn } from 'src/types';
 import { v4 as uuidv4 } from 'uuid';
 
 import { StyledTableCell, StyledTableRow } from './styles';
 
 interface TablesPanelProps {
-  headers: Array<string>;
-  rows: Array<any>;
+  headers: WidgetTableColumn[];
+  rows: string[][];
 }
 
 const TablesPanel = function (props: TablesPanelProps) {
@@ -21,23 +23,35 @@ const TablesPanel = function (props: TablesPanelProps) {
 
         <TableHead>
           <TableRow>
-            {headers.map((title: string) => <StyledTableCell key={`${uuidv4()}`}>{title}</StyledTableCell>)}
+            {headers.map((header: WidgetTableColumn) =>
+              <StyledTableCell
+                key={`${uuidv4()}`}
+                align={header.center ? "center" : "left"}
+                width={header.width}
+              >
+                {header.caption}
+              </StyledTableCell>
+            )}
           </TableRow>
         </TableHead>
 
         <TableBody>
-          {rows.map((row) => (
+          {rows.map((row) =>
             <StyledTableRow key={`${uuidv4()}`}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell>{row.waiting}</StyledTableCell>
-              <StyledTableCell align="center">{row.inAttendance}</StyledTableCell>
-              <StyledTableCell align="center">{row.finalized}</StyledTableCell>
-              <StyledTableCell align="center">{row.waitingTime}</StyledTableCell>
-              <StyledTableCell align="center">{row.waitingTime}</StyledTableCell>
+              {
+                row.map((cell, i) =>
+                  <StyledTableCell
+                    key={`${uuidv4()}`}
+                    component="td"
+                    scope="row"
+                    align={headers[i].center ? "center" : "left"}
+                  >
+                    {cell}
+                  </StyledTableCell>
+                )
+              }
             </StyledTableRow>
-          ))}
+          )}
         </TableBody>
 
       </Table>

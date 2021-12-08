@@ -4,4 +4,5 @@ export interface Widget {
     name: string;
     type: WidgetType;
     size: number;
+    value?: string;
 }

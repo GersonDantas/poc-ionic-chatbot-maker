@@ -1,5 +1,7 @@
 import { faSyncAlt, faDownload } from '@fortawesome/free-solid-svg-icons';
+import React from "react";
 import { CommonButton, SelectAdaptiveDatePicker } from 'src/components';
+import { updateLocation } from 'src/hooks';
 import { usePanelLocalContextData } from 'src/store/localContext';
 
 import {
@@ -7,10 +9,11 @@ import {
 } from './styles';
 
 const DatePickersWithButtons = function () {
+
   const {
     initialDate, finalDate, setFinalDate, setInitialDate,
   } = usePanelLocalContextData();
-
+  
   return (
     <IonCardDateButtons className="border-radius-5">
       <IonRowDateButtons>
@@ -37,7 +40,7 @@ const DatePickersWithButtons = function () {
         </IonGridColumns>
 
         <IonGridColumns>
-          <CommonButton expand="full" color="success" faIcon={faSyncAlt} onClick={() => document.location.reload()}>ATUALIZAR</CommonButton>
+          <CommonButton expand="full" color="success" faIcon={faSyncAlt} onClick={updateLocation}>ATUALIZAR</CommonButton>
         </IonGridColumns>
 
         <IonGridColumns>

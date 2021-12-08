@@ -19,7 +19,8 @@ import {
   getStorageKey, replaceHistory, setStorageByKey, useForm,
 } from 'src/hooks';
 import { api } from 'src/services';
-import { Session } from 'src/types';
+import { useGlobalContextData } from 'src/store';
+import { ChatbotItem, Session } from 'src/types';
 import { initialStateUser, validateForm, maskToPhoneNumber } from 'src/utils';
 
 import {
@@ -42,7 +43,8 @@ import {
 } from './componentsLogin';
 
 const LoginPage = function () {
-  const [isLoading, setIsloading] = React.useState(true);
+  const {isLoading, setIsLoading} = useGlobalContextData();
+
   const [isSigningForm, setIsSigningForm] = React.useState(true);
   const [forgotPassword, setForgotPassword] = React.useState(false);
   const [showErrorTerms, setShowErrorTerms] = React.useState(false);
@@ -56,13 +58,13 @@ const LoginPage = function () {
 
       Nprogerss.inc(0.5);
       if (user !== undefined) {
-        window.location.replace('/page/painel');
+        replaceHistory('/page/painel');
       } else {
-        setIsloading(false);
+        setIsLoading(false);
         Nprogerss.done();
       }
     } catch (error: any) {
-      setIsloading(false);
+      setIsLoading(false);
       console.log(error.message);
     }
   });
@@ -76,7 +78,7 @@ const LoginPage = function () {
     e.preventDefault();
 
     Nprogerss.start();
-    setIsloading(true);
+    setIsLoading(true);
 
     if (!formIsValid()) return;
 
@@ -94,7 +96,7 @@ const LoginPage = function () {
     if (isSigningForm) {
       if (errors[1] !== '' || errors[2] !== '') {
         Nprogerss.done();
-        setIsloading(false);
+        setIsLoading(false);
         return false;
       }
       return true;
@@ -104,7 +106,7 @@ const LoginPage = function () {
 
     if (!checkboxTermsIsChekced) {
       setShowErrorTerms(true);
-      setIsloading(false);
+      setIsLoading(false);
       Nprogerss.done();
 
       return false;
@@ -128,7 +130,7 @@ const LoginPage = function () {
       .catch((e) => {
         if (e.message === 'Request failed with status code 400') {
           Nprogerss.done();
-          setIsloading(false);
+          setIsLoading(false);
           setShowLoginError(true);
           setTimeout(() => setShowLoginError(false), 5000);
         }
@@ -148,16 +150,15 @@ const LoginPage = function () {
       .catch(err => {
         console.log(err.message);
         Nprogerss.done();
-        setIsloading(false);
+        setIsLoading(false);
         setShowLoginError(true);
         setTimeout(() => setShowLoginError(false), 5000);
       });
   };
 
-  const connectPanel = (data: Session): void => {
-    // Nprogerss.done();
-    // setIsloading(false);
-    setStorageByKey<Session>('SessionUserInLocalStorage', data);
+  const connectPanel = async (data: Session): Promise<void> => {
+    await setStorageByKey<Session>('SessionUserInLocalStorage', data);
+    await setStorageByKey<ChatbotItem>("ChatbotSelectedInLocalStorage", data?.platformUser.chatbots[0]);
     replaceHistory('/page/panel');
   }
 

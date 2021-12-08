@@ -1,3 +1,4 @@
+import React from "react";
 import { ColAlertInvalidCrud, RowAlertInvalidCrud } from './styles';
 
 const AlertInvalidCrud = function () {

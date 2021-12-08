@@ -2,7 +2,7 @@ import { IonCol, IonRippleEffect, useIonViewWillEnter } from '@ionic/react';
 import React, { Dispatch, SetStateAction } from 'react';
 import { InputAndLabelComponent } from 'src/components';
 import { replaceHistory, useForm } from 'src/hooks';
-import { removeStorageByKey } from 'src/hooks/useLocalStorageCapacitor';
+import { clearStorage } from 'src/hooks';
 import { useGlobalContextData } from 'src/store';
 import { PlatformUser } from 'src/types';
 import {
@@ -43,8 +43,9 @@ const ModalUseDetailComponent: React.FC<ModalUseDetailProps> = function (props) 
   });
 
   const logout = (): void => {
-    removeStorageByKey('SessionUserInLocalStorage');
-    removeStorageByKey('ChatbotSelectedInLocalStorage');
+    // removeStorageByKey('SessionUserInLocalStorage');
+    // removeStorageByKey('ChatbotSelectedInLocalStorage');
+    clearStorage();
     replaceHistory('/');
   };
 
