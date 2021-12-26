@@ -1,6 +1,6 @@
 # Poc with ionic for Chatbotmaker
 
-ps: you don't need to add username and password to login, as we are still only in the visual part. Just click the login button.
+ps: you need to add username and password to login. Use gerson@chatbotmaker.io for login and asd123!@# for password.
 
 Project is running at firebase hosting: https://poc-ionic-chatbotmaker.web.app/
 
